@@ -7,7 +7,7 @@ pub const AudioBuffer = extern struct {
 };
 
 comptime {
-    const raw = @import("raw.zig");
+    const raw = @import("raw");
     const abi = @import("abi.zig");
     abi.assertStruct(AudioBuffer, raw.clap_audio_buffer_t);
 }

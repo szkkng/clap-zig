@@ -1,5 +1,5 @@
 const std = @import("std");
-const raw = @import("raw.zig");
+const raw = @import("raw");
 const abi = @import("abi.zig");
 const ClapID = @import("id.zig").ID;
 const Beattime = @import("fixedpoint.zig").Beattime;

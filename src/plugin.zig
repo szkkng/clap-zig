@@ -1,6 +1,6 @@
 const std = @import("std");
 const abi = @import("abi.zig");
-const raw = @import("raw.zig");
+const raw = @import("raw");
 const Version = @import("version.zig").Version;
 const Host = @import("host.zig").Host;
 const Process = @import("process.zig").Process;

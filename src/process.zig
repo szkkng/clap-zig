@@ -25,7 +25,7 @@ pub const Process = extern struct {
 };
 
 comptime {
-    const raw = @import("raw.zig");
+    const raw = @import("raw");
     const abi = @import("abi.zig");
     abi.assertStruct(Process, raw.clap_process_t);
 }

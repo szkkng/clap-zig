@@ -11,7 +11,7 @@ pub const Entry = extern struct {
 
 comptime {
     const abi = @import("../abi.zig");
-    const raw = @import("../raw.zig");
+    const raw = @import("raw");
     abi.assertStruct(Entry, raw.clap_plugin_entry_t);
     abi.assertFnPtr(
         @FieldType(Entry, "init"),

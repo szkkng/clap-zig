@@ -14,7 +14,7 @@ pub const Host = extern struct {
 };
 
 comptime {
-    const raw = @import("raw.zig");
+    const raw = @import("raw");
     const abi = @import("abi.zig");
     abi.assertStruct(Host, raw.clap_host_t);
     abi.assertFnPtr(@FieldType(Host, "getExtension"), @FieldType(raw.clap_host_t, "get_extension"));

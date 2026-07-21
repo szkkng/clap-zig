@@ -42,7 +42,7 @@ pub const feature = struct {
 
 test "plugin feature IDs" {
     const testing = @import("std").testing;
-    const raw = @import("../raw.zig");
+    const raw = @import("raw");
 
     try testing.expectEqualStrings(feature.instrument, raw.CLAP_PLUGIN_FEATURE_INSTRUMENT);
     try testing.expectEqualStrings(feature.audio_effect, raw.CLAP_PLUGIN_FEATURE_AUDIO_EFFECT);

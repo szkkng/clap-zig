@@ -11,7 +11,7 @@ pub const Version = extern struct {
 };
 
 comptime {
-    const raw = @import("raw.zig");
+    const raw = @import("raw");
     const abi = @import("abi.zig");
     abi.assertStruct(Version, raw.clap_version_t);
 }
