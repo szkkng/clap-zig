@@ -70,7 +70,7 @@ pub fn assertFnPtr(comptime ZigType: type, comptime CType: type) void {
     assert(c_fn.attrs.@"callconv".eql(.c));
 
     assert(zig_fn.param_types.len == c_fn.param_types.len);
-    assertType(zig_fn.return_type.?, c_fn.return_type.?);
+    assertType(unwrapOptional(zig_fn.return_type.?), unwrapOptional(c_fn.return_type.?));
 
     inline for (zig_fn.param_types, c_fn.param_types) |zig_param_type, c_param_type| {
         assertType(zig_param_type.?, c_param_type.?);
