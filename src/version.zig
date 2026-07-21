@@ -1,6 +1,6 @@
 pub const Version = extern struct {
     major: u32,
-    minor: i32,
+    minor: u32,
     revision: u32,
 
     pub const current: @This() = .{
