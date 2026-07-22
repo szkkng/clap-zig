@@ -2,7 +2,7 @@ const event = @import("event.zig");
 const Transport = event.Transport;
 const InputEvents = event.InputEvents;
 const OutputEvents = event.InputEvents;
-const AudioBuffer = @import("audio_buffer.zig");
+const AudioBuffer = @import("audio_buffer.zig").AudioBuffer;
 
 pub const Process = extern struct {
     pub const Status = enum(i32) {
