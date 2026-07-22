@@ -16,6 +16,7 @@ comptime {
     assertStruct(clap.event.Transport, raw.clap_event_transport_t);
 
     assertStruct(clap.Plugin, raw.clap_plugin_t);
+
     assertFnPtr(@FieldType(clap.Plugin, "init"), @FieldType(raw.clap_plugin_t, "init"));
     assertFnPtr(@FieldType(clap.Plugin, "destroy"), @FieldType(raw.clap_plugin_t, "destroy"));
     assertFnPtr(@FieldType(clap.Plugin, "activate"), @FieldType(raw.clap_plugin_t, "activate"));
@@ -78,6 +79,8 @@ comptime {
     assertStruct(clap.host.AudioPorts, raw.clap_host_audio_ports_t);
     assertFnPtr(@FieldType(clap.host.AudioPorts, "isRescanFlagSupported"), @FieldType(raw.clap_host_audio_ports_t, "is_rescan_flag_supported"));
     assertFnPtr(@FieldType(clap.host.AudioPorts, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
+
+    assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 }
 
 // Check extern struct layout by comparing size, alignment,
