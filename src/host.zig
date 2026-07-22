@@ -13,12 +13,14 @@ pub const Host = extern struct {
     requestCallback: *const fn (host: *const Host) callconv(.c) void,
 };
 
-comptime {
-    const raw = @import("raw");
-    const abi = @import("abi.zig");
-    abi.assertStruct(Host, raw.clap_host_t);
-    abi.assertFnPtr(@FieldType(Host, "getExtension"), @FieldType(raw.clap_host_t, "get_extension"));
-    abi.assertFnPtr(@FieldType(Host, "requestRestart"), @FieldType(raw.clap_host_t, "request_restart"));
-    abi.assertFnPtr(@FieldType(Host, "requestProcess"), @FieldType(raw.clap_host_t, "request_process"));
-    abi.assertFnPtr(@FieldType(Host, "requestCallback"), @FieldType(raw.clap_host_t, "request_callback"));
+test "Host ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Host, raw.clap_host_t);
+        abi.assertFnPtr(@FieldType(Host, "getExtension"), @FieldType(raw.clap_host_t, "get_extension"));
+        abi.assertFnPtr(@FieldType(Host, "requestRestart"), @FieldType(raw.clap_host_t, "request_restart"));
+        abi.assertFnPtr(@FieldType(Host, "requestProcess"), @FieldType(raw.clap_host_t, "request_process"));
+        abi.assertFnPtr(@FieldType(Host, "requestCallback"), @FieldType(raw.clap_host_t, "request_callback"));
+    }
 }

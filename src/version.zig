@@ -10,12 +10,6 @@ pub const Version = extern struct {
     };
 };
 
-comptime {
-    const raw = @import("raw");
-    const abi = @import("abi.zig");
-    abi.assertStruct(Version, raw.clap_version_t);
-}
-
 pub fn lt(ver: Version) bool {
     const current = Version.current;
     return (current.major < ver.major) or
@@ -61,4 +55,12 @@ test "version compatibility" {
     try testing.expect(isCompatible(.{ .major = 1, .minor = 0, .revision = 0 }));
     try testing.expect(isCompatible(.{ .major = 99, .minor = 0, .revision = 0 }));
     try testing.expect(!isCompatible(.{ .major = 0, .minor = 99, .revision = 99 }));
+}
+
+test "Version ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Version, raw.clap_version_t);
+    }
 }

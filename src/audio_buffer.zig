@@ -6,8 +6,10 @@ pub const AudioBuffer = extern struct {
     constant_mask: u64,
 };
 
-comptime {
-    const raw = @import("raw");
-    const abi = @import("abi.zig");
-    abi.assertStruct(AudioBuffer, raw.clap_audio_buffer_t);
+test "AudioBuffer ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(AudioBuffer, raw.clap_audio_buffer_t);
+    }
 }

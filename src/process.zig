@@ -24,8 +24,10 @@ pub const Process = extern struct {
     out_events: *const OutputEvents,
 };
 
-comptime {
-    const raw = @import("raw");
-    const abi = @import("abi.zig");
-    abi.assertStruct(Process, raw.clap_process_t);
+test "Process ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Process, raw.clap_process_t);
+    }
 }

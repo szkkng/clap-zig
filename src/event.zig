@@ -1,6 +1,4 @@
 const std = @import("std");
-const raw = @import("raw");
-const abi = @import("abi.zig");
 const ClapID = @import("id.zig").ID;
 const Beattime = @import("fixedpoint.zig").Beattime;
 const Sectime = @import("fixedpoint.zig").Sectime;
@@ -36,8 +34,12 @@ pub const Header = extern struct {
     };
 };
 
-comptime {
-    abi.assertStruct(Header, raw.clap_event_header_t);
+test "Header ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Header, raw.clap_event_header_t);
+    }
 }
 
 pub const core_event_space_id = 0;
@@ -51,8 +53,12 @@ pub const Note = extern struct {
     velocity: f64,
 };
 
-comptime {
-    abi.assertStruct(Note, raw.clap_event_note_t);
+test "Note ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Note, raw.clap_event_note_t);
+    }
 }
 
 pub const NoteExpression = extern struct {
@@ -75,8 +81,12 @@ pub const NoteExpression = extern struct {
     };
 };
 
-comptime {
-    abi.assertStruct(NoteExpression, raw.clap_event_note_expression_t);
+test "NoteExpression ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(NoteExpression, raw.clap_event_note_expression_t);
+    }
 }
 
 pub const ParamValue = extern struct {
@@ -90,8 +100,12 @@ pub const ParamValue = extern struct {
     value: f64,
 };
 
-comptime {
-    abi.assertStruct(ParamValue, raw.clap_event_param_value_t);
+test "ParamValue ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(ParamValue, raw.clap_event_param_value_t);
+    }
 }
 
 pub const ParamMod = extern struct {
@@ -105,8 +119,12 @@ pub const ParamMod = extern struct {
     amount: f64,
 };
 
-comptime {
-    abi.assertStruct(ParamMod, raw.clap_event_param_mod_t);
+test "ParamMod ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(ParamMod, raw.clap_event_param_mod_t);
+    }
 }
 
 pub const ParamGesture = extern struct {
@@ -114,8 +132,12 @@ pub const ParamGesture = extern struct {
     param_id: ClapID,
 };
 
-comptime {
-    abi.assertStruct(ParamGesture, raw.clap_event_param_gesture_t);
+test "ParamGesture ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(ParamGesture, raw.clap_event_param_gesture_t);
+    }
 }
 
 pub const Transport = extern struct {
@@ -147,8 +169,12 @@ pub const Transport = extern struct {
     };
 };
 
-comptime {
-    abi.assertStruct(Transport, raw.clap_event_transport_t);
+test "Transport ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Transport, raw.clap_event_transport_t);
+    }
 }
 
 pub const Midi = extern struct {
@@ -157,6 +183,14 @@ pub const Midi = extern struct {
     data: [3]u8,
 };
 
+test "Midi ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Midi2, raw.clap_event_midi2_t);
+    }
+}
+
 pub const MidiSysex = extern struct {
     header: Header,
     port_index: u16,
@@ -164,8 +198,12 @@ pub const MidiSysex = extern struct {
     size: u32,
 };
 
-comptime {
-    abi.assertStruct(MidiSysex, raw.clap_event_midi_sysex_t);
+test "MidiSyex ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(MidiSysex, raw.clap_event_midi_sysex_t);
+    }
 }
 
 pub const Midi2 = extern struct {
@@ -174,8 +212,12 @@ pub const Midi2 = extern struct {
     data: [4]u32,
 };
 
-comptime {
-    abi.assertStruct(Midi2, raw.clap_event_midi2_t);
+test "Midi2 ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(Midi2, raw.clap_event_midi2_t);
+    }
 }
 
 pub const InputEvents = extern struct {
@@ -184,10 +226,14 @@ pub const InputEvents = extern struct {
     get: *const fn (list: *const InputEvents, index: u32) callconv(.c) *const Header,
 };
 
-comptime {
-    abi.assertStruct(InputEvents, raw.clap_input_events_t);
-    abi.assertFnPtr(@FieldType(InputEvents, "size"), @FieldType(raw.clap_input_events_t, "size"));
-    abi.assertFnPtr(@FieldType(InputEvents, "get"), @FieldType(raw.clap_input_events_t, "get"));
+test "InputEvents ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(InputEvents, raw.clap_input_events_t);
+        abi.assertFnPtr(@FieldType(InputEvents, "size"), @FieldType(raw.clap_input_events_t, "size"));
+        abi.assertFnPtr(@FieldType(InputEvents, "get"), @FieldType(raw.clap_input_events_t, "get"));
+    }
 }
 
 pub const OutputEvents = extern struct {
@@ -195,7 +241,11 @@ pub const OutputEvents = extern struct {
     tryPush: *const fn (list: *const OutputEvents, event: *const Header) callconv(.c) bool,
 };
 
-comptime {
-    abi.assertStruct(OutputEvents, raw.clap_output_events_t);
-    abi.assertFnPtr(@FieldType(OutputEvents, "tryPush"), @FieldType(raw.clap_output_events_t, "try_push"));
+test "OutputEvents ABI compatibility" {
+    comptime {
+        const raw = @import("raw");
+        const abi = @import("abi.zig");
+        abi.assertStruct(OutputEvents, raw.clap_output_events_t);
+        abi.assertFnPtr(@FieldType(OutputEvents, "tryPush"), @FieldType(raw.clap_output_events_t, "try_push"));
+    }
 }
