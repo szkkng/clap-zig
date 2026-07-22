@@ -1,7 +1,7 @@
 const event = @import("events.zig");
 const Transport = event.Transport;
 const InputEvents = event.InputEvents;
-const OutputEvents = event.InputEvents;
+const OutputEvents = event.OutputEvents;
 const AudioBuffer = @import("audio_buffer.zig").AudioBuffer;
 
 pub const Process = extern struct {
