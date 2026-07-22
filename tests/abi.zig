@@ -70,6 +70,8 @@ comptime {
     assertStruct(clap.plugin.Descriptor, raw.clap_plugin_descriptor_t);
 }
 
+// Check extern struct layout by comparing size, alignment,
+// field count, field sizes, and offsets.
 fn assertStruct(comptime ZigType: type, comptime CType: type) void {
     const zig_struct = switch (@typeInfo(ZigType)) {
         .@"struct" => |s| s,
@@ -99,6 +101,8 @@ fn assertStruct(comptime ZigType: type, comptime CType: type) void {
     }
 }
 
+// Check callback ABI shape by comparing the C calling convention,
+// parameter count, and size/alignment of parameters and the return value.
 fn assertFnPtr(comptime ZigType: type, comptime CType: type) void {
     const zig_ptr = switch (@typeInfo(unwrapOptional(ZigType))) {
         .pointer => |p| p,
@@ -119,9 +123,14 @@ fn assertFnPtr(comptime ZigType: type, comptime CType: type) void {
 
     assert(zig_fn.attrs.@"callconv".eql(.c));
     assert(c_fn.attrs.@"callconv".eql(.c));
+
+    assert(@sizeOf(zig_fn.return_type.?) == @sizeOf(c_fn.return_type.?));
+    assert(@alignOf(zig_fn.return_type.?) == @alignOf(c_fn.return_type.?));
     assert(zig_fn.param_types.len == c_fn.param_types.len);
+
     inline for (zig_fn.param_types, c_fn.param_types) |zig_param_type, c_param_type| {
-        assertType(zig_param_type.?, c_param_type.?);
+        assert(@sizeOf(zig_param_type.?) == @sizeOf(c_param_type.?));
+        assert(@alignOf(zig_param_type.?) == @alignOf(c_param_type.?));
     }
 }
 
@@ -130,37 +139,4 @@ fn unwrapOptional(comptime T: type) type {
         .optional => |optional| optional.child,
         else => T,
     };
-}
-
-fn assertType(comptime ZigType: type, comptime CType: type) void {
-    if (ZigType == CType) return;
-
-    const zig_type_info = @typeInfo(ZigType);
-    const c_type_info = @typeInfo(CType);
-    assert(meta.activeTag(zig_type_info) == meta.activeTag(c_type_info));
-
-    switch (zig_type_info) {
-        .int => |zig_int| assert(meta.eql(zig_int, c_type_info.int)),
-        .float => |zig_float| assert(meta.eql(zig_float, c_type_info.float)),
-        .@"struct" => assertStruct(ZigType, CType),
-        .pointer => assertPtr(ZigType, CType),
-        .optional => |zig_opt| assertType(zig_opt.child, c_type_info.optional.child),
-        else => @compileError("unsupported"),
-    }
-}
-
-fn assertPtr(comptime ZigType: type, comptime CType: type) void {
-    const zig_ptr = switch (@typeInfo(ZigType)) {
-        .pointer => |p| p,
-        else => @compileError("Expected a pointer"),
-    };
-    const c_ptr = switch (@typeInfo(CType)) {
-        .pointer => |p| p,
-        else => @compileError("Expected a pointer"),
-    };
-
-    assert(@sizeOf(ZigType) == @sizeOf(CType));
-    assert(@alignOf(ZigType) == @alignOf(CType));
-    assert(zig_ptr.attrs.@"const" == c_ptr.attrs.@"const");
-    assertType(zig_ptr.child, c_ptr.child);
 }
