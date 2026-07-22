@@ -7,4 +7,5 @@ test {
     _ = @import("version.zig");
     _ = @import("string_sizes.zig");
     _ = @import("ext/audio_ports.zig");
+    _ = @import("events.zig");
 }
