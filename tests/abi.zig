@@ -13,7 +13,7 @@ comptime {
 
     assertStruct(clap.AudioBuffer, raw.clap_audio_buffer_t);
 
-    assertStruct(clap.Transport, raw.clap_event_transport_t);
+    assertStruct(clap.event.Transport, raw.clap_event_transport_t);
 
     assertStruct(clap.Plugin, raw.clap_plugin_t);
     assertFnPtr(@FieldType(clap.Plugin, "init"), @FieldType(raw.clap_plugin_t, "init"));

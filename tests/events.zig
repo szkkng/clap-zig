@@ -19,7 +19,7 @@ test "event header type" {
 }
 
 test "note expression id" {
-    const Id = clap.NoteExpression.Id;
+    const Id = clap.event.NoteExpression.Id;
     try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_VOLUME, @intFromEnum(Id.volume));
     try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_PAN, @intFromEnum(Id.pan));
     try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_TUNING, @intFromEnum(Id.tuning));
@@ -30,7 +30,7 @@ test "note expression id" {
 }
 
 test "transport flags" {
-    const Flags = clap.Transport.Flags;
+    const Flags = clap.event.Transport.Flags;
     try expectFlag(Flags, raw.CLAP_TRANSPORT_HAS_TEMPO, Flags{ .has_tempo = true });
     try expectFlag(Flags, raw.CLAP_TRANSPORT_HAS_BEATS_TIMELINE, Flags{ .has_beats_timeline = true });
     try expectFlag(Flags, raw.CLAP_TRANSPORT_HAS_SECONDS_TIMELINE, Flags{ .has_seconds_timeline = true });

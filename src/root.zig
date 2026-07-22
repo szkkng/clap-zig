@@ -1,7 +1,6 @@
 pub const version = @import("version.zig");
 pub const Version = version.Version;
 pub const event = @import("events.zig");
-pub const Transport = @import("events.zig").Transport;
 pub const InputEvents = @import("events.zig").InputEvents;
 pub const OutputEvents = @import("events.zig").OutputEvents;
 pub const plugin = @import("plugin.zig");
