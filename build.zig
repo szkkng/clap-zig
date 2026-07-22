@@ -10,8 +10,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    // The translate-c generated CLAP bindings are used only for ABI compatibility
-    // checks against the hand-written bindings.
+    // The translate-c generated CLAP bindings are used only for tests.
     const test_step = b.step("test", "Run unit tests");
     const clap = b.dependency("clap", .{});
     const translate_c = b.dependency("translate_c", .{});
