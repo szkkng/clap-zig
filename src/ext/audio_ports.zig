@@ -42,28 +42,28 @@ pub const PluginAudioPorts = extern struct {
 };
 
 pub const HostAudioPorts = extern struct {
-    pub const Flags = packed struct(u32) {
+    pub const RescanFlags = packed struct(u32) {
         /// The ports name did change, the host can scan them right away.
-        rescan_names: bool = false,
+        names: bool = false,
 
         /// [!active] The flags did change
-        rescan_flags: bool = false,
+        flags: bool = false,
 
         /// [!active] The channel_count did change
-        rescan_channel_count: bool = false,
+        channel_count: bool = false,
 
         /// [!active] The port type did change
-        rescan_port_type: bool = false,
+        port_type: bool = false,
 
         /// [!active] The in-place pair did change, this requires.
-        rescan_in_place_pair: bool = false,
+        in_place_pair: bool = false,
 
         /// [!active] The list of ports have changed: entries have been removed/added.
-        rescan_list: bool = false,
+        list: bool = false,
 
         _: u26 = 0,
     };
 
-    isRescanFlagSupported: *const fn (host: *const Host, flag: Flags) callconv(.c) bool,
-    rescan: *const fn (host: *const Host, flags: Flags) callconv(.c) void,
+    isRescanFlagSupported: *const fn (host: *const Host, flag: RescanFlags) callconv(.c) bool,
+    rescan: *const fn (host: *const Host, flags: RescanFlags) callconv(.c) void,
 };
