@@ -4,6 +4,7 @@ const Host = @import("host.zig").Host;
 const Process = @import("process.zig").Process;
 
 pub const Entry = @import("entry.zig").Entry;
+pub const Factory = @import("factory/plugin_factory.zig").Factory;
 pub const feature = @import("plugin_features.zig").feature;
 
 pub const Descriptor = extern struct {
@@ -32,21 +33,4 @@ pub const Plugin = extern struct {
     process: *const fn (plugin: *const Plugin, process: *const Process) callconv(.c) Process.Status,
     getExtension: *const fn (plugin: *const Plugin, id: [*:0]const u8) callconv(.c) ?*const anyopaque,
     onMainThread: *const fn (plugin: *const Plugin) callconv(.c) void,
-};
-
-pub const Factory = extern struct {
-    pub const id = "clap.plugin-factory";
-
-    getPluginCount: *const fn (factory: *const Factory) callconv(.c) u32,
-
-    getPluginDescriptor: *const fn (
-        factory: *const Factory,
-        index: u32,
-    ) callconv(.c) ?*const Descriptor,
-
-    createPlugin: *const fn (
-        factory: *const Factory,
-        host: *const Host,
-        plugin_id: [*:0]const u8,
-    ) callconv(.c) ?*const Plugin,
 };
