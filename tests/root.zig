@@ -5,4 +5,5 @@ test {
     _ = @import("plugin_features.zig");
     _ = @import("factory/plugin_factory.zig");
     _ = @import("version.zig");
+    _ = @import("string_sizes.zig");
 }

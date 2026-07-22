@@ -15,3 +15,5 @@ pub const Beattime = @import("fixedpoint.zig").Beattime;
 pub const Sectime = @import("fixedpoint.zig").Sectime;
 pub const beattime_factor = @import("fixedpoint.zig").beattime_factor;
 pub const sectime_factor = @import("fixedpoint.zig").sectime_factor;
+pub const name_size = @import("string_sizes.zig").name_size;
+pub const path_size = @import("string_sizes.zig").path_size;
