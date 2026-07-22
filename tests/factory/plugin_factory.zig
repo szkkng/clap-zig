@@ -4,5 +4,5 @@ const raw = @import("raw");
 const Factory = clap.plugin.Factory;
 
 test "plugin factory id" {
-    try testing.expectEqualStrings(Factory.id, raw.CLAP_PLUGIN_FACTORY_ID[0..]);
+    try testing.expectEqualStrings(raw.CLAP_PLUGIN_FACTORY_ID[0..], Factory.id);
 }

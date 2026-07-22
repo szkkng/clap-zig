@@ -3,9 +3,9 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 test "audio port identifiers" {
-    try testing.expectEqualStrings(clap.ext_audio_ports, raw.CLAP_EXT_AUDIO_PORTS[0..]);
-    try testing.expectEqualStrings(clap.port_mono, raw.CLAP_PORT_MONO[0..]);
-    try testing.expectEqualStrings(clap.port_stereo, raw.CLAP_PORT_STEREO[0..]);
+    try testing.expectEqualStrings(raw.CLAP_EXT_AUDIO_PORTS[0..], clap.ext_audio_ports);
+    try testing.expectEqualStrings(raw.CLAP_PORT_MONO[0..], clap.port_mono);
+    try testing.expectEqualStrings(raw.CLAP_PORT_STEREO[0..], clap.port_stereo);
 }
 
 test "audio port info flags" {
@@ -19,7 +19,7 @@ test "audio port info flags" {
 test "audio port rescan flags" {
     const Flags = clap.host.AudioPorts.RescanFlags;
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, Flags{ .names = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, Flags{ .flags = false });
+    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, Flags{ .flags = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, Flags{ .channel_count = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, Flags{ .port_type = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, Flags{ .in_place_pair = true });
