@@ -1,5 +1,5 @@
 //! This file provides a set of standard plugin features meant to be used
-//! within clap.plugin.Descriptor.features.
+//! within plugin.Descriptor.features.
 //!
 //! For practical reasons we'll avoid spaces and use `-` instead to facilitate
 //! scripts that generate the feature array.
