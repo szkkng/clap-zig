@@ -3,8 +3,8 @@ const Version = @import("version.zig").Version;
 const Host = @import("host.zig").Host;
 const Process = @import("process.zig").Process;
 
-pub const Entry = @import("plugin/Entry.zig").Entry;
-pub const feature = @import("plugin/feature.zig").feature;
+pub const Entry = @import("entry.zig").Entry;
+pub const feature = @import("plugin_features.zig").feature;
 
 pub const Descriptor = extern struct {
     clap_version: Version,
