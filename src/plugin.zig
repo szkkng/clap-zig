@@ -6,6 +6,7 @@ const Process = @import("process.zig").Process;
 pub const Entry = @import("entry.zig").Entry;
 pub const Factory = @import("factory/plugin_factory.zig").Factory;
 pub const feature = @import("plugin_features.zig").feature;
+pub const AudioPorts = @import("ext/audio_ports.zig").PluginAudioPorts;
 
 pub const Descriptor = extern struct {
     clap_version: Version,

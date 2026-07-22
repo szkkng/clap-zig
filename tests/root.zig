@@ -6,4 +6,5 @@ test {
     _ = @import("factory/plugin_factory.zig");
     _ = @import("version.zig");
     _ = @import("string_sizes.zig");
+    _ = @import("ext/audio_ports.zig");
 }

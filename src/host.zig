@@ -1,5 +1,7 @@
 const Version = @import("version.zig").Version;
 
+pub const AudioPorts = @import("ext/audio_ports.zig").HostAudioPorts;
+
 pub const Host = extern struct {
     clap_version: Version,
     host_data: *anyopaque,
