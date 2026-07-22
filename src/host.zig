@@ -12,15 +12,3 @@ pub const Host = extern struct {
     requestProcess: *const fn (host: *const Host) callconv(.c) void,
     requestCallback: *const fn (host: *const Host) callconv(.c) void,
 };
-
-test "Host ABI compatibility" {
-    comptime {
-        const raw = @import("raw");
-        const abi = @import("abi.zig");
-        abi.assertStruct(Host, raw.clap_host_t);
-        abi.assertFnPtr(@FieldType(Host, "getExtension"), @FieldType(raw.clap_host_t, "get_extension"));
-        abi.assertFnPtr(@FieldType(Host, "requestRestart"), @FieldType(raw.clap_host_t, "request_restart"));
-        abi.assertFnPtr(@FieldType(Host, "requestProcess"), @FieldType(raw.clap_host_t, "request_process"));
-        abi.assertFnPtr(@FieldType(Host, "requestCallback"), @FieldType(raw.clap_host_t, "request_callback"));
-    }
-}

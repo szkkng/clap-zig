@@ -13,9 +13,6 @@ pub fn build(b: *std.Build) void {
     // The translate-c generated CLAP bindings are used only for ABI compatibility
     // checks against the hand-written bindings.
     const test_step = b.step("test", "Run unit tests");
-    const unit_tests = b.addTest(.{
-        .root_module = mod,
-    });
     const clap = b.dependency("clap", .{});
     const translate_c = b.dependency("translate_c", .{});
     const translator: Translator = .init(translate_c, .{
@@ -23,6 +20,14 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+    const unit_tests = b.addTest(.{
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("tests/root.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
+    });
+    unit_tests.root_module.addImport("clap_zig", mod);
     unit_tests.root_module.addImport("raw", translator.mod);
     const run_unit_tests = b.addRunArtifact(unit_tests);
     test_step.dependOn(&run_unit_tests.step);

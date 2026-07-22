@@ -1,6 +1,7 @@
 pub const version = @import("version.zig");
 pub const Version = version.Version;
 pub const event = @import("events.zig");
+pub const Transport = @import("events.zig").Transport;
 pub const InputEvents = @import("events.zig").InputEvents;
 pub const OutputEvents = @import("events.zig").OutputEvents;
 pub const plugin = @import("plugin.zig");
@@ -14,8 +15,3 @@ pub const Beattime = @import("fixedpoint.zig").Beattime;
 pub const Sectime = @import("fixedpoint.zig").Sectime;
 pub const beattime_factor = @import("fixedpoint.zig").beattime_factor;
 pub const sectime_factor = @import("fixedpoint.zig").sectime_factor;
-
-test {
-    const std = @import("std");
-    std.testing.refAllDecls(@This());
-}

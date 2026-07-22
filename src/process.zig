@@ -1,4 +1,4 @@
-const event = @import("event.zig");
+const event = @import("events.zig");
 const Transport = event.Transport;
 const InputEvents = event.InputEvents;
 const OutputEvents = event.InputEvents;
@@ -23,11 +23,3 @@ pub const Process = extern struct {
     in_events: *const InputEvents,
     out_events: *const OutputEvents,
 };
-
-test "Process ABI compatibility" {
-    comptime {
-        const raw = @import("raw");
-        const abi = @import("abi.zig");
-        abi.assertStruct(Process, raw.clap_process_t);
-    }
-}
