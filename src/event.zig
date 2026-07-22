@@ -1,5 +1,5 @@
 const std = @import("std");
-const ClapID = @import("id.zig").ID;
+const Id = @import("id.zig").Id;
 const Beattime = @import("fixedpoint.zig").Beattime;
 const Sectime = @import("fixedpoint.zig").Sectime;
 
@@ -63,14 +63,14 @@ test "Note ABI compatibility" {
 
 pub const NoteExpression = extern struct {
     header: Header,
-    expression_id: ID,
+    expression_id: @This().Id,
     note_id: i32,
     port_index: i16,
     channel: i16,
     key: i16,
     value: f64,
 
-    pub const ID = enum(i32) {
+    pub const Id = enum(i32) {
         volume = 0,
         pan = 1,
         tuning = 2,
@@ -91,7 +91,7 @@ test "NoteExpression ABI compatibility" {
 
 pub const ParamValue = extern struct {
     header: Header,
-    param_id: ClapID,
+    param_id: Id,
     cookie: ?*anyopaque,
     note_id: i32,
     port_index: i16,
@@ -110,7 +110,7 @@ test "ParamValue ABI compatibility" {
 
 pub const ParamMod = extern struct {
     header: Header,
-    param_id: ClapID,
+    param_id: Id,
     cookie: ?*anyopaque,
     note_id: i32,
     port_index: i16,
@@ -129,7 +129,7 @@ test "ParamMod ABI compatibility" {
 
 pub const ParamGesture = extern struct {
     header: Header,
-    param_id: ClapID,
+    param_id: Id,
 };
 
 test "ParamGesture ABI compatibility" {
