@@ -2,6 +2,7 @@ pub const version = @import("version.zig");
 pub const Version = version.Version;
 pub const event = @import("event.zig");
 pub const plugin = @import("plugin.zig");
+pub const Plugin = @import("plugin.zig").Plugin;
 pub const Host = @import("host.zig").Host;
 pub const AudioBuffer = @import("audio_buffer.zig").AudioBuffer;
 pub const Process = @import("process.zig").Process;
