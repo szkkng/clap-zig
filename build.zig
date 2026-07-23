@@ -30,4 +30,16 @@ pub fn build(b: *std.Build) void {
     unit_tests.root_module.addImport("raw", translator.mod);
     const run_unit_tests = b.addRunArtifact(unit_tests);
     test_step.dependOn(&run_unit_tests.step);
+
+    const docs_step = b.step("docs", "Emit docs");
+    const lib = b.addLibrary(.{
+        .name = "docs",
+        .root_module = mod,
+    });
+    const docs_install = b.addInstallDirectory(.{
+        .install_dir = .prefix,
+        .install_subdir = "docs",
+        .source_dir = lib.getEmittedDocs(),
+    });
+    docs_step.dependOn(&docs_install.step);
 }
