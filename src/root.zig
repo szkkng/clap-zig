@@ -21,4 +21,6 @@ pub const port_mono = @import("ext/audio_ports.zig").port_mono;
 pub const port_stereo = @import("ext/audio_ports.zig").port_stereo;
 pub const name_size = @import("string_sizes.zig").name_size;
 pub const path_size = @import("string_sizes.zig").path_size;
+pub const timestamp = @import("timestamp.zig");
+pub const Timestamp = timestamp.Timestamp;
 pub const UniversalPluginId = @import("universal_plugin_id.zig").UniversalPluginId;

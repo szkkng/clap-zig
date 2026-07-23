@@ -81,6 +81,8 @@ comptime {
     assertFnPtr(@FieldType(clap.host.AudioPorts, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
 
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
+
+    assert(clap.Timestamp == raw.clap_timestamp);
 }
 
 // Check extern struct layout by comparing size, alignment,
