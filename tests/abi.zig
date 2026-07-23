@@ -27,12 +27,12 @@ comptime {
     assertFnPtr(@FieldType(clap.Plugin, "getExtension"), @FieldType(raw.clap_plugin_t, "get_extension"));
     assertFnPtr(@FieldType(clap.Plugin, "onMainThread"), @FieldType(raw.clap_plugin_t, "on_main_thread"));
 
-    assertStruct(clap.InputEvents, raw.clap_input_events_t);
-    assertFnPtr(@FieldType(clap.InputEvents, "size"), @FieldType(raw.clap_input_events_t, "size"));
-    assertFnPtr(@FieldType(clap.InputEvents, "get"), @FieldType(raw.clap_input_events_t, "get"));
+    assertStruct(clap.event.InputEvents, raw.clap_input_events_t);
+    assertFnPtr(@FieldType(clap.event.InputEvents, "size"), @FieldType(raw.clap_input_events_t, "size"));
+    assertFnPtr(@FieldType(clap.event.InputEvents, "get"), @FieldType(raw.clap_input_events_t, "get"));
 
-    assertStruct(clap.OutputEvents, raw.clap_output_events_t);
-    assertFnPtr(@FieldType(clap.OutputEvents, "tryPush"), @FieldType(raw.clap_output_events_t, "try_push"));
+    assertStruct(clap.event.OutputEvents, raw.clap_output_events_t);
+    assertFnPtr(@FieldType(clap.event.OutputEvents, "tryPush"), @FieldType(raw.clap_output_events_t, "try_push"));
 
     assertStruct(clap.Host, raw.clap_host_t);
     assertFnPtr(@FieldType(clap.Host, "getExtension"), @FieldType(raw.clap_host_t, "get_extension"));
@@ -58,27 +58,27 @@ comptime {
 
     assertStruct(clap.event.Midi2, raw.clap_event_midi2_t);
 
-    assertStruct(clap.plugin.Entry, raw.clap_plugin_entry_t);
-    assertFnPtr(@FieldType(clap.plugin.Entry, "init"), @FieldType(raw.clap_plugin_entry_t, "init"));
-    assertFnPtr(@FieldType(clap.plugin.Entry, "deinit"), @FieldType(raw.clap_plugin_entry_t, "deinit"));
-    assertFnPtr(@FieldType(clap.plugin.Entry, "getFactory"), @FieldType(raw.clap_plugin_entry_t, "get_factory"));
+    assertStruct(clap.Plugin.Entry, raw.clap_plugin_entry_t);
+    assertFnPtr(@FieldType(clap.Plugin.Entry, "init"), @FieldType(raw.clap_plugin_entry_t, "init"));
+    assertFnPtr(@FieldType(clap.Plugin.Entry, "deinit"), @FieldType(raw.clap_plugin_entry_t, "deinit"));
+    assertFnPtr(@FieldType(clap.Plugin.Entry, "getFactory"), @FieldType(raw.clap_plugin_entry_t, "get_factory"));
 
-    assertStruct(clap.plugin.Factory, raw.clap_plugin_factory_t);
-    assertFnPtr(@FieldType(clap.plugin.Factory, "getPluginCount"), @FieldType(raw.clap_plugin_factory_t, "get_plugin_count"));
-    assertFnPtr(@FieldType(clap.plugin.Factory, "getPluginDescriptor"), @FieldType(raw.clap_plugin_factory_t, "get_plugin_descriptor"));
-    assertFnPtr(@FieldType(clap.plugin.Factory, "createPlugin"), @FieldType(raw.clap_plugin_factory_t, "create_plugin"));
+    assertStruct(clap.Plugin.Factory, raw.clap_plugin_factory_t);
+    assertFnPtr(@FieldType(clap.Plugin.Factory, "getPluginCount"), @FieldType(raw.clap_plugin_factory_t, "get_plugin_count"));
+    assertFnPtr(@FieldType(clap.Plugin.Factory, "getPluginDescriptor"), @FieldType(raw.clap_plugin_factory_t, "get_plugin_descriptor"));
+    assertFnPtr(@FieldType(clap.Plugin.Factory, "createPlugin"), @FieldType(raw.clap_plugin_factory_t, "create_plugin"));
 
-    assertStruct(clap.plugin.Descriptor, raw.clap_plugin_descriptor_t);
+    assertStruct(clap.Plugin.Descriptor, raw.clap_plugin_descriptor_t);
 
-    assertStruct(clap.AudioPortInfo, raw.clap_audio_port_info_t);
+    assertStruct(clap.ext.audio_ports.Info, raw.clap_audio_port_info_t);
 
-    assertStruct(clap.plugin.AudioPorts, raw.clap_plugin_audio_ports_t);
-    assertFnPtr(@FieldType(clap.plugin.AudioPorts, "count"), @FieldType(raw.clap_plugin_audio_ports_t, "count"));
-    assertFnPtr(@FieldType(clap.plugin.AudioPorts, "get"), @FieldType(raw.clap_plugin_audio_ports_t, "get"));
+    assertStruct(clap.ext.audio_ports.PluginPorts, raw.clap_plugin_audio_ports_t);
+    assertFnPtr(@FieldType(clap.ext.audio_ports.PluginPorts, "count"), @FieldType(raw.clap_plugin_audio_ports_t, "count"));
+    assertFnPtr(@FieldType(clap.ext.audio_ports.PluginPorts, "get"), @FieldType(raw.clap_plugin_audio_ports_t, "get"));
 
-    assertStruct(clap.host.AudioPorts, raw.clap_host_audio_ports_t);
-    assertFnPtr(@FieldType(clap.host.AudioPorts, "isRescanFlagSupported"), @FieldType(raw.clap_host_audio_ports_t, "is_rescan_flag_supported"));
-    assertFnPtr(@FieldType(clap.host.AudioPorts, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
+    assertStruct(clap.ext.audio_ports.HostPorts, raw.clap_host_audio_ports_t);
+    assertFnPtr(@FieldType(clap.ext.audio_ports.HostPorts, "isRescanFlagSupported"), @FieldType(raw.clap_host_audio_ports_t, "is_rescan_flag_supported"));
+    assertFnPtr(@FieldType(clap.ext.audio_ports.HostPorts, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
 
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
@@ -119,6 +119,7 @@ fn assertStruct(comptime ZigType: type, comptime CType: type) void {
         c_struct.field_types,
         c_struct.field_names,
     ) |zig_field_type, zig_field_name, c_field_type, c_field_name| {
+        assertPtr(zig_field_type, c_field_type);
         assert(@sizeOf(zig_field_type) == @sizeOf(c_field_type));
         assert(@offsetOf(ZigType, zig_field_name) == @offsetOf(CType, c_field_name));
     }
@@ -127,19 +128,19 @@ fn assertStruct(comptime ZigType: type, comptime CType: type) void {
 // Check callback ABI shape by comparing the C calling convention,
 // parameter count, and size/alignment of parameters and the return value.
 fn assertFnPtr(comptime ZigType: type, comptime CType: type) void {
-    const zig_ptr = switch (@typeInfo(unwrapOptional(ZigType))) {
+    const zig_fn_ptr = switch (@typeInfo(unwrapOptional(ZigType))) {
         .pointer => |p| p,
         else => @compileError("Expected a function pointer"),
     };
-    const zig_fn = switch (@typeInfo(zig_ptr.child)) {
+    const zig_fn = switch (@typeInfo(zig_fn_ptr.child)) {
         .@"fn" => |f| f,
         else => @compileError("Expected a function pointer"),
     };
-    const c_ptr = switch (@typeInfo(unwrapOptional(CType))) {
+    const c_fn_ptr = switch (@typeInfo(unwrapOptional(CType))) {
         .pointer => |p| p,
         else => @compileError("Expected a function pointer"),
     };
-    const c_fn = switch (@typeInfo(c_ptr.child)) {
+    const c_fn = switch (@typeInfo(c_fn_ptr.child)) {
         .@"fn" => |f| f,
         else => @compileError("Expected a function pointer"),
     };
@@ -152,8 +153,32 @@ fn assertFnPtr(comptime ZigType: type, comptime CType: type) void {
     assert(zig_fn.param_types.len == c_fn.param_types.len);
 
     inline for (zig_fn.param_types, c_fn.param_types) |zig_param_type, c_param_type| {
+        assertPtr(zig_param_type.?, c_param_type.?);
         assert(@sizeOf(zig_param_type.?) == @sizeOf(c_param_type.?));
         assert(@alignOf(zig_param_type.?) == @alignOf(c_param_type.?));
+    }
+}
+
+fn assertPtr(comptime ZigType: type, comptime CType: type) void {
+    const zig_type_info = @typeInfo(ZigType);
+    const c_type_info = @typeInfo(CType);
+
+    switch (zig_type_info) {
+        .pointer => |zig_ptr| switch (c_type_info) {
+            .pointer => |c_ptr| {
+                assert(@sizeOf(zig_ptr.child) == @sizeOf(c_ptr.child));
+                assert(@alignOf(zig_ptr.child) == @alignOf(c_ptr.child));
+            },
+            else => {},
+        },
+        .optional => |zig_opt| switch (@typeInfo(zig_opt.child)) {
+            .pointer => switch (c_type_info) {
+                .pointer => |c_ptr| assert(c_ptr.size == .c),
+                else => {},
+            },
+            else => {},
+        },
+        else => {},
     }
 }
 

@@ -1,7 +1,9 @@
 const std = @import("std");
-const Id = @import("id.zig").Id;
-const Beattime = @import("fixedpoint.zig").Beattime;
-const Sectime = @import("fixedpoint.zig").Sectime;
+const Id = @import("root.zig").Id;
+const Beattime = @import("root.zig").BeatTime;
+const Sectime = @import("root.zig").SecTime;
+
+pub const core_event_space_id = 0;
 
 pub const Header = extern struct {
     size: u32,
@@ -33,8 +35,6 @@ pub const Header = extern struct {
         _: u30 = 0,
     };
 };
-
-pub const core_event_space_id = 0;
 
 pub const Note = extern struct {
     header: Header,
