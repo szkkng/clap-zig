@@ -92,6 +92,12 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.params.HostParams, "clear"), @FieldType(raw.clap_host_params_t, "clear"));
     assertFnPtr(@FieldType(clap.ext.params.HostParams, "requestFlush"), @FieldType(raw.clap_host_params_t, "request_flush"));
 
+    assertStruct(clap.ext.state.PluginState, raw.clap_plugin_state_t);
+    assertFnPtr(@FieldType(clap.ext.state.PluginState, "save"), @FieldType(raw.clap_plugin_state_t, "save"));
+    assertFnPtr(@FieldType(clap.ext.state.PluginState, "load"), @FieldType(raw.clap_plugin_state_t, "load"));
+    assertStruct(clap.ext.state.HostState, raw.clap_host_state_t);
+    assertFnPtr(@FieldType(clap.ext.state.HostState, "markDirty"), @FieldType(raw.clap_host_state_t, "mark_dirty"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);
