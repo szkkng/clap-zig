@@ -80,6 +80,18 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.audio_ports.HostPorts, "isRescanFlagSupported"), @FieldType(raw.clap_host_audio_ports_t, "is_rescan_flag_supported"));
     assertFnPtr(@FieldType(clap.ext.audio_ports.HostPorts, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
 
+    assertStruct(clap.ext.params.ParamInfo, raw.clap_param_info_t);
+    assertStruct(clap.ext.params.PluginParams, raw.clap_plugin_params_t);
+    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "count"), @FieldType(raw.clap_plugin_params_t, "count"));
+    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "getInfo"), @FieldType(raw.clap_plugin_params_t, "get_info"));
+    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "valueToText"), @FieldType(raw.clap_plugin_params_t, "value_to_text"));
+    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "textToValue"), @FieldType(raw.clap_plugin_params_t, "text_to_value"));
+    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "flush"), @FieldType(raw.clap_plugin_params_t, "flush"));
+    assertStruct(clap.ext.params.HostParams, raw.clap_host_params_t);
+    assertFnPtr(@FieldType(clap.ext.params.HostParams, "rescan"), @FieldType(raw.clap_host_params_t, "rescan"));
+    assertFnPtr(@FieldType(clap.ext.params.HostParams, "clear"), @FieldType(raw.clap_host_params_t, "clear"));
+    assertFnPtr(@FieldType(clap.ext.params.HostParams, "requestFlush"), @FieldType(raw.clap_host_params_t, "request_flush"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);
