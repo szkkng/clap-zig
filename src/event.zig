@@ -1,7 +1,8 @@
 const std = @import("std");
-const Id = @import("root.zig").Id;
-const Beattime = @import("root.zig").BeatTime;
-const Sectime = @import("root.zig").SecTime;
+const root = @import("root.zig");
+const Id = root.Id;
+const BeatTime = root.BeatTime;
+const SecTime = root.SecTime;
 
 pub const core_event_space_id = 0;
 
@@ -95,15 +96,15 @@ pub const ParamGesture = extern struct {
 pub const Transport = extern struct {
     header: Header,
     flags: Flags,
-    song_pos_beats: Beattime,
-    song_pos_seconds: Sectime,
+    song_pos_beats: BeatTime,
+    song_pos_seconds: SecTime,
     tempo: f64,
     tempo_inc: f64,
-    loop_start_beats: Beattime,
-    loop_end_beats: Beattime,
-    loop_start_seconds: Sectime,
-    loop_end_seconds: Sectime,
-    bar_start: Beattime,
+    loop_start_beats: BeatTime,
+    loop_end_beats: BeatTime,
+    loop_start_seconds: SecTime,
+    loop_end_seconds: SecTime,
+    bar_start: BeatTime,
     bar_number: i32,
     tsig_num: u16,
     tsig_denom: u16,
