@@ -8,6 +8,7 @@ test {
     _ = @import("ext/params.zig");
     _ = @import("ext/state.zig");
     _ = @import("event.zig");
+    _ = @import("preset_discovery.zig");
 }
 
 test "string size constants" {

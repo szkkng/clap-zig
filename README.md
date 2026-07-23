@@ -17,8 +17,29 @@ your_module.addImport("clap", clap.module("clap_zig"));
 ## Status
 
 Not implemented yet:
-
-- factory/preset-discovery
-- Most ext/* headers
+- ext/ambisonic
+- ext/audio-ports-activation
+- ext/audio-ports-config
+- ext/configurable-audio-ports
+- ext/context-menu
+- ext/event-registry
+- ext/gui
+- ext/latency
+- ext/log
+- ext/note-name
+- ext/note-ports
+- ext/param-indication
+- ext/posix-fd-support
+- ext/preset-load
+- ext/remote-controls
+- ext/render
+- ext/state-context
+- ext/surround
+- ext/tail
+- ext/thread-check
+- ext/thread-pool
+- ext/timer-support
+- ext/track-info
+- ext/voice-info
 
 Draft headers are not supported.

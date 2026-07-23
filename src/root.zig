@@ -2,6 +2,7 @@ const std = @import("std");
 
 pub const ext = @import("ext.zig");
 pub const event = @import("event.zig");
+pub const preset_discovery = @import("preset_discovery.zig");
 
 pub const Version = extern struct {
     major: u32 = 1,

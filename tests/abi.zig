@@ -108,6 +108,39 @@ comptime {
 
     assertStruct(clap.Color, raw.clap_color_t);
 
+    const ClapMetadataReceiver = clap.preset_discovery.MetadataReceiver;
+    const RawMetadataReceiver = raw.clap_preset_discovery_metadata_receiver;
+    assertStruct(ClapMetadataReceiver, RawMetadataReceiver);
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "onError"), @FieldType(RawMetadataReceiver, "on_error"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "beginPreset"), @FieldType(RawMetadataReceiver, "begin_preset"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "addPluginId"), @FieldType(RawMetadataReceiver, "add_plugin_id"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "setSoundpackId"), @FieldType(RawMetadataReceiver, "set_soundpack_id"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "setFlags"), @FieldType(RawMetadataReceiver, "set_flags"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "addCreator"), @FieldType(RawMetadataReceiver, "add_creator"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "setDescription"), @FieldType(RawMetadataReceiver, "set_description"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "setTimestamps"), @FieldType(RawMetadataReceiver, "set_timestamps"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "addFeature"), @FieldType(RawMetadataReceiver, "add_feature"));
+    assertFnPtr(@FieldType(ClapMetadataReceiver, "addExtraInfo"), @FieldType(RawMetadataReceiver, "add_extra_info"));
+
+    assertStruct(clap.preset_discovery.FileType, raw.clap_preset_discovery_filetype_t);
+    assertStruct(clap.preset_discovery.Location, raw.clap_preset_discovery_location_t);
+    assertStruct(clap.preset_discovery.Soundpack, raw.clap_preset_discovery_soundpack_t);
+    assertStruct(clap.preset_discovery.Provider, raw.clap_preset_discovery_provider_t);
+    assertFnPtr(@FieldType(clap.preset_discovery.Provider, "init"), @FieldType(raw.clap_preset_discovery_provider_t, "init"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Provider, "destroy"), @FieldType(raw.clap_preset_discovery_provider_t, "destroy"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Provider, "getMetadata"), @FieldType(raw.clap_preset_discovery_provider_t, "get_metadata"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Provider, "getExtension"), @FieldType(raw.clap_preset_discovery_provider_t, "get_extension"));
+    assertStruct(clap.preset_discovery.Provider.Descriptor, raw.clap_preset_discovery_provider_descriptor_t);
+    assertStruct(clap.preset_discovery.Indexer, raw.clap_preset_discovery_indexer_t);
+    assertFnPtr(@FieldType(clap.preset_discovery.Indexer, "declareFiletype"), @FieldType(raw.clap_preset_discovery_indexer_t, "declare_filetype"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Indexer, "declareLocation"), @FieldType(raw.clap_preset_discovery_indexer_t, "declare_location"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Indexer, "declareSoundpack"), @FieldType(raw.clap_preset_discovery_indexer_t, "declare_soundpack"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Indexer, "getExtension"), @FieldType(raw.clap_preset_discovery_indexer_t, "get_extension"));
+    assertStruct(clap.preset_discovery.Factory, raw.clap_preset_discovery_factory);
+    assertFnPtr(@FieldType(clap.preset_discovery.Factory, "count"), @FieldType(raw.clap_preset_discovery_factory, "count"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Factory, "getDescriptor"), @FieldType(raw.clap_preset_discovery_factory, "get_descriptor"));
+    assertFnPtr(@FieldType(clap.preset_discovery.Factory, "create"), @FieldType(raw.clap_preset_discovery_factory, "create"));
+
     assert(clap.Timestamp == raw.clap_timestamp);
 }
 
