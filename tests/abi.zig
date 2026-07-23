@@ -88,6 +88,8 @@ comptime {
     assertStruct(clap.OStream, raw.clap_ostream_t);
     assertFnPtr(@FieldType(clap.OStream, "write"), @FieldType(raw.clap_ostream_t, "write"));
 
+    assertStruct(clap.Color, raw.clap_color_t);
+
     assert(clap.Timestamp == raw.clap_timestamp);
 }
 

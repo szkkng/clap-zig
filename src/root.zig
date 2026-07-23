@@ -25,4 +25,6 @@ pub const IStream = @import("stream.zig").IStream;
 pub const OStream = @import("stream.zig").OStream;
 pub const timestamp = @import("timestamp.zig");
 pub const Timestamp = timestamp.Timestamp;
+pub const color = @import("color.zig");
+pub const Color = color.Color;
 pub const UniversalPluginId = @import("universal_plugin_id.zig").UniversalPluginId;
