@@ -62,7 +62,7 @@ pub const Provider = extern struct {
     getExtension: *const fn (provider: *const Provider, extension_id: [*:0]const u8) callconv(.c) ?*const anyopaque,
 
     pub const Descriptor = extern struct {
-        clap_version: Version = .{},
+        clap_version: Version = .current,
         id: [*:0]const u8,
         name: [*:0]const u8,
         vendor: ?[*:0]const u8,
@@ -70,7 +70,7 @@ pub const Provider = extern struct {
 };
 
 pub const Indexer = extern struct {
-    clap_version: Version = .{},
+    clap_version: Version = .current,
     name: [*:0]const u8,
     vendor: ?[*:0]const u8,
     url: ?[*:0]const u8,

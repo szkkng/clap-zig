@@ -5,9 +5,15 @@ pub const event = @import("event.zig");
 pub const preset_discovery = @import("preset_discovery.zig");
 
 pub const Version = extern struct {
-    major: u32 = 1,
-    minor: u32 = 2,
-    revision: u32 = 10,
+    major: u32,
+    minor: u32,
+    revision: u32,
+
+    pub const current: Version = .{
+        .major = 1,
+        .minor = 2,
+        .revision = 10,
+    };
 
     pub fn isCompatible(self: Version) bool {
         return self.major >= 1;
@@ -29,7 +35,7 @@ pub const Plugin = extern struct {
     onMainThread: *const fn (plugin: *const Plugin) callconv(.c) void,
 
     pub const Descriptor = extern struct {
-        clap_version: Version = .{},
+        clap_version: Version = .current,
         id: [*:0]const u8,
         name: [*:0]const u8,
         vendor: ?[*:0]const u8,
@@ -84,7 +90,7 @@ pub const Plugin = extern struct {
     };
 
     pub const Entry = extern struct {
-        clap_version: Version = .{},
+        clap_version: Version = .current,
         init: *const fn (plugin_path: [*:0]const u8) callconv(.c) bool,
         deinit: *const fn () callconv(.c) void,
         getFactory: *const fn (factory_id: [*:0]const u8) callconv(.c) ?*const anyopaque,
