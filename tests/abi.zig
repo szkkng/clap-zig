@@ -131,6 +131,12 @@ comptime {
     assertStruct(clap.ext.event_registry.Host, raw.clap_host_event_registry_t);
     assertFnPtr(@FieldType(clap.ext.event_registry.Host, "query"), @FieldType(raw.clap_host_event_registry_t, "query"));
 
+    assertStruct(clap.ext.latency.Plugin, raw.clap_plugin_latency_t);
+    assertFnPtr(@FieldType(clap.ext.latency.Plugin, "get"), @FieldType(raw.clap_plugin_latency_t, "get"));
+
+    assertStruct(clap.ext.latency.Host, raw.clap_host_latency_t);
+    assertFnPtr(@FieldType(clap.ext.latency.Host, "changed"), @FieldType(raw.clap_host_latency_t, "changed"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);

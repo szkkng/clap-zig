@@ -20,7 +20,6 @@ Not implemented yet:
 - ext/ambisonic
 - ext/context-menu
 - ext/gui
-- ext/latency
 - ext/log
 - ext/note-name
 - ext/note-ports
