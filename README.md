@@ -27,6 +27,5 @@ Not implemented yet:
 - ext/preset-load
 - ext/remote-controls
 - ext/surround
-- ext/thread-pool
 
 Draft headers are not supported.

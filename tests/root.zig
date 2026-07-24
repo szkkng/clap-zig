@@ -17,6 +17,7 @@ test {
     _ = @import("ext/log.zig");
     _ = @import("ext/tail.zig");
     _ = @import("ext/thread_check.zig");
+    _ = @import("ext/thread_pool.zig");
     _ = @import("ext/timer_support.zig");
     _ = @import("ext/track_info.zig");
     _ = @import("ext/voice_info.zig");
