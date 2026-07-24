@@ -176,12 +176,12 @@ pub const path_size = 1024;
 
 pub const IStream = extern struct {
     ctx: ?*anyopaque,
-    read: *const fn (stream: *const IStream, buffer: ?*anyopaque, size: u64) callconv(.c) i64,
+    read: *const fn (stream: *const IStream, buffer: *anyopaque, size: u64) callconv(.c) i64,
 };
 
 pub const OStream = extern struct {
     ctx: ?*anyopaque,
-    write: *const fn (stream: *const OStream, buffer: ?*const anyopaque, size: u64) callconv(.c) i64,
+    write: *const fn (stream: *const OStream, buffer: *const anyopaque, size: u64) callconv(.c) i64,
 };
 
 pub const Color = extern struct {
