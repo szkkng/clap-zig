@@ -9,7 +9,7 @@ test "audio port identifiers" {
 }
 
 test "audio port info flags" {
-    const Flags = clap.ext.audio_ports.Info.Flags;
+    const Flags = clap.ext.audio_ports.AudioPortInfo.Flags;
     try expectFlag(Flags, raw.CLAP_AUDIO_PORT_IS_MAIN, Flags{ .is_main = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORT_SUPPORTS_64BITS, Flags{ .supports_64bits = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORT_PREFERS_64BITS, Flags{ .prefers_64bits = true });
@@ -17,7 +17,7 @@ test "audio port info flags" {
 }
 
 test "audio port rescan flags" {
-    const Flags = clap.ext.audio_ports.HostPorts.RescanFlags;
+    const Flags = clap.ext.audio_ports.HostAudioPorts.RescanFlags;
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, Flags{ .names = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, Flags{ .flags = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, Flags{ .channel_count = true });

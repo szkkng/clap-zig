@@ -10,7 +10,7 @@ pub const port_type = struct {
     pub const stereo = "stereo";
 };
 
-pub const Info = extern struct {
+pub const AudioPortInfo = extern struct {
     id: Id,
     name: [name_size]u8,
     flags: Flags,
@@ -27,12 +27,12 @@ pub const Info = extern struct {
     };
 };
 
-pub const PluginPorts = extern struct {
+pub const PluginAudioPorts = extern struct {
     count: *const fn (plugin: *const Plugin, is_input: bool) callconv(.c) u32,
-    get: *const fn (plugin: *const Plugin, index: u32, is_input: bool, info: *Info) callconv(.c) bool,
+    get: *const fn (plugin: *const Plugin, index: u32, is_input: bool, info: *AudioPortInfo) callconv(.c) bool,
 };
 
-pub const HostPorts = extern struct {
+pub const HostAudioPorts = extern struct {
     pub const RescanFlags = packed struct(u32) {
         names: bool = false,
         flags: bool = false,
