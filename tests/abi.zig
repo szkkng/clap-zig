@@ -110,6 +110,10 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.params.HostParams, "clear"), @FieldType(raw.clap_host_params_t, "clear"));
     assertFnPtr(@FieldType(clap.ext.params.HostParams, "requestFlush"), @FieldType(raw.clap_host_params_t, "request_flush"));
 
+    assertStruct(clap.ext.audio_ports_activation.Activation, raw.clap_plugin_audio_ports_activation_t);
+    assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Activation, "canActivateWhileProcessing"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "can_activate_while_processing"));
+    assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Activation, "setActive"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "set_active"));
+
     assertStruct(clap.ext.state.PluginState, raw.clap_plugin_state_t);
     assertFnPtr(@FieldType(clap.ext.state.PluginState, "save"), @FieldType(raw.clap_plugin_state_t, "save"));
     assertFnPtr(@FieldType(clap.ext.state.PluginState, "load"), @FieldType(raw.clap_plugin_state_t, "load"));

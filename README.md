@@ -18,7 +18,6 @@ your_module.addImport("clap", clap.module("clap_zig"));
 
 Not implemented yet:
 - ext/ambisonic
-- ext/audio-ports-activation
 - ext/configurable-audio-ports
 - ext/context-menu
 - ext/event-registry
