@@ -30,6 +30,5 @@ Not implemented yet:
 - ext/thread-pool
 - ext/timer-support
 - ext/track-info
-- ext/voice-info
 
 Draft headers are not supported.

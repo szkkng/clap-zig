@@ -193,6 +193,12 @@ comptime {
     assertStruct(clap.ext.thread_check.Host, raw.clap_host_thread_check_t);
     assertFnPtr(@FieldType(clap.ext.thread_check.Host, "isMainThread"), @FieldType(raw.clap_host_thread_check_t, "is_main_thread"));
     assertFnPtr(@FieldType(clap.ext.thread_check.Host, "isAudioThread"), @FieldType(raw.clap_host_thread_check_t, "is_audio_thread"));
+
+    assertStruct(clap.ext.voice_info.Info, raw.clap_voice_info_t);
+    assertStruct(clap.ext.voice_info.Plugin, raw.clap_plugin_voice_info_t);
+    assertFnPtr(@FieldType(clap.ext.voice_info.Plugin, "get"), @FieldType(raw.clap_plugin_voice_info_t, "get"));
+    assertStruct(clap.ext.voice_info.Host, raw.clap_host_voice_info_t);
+    assertFnPtr(@FieldType(clap.ext.voice_info.Host, "changed"), @FieldType(raw.clap_host_voice_info_t, "changed"));
 }
 
 // Check extern struct layout by comparing size, alignment,
