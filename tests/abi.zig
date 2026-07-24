@@ -137,6 +137,9 @@ comptime {
     assertStruct(clap.ext.latency.Host, raw.clap_host_latency_t);
     assertFnPtr(@FieldType(clap.ext.latency.Host, "changed"), @FieldType(raw.clap_host_latency_t, "changed"));
 
+    assertStruct(clap.ext.log.Host, raw.clap_host_log_t);
+    assertFnPtr(@FieldType(clap.ext.log.Host, "log"), @FieldType(raw.clap_host_log_t, "log"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);
