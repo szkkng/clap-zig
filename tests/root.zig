@@ -13,6 +13,7 @@ test {
     _ = @import("ext/state.zig");
     _ = @import("ext/latency.zig");
     _ = @import("ext/log.zig");
+    _ = @import("ext/tail.zig");
 }
 
 test "factory ids" {

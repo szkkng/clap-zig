@@ -29,7 +29,6 @@ Not implemented yet:
 - ext/render
 - ext/state-context
 - ext/surround
-- ext/tail
 - ext/thread-check
 - ext/thread-pool
 - ext/timer-support

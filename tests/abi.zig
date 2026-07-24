@@ -140,6 +140,12 @@ comptime {
     assertStruct(clap.ext.log.Host, raw.clap_host_log_t);
     assertFnPtr(@FieldType(clap.ext.log.Host, "log"), @FieldType(raw.clap_host_log_t, "log"));
 
+    assertStruct(clap.ext.tail.Plugin, raw.clap_plugin_tail_t);
+    assertFnPtr(@FieldType(clap.ext.tail.Plugin, "get"), @FieldType(raw.clap_plugin_tail_t, "get"));
+
+    assertStruct(clap.ext.tail.Host, raw.clap_host_tail_t);
+    assertFnPtr(@FieldType(clap.ext.tail.Host, "changed"), @FieldType(raw.clap_host_tail_t, "changed"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);
