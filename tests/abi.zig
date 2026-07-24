@@ -122,6 +122,12 @@ comptime {
     assertStruct(clap.ext.state.Host, raw.clap_host_state_t);
     assertFnPtr(@FieldType(clap.ext.state.Host, "markDirty"), @FieldType(raw.clap_host_state_t, "mark_dirty"));
 
+    assertStruct(clap.ext.configurable_audio_ports.ConfigurationRequest, raw.clap_audio_port_configuration_request);
+
+    assertStruct(clap.ext.configurable_audio_ports.Plugin, raw.clap_plugin_configurable_audio_ports_t);
+    assertFnPtr(@FieldType(clap.ext.configurable_audio_ports.Plugin, "canApplyConfiguration"), @FieldType(raw.clap_plugin_configurable_audio_ports_t, "can_apply_configuration"));
+    assertFnPtr(@FieldType(clap.ext.configurable_audio_ports.Plugin, "applyConfiguration"), @FieldType(raw.clap_plugin_configurable_audio_ports_t, "apply_configuration"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);

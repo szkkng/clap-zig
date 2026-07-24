@@ -7,6 +7,7 @@ test {
     _ = @import("ext/audio_ports.zig");
     _ = @import("ext/audio_ports_config.zig");
     _ = @import("ext/audio_ports_activation.zig");
+    _ = @import("ext/configurable_audio_ports.zig");
     _ = @import("ext/params.zig");
     _ = @import("ext/state.zig");
 }
