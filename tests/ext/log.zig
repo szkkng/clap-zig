@@ -4,6 +4,9 @@ const testing = @import("std").testing;
 
 test "log identifier" {
     try testing.expectEqualStrings(raw.CLAP_EXT_LOG[0..], clap.ext.log.id);
+}
+
+test "log severity" {
     const Severity = clap.ext.log.Severity;
     try testing.expectEqual(raw.CLAP_LOG_DEBUG, @intFromEnum(Severity.debug));
     try testing.expectEqual(raw.CLAP_LOG_INFO, @intFromEnum(Severity.info));
