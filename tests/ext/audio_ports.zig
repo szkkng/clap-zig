@@ -9,7 +9,7 @@ test "audio port identifiers" {
 }
 
 test "audio port info flags" {
-    const Flags = clap.ext.audio_ports.AudioPortInfo.Flags;
+    const Flags = clap.ext.audio_ports.Info.Flags;
     try expectFlag(Flags, raw.CLAP_AUDIO_PORT_IS_MAIN, Flags{ .is_main = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORT_SUPPORTS_64BITS, Flags{ .supports_64bits = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORT_PREFERS_64BITS, Flags{ .prefers_64bits = true });
@@ -17,7 +17,7 @@ test "audio port info flags" {
 }
 
 test "host audio ports rescan flag" {
-    const Flag = clap.ext.audio_ports.HostAudioPorts.RescanFlag;
+    const Flag = clap.ext.audio_ports.Host.RescanFlag;
     try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, .names);
     try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, .flags);
     try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, .channel_count);
@@ -27,7 +27,7 @@ test "host audio ports rescan flag" {
 }
 
 test "host audio ports rescan flags" {
-    const Flags = clap.ext.audio_ports.HostAudioPorts.RescanFlags;
+    const Flags = clap.ext.audio_ports.Host.RescanFlags;
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, .{ .names = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, .{ .flags = true });
     try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, .{ .channel_count = true });

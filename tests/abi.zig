@@ -70,55 +70,57 @@ comptime {
 
     assertStruct(clap.Plugin.Descriptor, raw.clap_plugin_descriptor_t);
 
-    assertStruct(clap.ext.audio_ports.AudioPortInfo, raw.clap_audio_port_info_t);
+    assertStruct(clap.ext.audio_ports.Info, raw.clap_audio_port_info_t);
 
-    const PluginAudioPorts = clap.ext.audio_ports.PluginAudioPorts;
+    const PluginAudioPorts = clap.ext.audio_ports.Plugin;
     assertStruct(PluginAudioPorts, raw.clap_plugin_audio_ports_t);
     assertFnPtr(@FieldType(PluginAudioPorts, "count"), @FieldType(raw.clap_plugin_audio_ports_t, "count"));
     assertFnPtr(@FieldType(PluginAudioPorts, "get"), @FieldType(raw.clap_plugin_audio_ports_t, "get"));
 
-    const HostAudioPorts = clap.ext.audio_ports.HostAudioPorts;
+    const HostAudioPorts = clap.ext.audio_ports.Host;
     assertStruct(HostAudioPorts, raw.clap_host_audio_ports_t);
     assertFnPtr(@FieldType(HostAudioPorts, "isRescanFlagSupported"), @FieldType(raw.clap_host_audio_ports_t, "is_rescan_flag_supported"));
     assertFnPtr(@FieldType(HostAudioPorts, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
 
-    assertStruct(clap.ext.audio_ports_config.AudioPortsConfig, raw.clap_audio_ports_config_t);
-    const PluginAudioPortsConfig = clap.ext.audio_ports_config.PluginAudioPortsConfig;
+    assertStruct(clap.ext.audio_ports_config.Config, raw.clap_audio_ports_config_t);
+
+    const PluginAudioPortsConfig = clap.ext.audio_ports_config.Plugin;
     assertStruct(PluginAudioPortsConfig, raw.clap_plugin_audio_ports_config_t);
     assertFnPtr(@FieldType(PluginAudioPortsConfig, "count"), @FieldType(raw.clap_plugin_audio_ports_config_t, "count"));
     assertFnPtr(@FieldType(PluginAudioPortsConfig, "get"), @FieldType(raw.clap_plugin_audio_ports_config_t, "get"));
     assertFnPtr(@FieldType(PluginAudioPortsConfig, "select"), @FieldType(raw.clap_plugin_audio_ports_config_t, "select"));
 
-    const PluginAudioPortsConfigInfo = clap.ext.audio_ports_config.PluginAudioPortsConfigInfo;
+    const PluginAudioPortsConfigInfo = clap.ext.audio_ports_config_info.Plugin;
     assertStruct(PluginAudioPortsConfigInfo, raw.clap_plugin_audio_ports_config_info_t);
     assertFnPtr(@FieldType(PluginAudioPortsConfigInfo, "currentConfig"), @FieldType(raw.clap_plugin_audio_ports_config_info_t, "current_config"));
     assertFnPtr(@FieldType(PluginAudioPortsConfigInfo, "get"), @FieldType(raw.clap_plugin_audio_ports_config_info_t, "get"));
 
-    const HostAudioPortsConfig = clap.ext.audio_ports_config.HostAudioPortsConfig;
+    const HostAudioPortsConfig = clap.ext.audio_ports_config.Host;
     assertStruct(HostAudioPortsConfig, raw.clap_host_audio_ports_config_t);
     assertFnPtr(@FieldType(HostAudioPortsConfig, "rescan"), @FieldType(raw.clap_host_audio_ports_config_t, "rescan"));
 
-    assertStruct(clap.ext.params.ParamInfo, raw.clap_param_info_t);
-    assertStruct(clap.ext.params.PluginParams, raw.clap_plugin_params_t);
-    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "count"), @FieldType(raw.clap_plugin_params_t, "count"));
-    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "getInfo"), @FieldType(raw.clap_plugin_params_t, "get_info"));
-    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "valueToText"), @FieldType(raw.clap_plugin_params_t, "value_to_text"));
-    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "textToValue"), @FieldType(raw.clap_plugin_params_t, "text_to_value"));
-    assertFnPtr(@FieldType(clap.ext.params.PluginParams, "flush"), @FieldType(raw.clap_plugin_params_t, "flush"));
-    assertStruct(clap.ext.params.HostParams, raw.clap_host_params_t);
-    assertFnPtr(@FieldType(clap.ext.params.HostParams, "rescan"), @FieldType(raw.clap_host_params_t, "rescan"));
-    assertFnPtr(@FieldType(clap.ext.params.HostParams, "clear"), @FieldType(raw.clap_host_params_t, "clear"));
-    assertFnPtr(@FieldType(clap.ext.params.HostParams, "requestFlush"), @FieldType(raw.clap_host_params_t, "request_flush"));
+    assertStruct(clap.ext.params.Info, raw.clap_param_info_t);
+    assertStruct(clap.ext.params.Plugin, raw.clap_plugin_params_t);
+    assertFnPtr(@FieldType(clap.ext.params.Plugin, "count"), @FieldType(raw.clap_plugin_params_t, "count"));
+    assertFnPtr(@FieldType(clap.ext.params.Plugin, "getInfo"), @FieldType(raw.clap_plugin_params_t, "get_info"));
+    assertFnPtr(@FieldType(clap.ext.params.Plugin, "valueToText"), @FieldType(raw.clap_plugin_params_t, "value_to_text"));
+    assertFnPtr(@FieldType(clap.ext.params.Plugin, "textToValue"), @FieldType(raw.clap_plugin_params_t, "text_to_value"));
+    assertFnPtr(@FieldType(clap.ext.params.Plugin, "flush"), @FieldType(raw.clap_plugin_params_t, "flush"));
+    assertStruct(clap.ext.params.Host, raw.clap_host_params_t);
+    assertFnPtr(@FieldType(clap.ext.params.Host, "rescan"), @FieldType(raw.clap_host_params_t, "rescan"));
+    assertFnPtr(@FieldType(clap.ext.params.Host, "clear"), @FieldType(raw.clap_host_params_t, "clear"));
+    assertFnPtr(@FieldType(clap.ext.params.Host, "requestFlush"), @FieldType(raw.clap_host_params_t, "request_flush"));
 
-    assertStruct(clap.ext.audio_ports_activation.Activation, raw.clap_plugin_audio_ports_activation_t);
-    assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Activation, "canActivateWhileProcessing"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "can_activate_while_processing"));
-    assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Activation, "setActive"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "set_active"));
+    assertStruct(clap.ext.audio_ports_activation.Plugin, raw.clap_plugin_audio_ports_activation_t);
+    assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Plugin, "canActivateWhileProcessing"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "can_activate_while_processing"));
+    assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Plugin, "setActive"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "set_active"));
 
-    assertStruct(clap.ext.state.PluginState, raw.clap_plugin_state_t);
-    assertFnPtr(@FieldType(clap.ext.state.PluginState, "save"), @FieldType(raw.clap_plugin_state_t, "save"));
-    assertFnPtr(@FieldType(clap.ext.state.PluginState, "load"), @FieldType(raw.clap_plugin_state_t, "load"));
-    assertStruct(clap.ext.state.HostState, raw.clap_host_state_t);
-    assertFnPtr(@FieldType(clap.ext.state.HostState, "markDirty"), @FieldType(raw.clap_host_state_t, "mark_dirty"));
+    assertStruct(clap.ext.state.Plugin, raw.clap_plugin_state_t);
+    assertFnPtr(@FieldType(clap.ext.state.Plugin, "save"), @FieldType(raw.clap_plugin_state_t, "save"));
+    assertFnPtr(@FieldType(clap.ext.state.Plugin, "load"), @FieldType(raw.clap_plugin_state_t, "load"));
+
+    assertStruct(clap.ext.state.Host, raw.clap_host_state_t);
+    assertFnPtr(@FieldType(clap.ext.state.Host, "markDirty"), @FieldType(raw.clap_host_state_t, "mark_dirty"));
 
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 

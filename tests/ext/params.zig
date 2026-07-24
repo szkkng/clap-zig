@@ -7,7 +7,7 @@ test "params identifier" {
 }
 
 test "param info flags" {
-    const Flags = clap.ext.params.ParamInfo.Flags;
+    const Flags = clap.ext.params.Info.Flags;
     try expectFlag(Flags, raw.CLAP_PARAM_IS_STEPPED, Flags{ .is_stepped = true });
     try expectFlag(Flags, raw.CLAP_PARAM_IS_PERIODIC, Flags{ .is_periodic = true });
     try expectFlag(Flags, raw.CLAP_PARAM_IS_HIDDEN, Flags{ .is_hidden = true });
@@ -28,7 +28,7 @@ test "param info flags" {
 }
 
 test "host params rescan flags" {
-    const Flags = clap.ext.params.HostParams.RescanFlags;
+    const Flags = clap.ext.params.Host.RescanFlags;
     try expectFlag(Flags, raw.CLAP_PARAM_RESCAN_VALUES, Flags{ .values = true });
     try expectFlag(Flags, raw.CLAP_PARAM_RESCAN_TEXT, Flags{ .text = true });
     try expectFlag(Flags, raw.CLAP_PARAM_RESCAN_INFO, Flags{ .info = true });
@@ -36,7 +36,7 @@ test "host params rescan flags" {
 }
 
 test "host params clear flags" {
-    const Flags = clap.ext.params.HostParams.ClearFlags;
+    const Flags = clap.ext.params.Host.ClearFlags;
     try expectFlag(Flags, raw.CLAP_PARAM_CLEAR_ALL, Flags{ .all = true });
     try expectFlag(Flags, raw.CLAP_PARAM_CLEAR_AUTOMATIONS, Flags{ .automations = true });
     try expectFlag(Flags, raw.CLAP_PARAM_CLEAR_MODULATIONS, Flags{ .modulations = true });
