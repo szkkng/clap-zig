@@ -150,6 +150,10 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.state_context.Plugin, "save"), @FieldType(raw.clap_plugin_state_context_t, "save"));
     assertFnPtr(@FieldType(clap.ext.state_context.Plugin, "load"), @FieldType(raw.clap_plugin_state_context_t, "load"));
 
+    assertStruct(clap.ext.render.Plugin, raw.clap_plugin_render_t);
+    assertFnPtr(@FieldType(clap.ext.render.Plugin, "hasHardRealtimeRequirement"), @FieldType(raw.clap_plugin_render_t, "has_hard_realtime_requirement"));
+    assertFnPtr(@FieldType(clap.ext.render.Plugin, "set"), @FieldType(raw.clap_plugin_render_t, "set"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);

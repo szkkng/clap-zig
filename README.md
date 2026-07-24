@@ -26,7 +26,6 @@ Not implemented yet:
 - ext/posix-fd-support
 - ext/preset-load
 - ext/remote-controls
-- ext/render
 - ext/surround
 - ext/thread-check
 - ext/thread-pool

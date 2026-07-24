@@ -7,6 +7,7 @@ pub const event_registry = @import("ext/event_registry.zig");
 pub const latency = @import("ext/latency.zig");
 pub const log = @import("ext/log.zig");
 pub const params = @import("ext/params.zig");
+pub const render = @import("ext/render.zig");
 pub const state = @import("ext/state.zig");
 pub const state_context = @import("ext/state_context.zig");
 pub const tail = @import("ext/tail.zig");

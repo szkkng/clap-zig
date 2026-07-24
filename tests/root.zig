@@ -10,6 +10,7 @@ test {
     _ = @import("ext/configurable_audio_ports.zig");
     _ = @import("ext/event_registry.zig");
     _ = @import("ext/params.zig");
+    _ = @import("ext/render.zig");
     _ = @import("ext/state.zig");
     _ = @import("ext/state_context.zig");
     _ = @import("ext/latency.zig");
