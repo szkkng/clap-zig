@@ -16,6 +16,7 @@ test {
     _ = @import("ext/latency.zig");
     _ = @import("ext/log.zig");
     _ = @import("ext/tail.zig");
+    _ = @import("ext/thread_check.zig");
 }
 
 test "factory ids" {

@@ -154,6 +154,10 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.render.Plugin, "hasHardRealtimeRequirement"), @FieldType(raw.clap_plugin_render_t, "has_hard_realtime_requirement"));
     assertFnPtr(@FieldType(clap.ext.render.Plugin, "set"), @FieldType(raw.clap_plugin_render_t, "set"));
 
+    assertStruct(clap.ext.thread_check.Host, raw.clap_host_thread_check_t);
+    assertFnPtr(@FieldType(clap.ext.thread_check.Host, "isMainThread"), @FieldType(raw.clap_host_thread_check_t, "is_main_thread"));
+    assertFnPtr(@FieldType(clap.ext.thread_check.Host, "isAudioThread"), @FieldType(raw.clap_host_thread_check_t, "is_audio_thread"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);

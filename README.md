@@ -27,7 +27,6 @@ Not implemented yet:
 - ext/preset-load
 - ext/remote-controls
 - ext/surround
-- ext/thread-check
 - ext/thread-pool
 - ext/timer-support
 - ext/track-info
