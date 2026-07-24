@@ -16,14 +16,24 @@ test "audio port info flags" {
     try expectFlag(Flags, raw.CLAP_AUDIO_PORT_REQUIRES_COMMON_SAMPLE_SIZE, Flags{ .requires_common_sample_size = true });
 }
 
-test "audio port rescan flags" {
+test "host audio ports rescan flag" {
+    const Flag = clap.ext.audio_ports.HostAudioPorts.RescanFlag;
+    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, .names);
+    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, .flags);
+    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, .channel_count);
+    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, .port_type);
+    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, .in_place_pair);
+    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_LIST, .list);
+}
+
+test "host audio ports rescan flags" {
     const Flags = clap.ext.audio_ports.HostAudioPorts.RescanFlags;
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, Flags{ .names = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, Flags{ .flags = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, Flags{ .channel_count = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, Flags{ .port_type = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, Flags{ .in_place_pair = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_LIST, Flags{ .list = true });
+    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, .{ .names = true });
+    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, .{ .flags = true });
+    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, .{ .channel_count = true });
+    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, .{ .port_type = true });
+    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, .{ .in_place_pair = true });
+    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_LIST, .{ .list = true });
 }
 
 fn expectFlag(comptime Flags: type, expected: anytype, actual: Flags) !void {

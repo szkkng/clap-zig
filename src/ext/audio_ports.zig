@@ -33,6 +33,18 @@ pub const PluginAudioPorts = extern struct {
 };
 
 pub const HostAudioPorts = extern struct {
+    isRescanFlagSupported: *const fn (host: *const Host, flag: RescanFlag) callconv(.c) bool,
+    rescan: *const fn (host: *const Host, flags: RescanFlags) callconv(.c) void,
+
+    pub const RescanFlag = enum(u32) {
+        names = @bitCast(RescanFlags{ .names = true }),
+        flags = @bitCast(RescanFlags{ .flags = true }),
+        channel_count = @bitCast(RescanFlags{ .channel_count = true }),
+        port_type = @bitCast(RescanFlags{ .port_type = true }),
+        in_place_pair = @bitCast(RescanFlags{ .in_place_pair = true }),
+        list = @bitCast(RescanFlags{ .list = true }),
+    };
+
     pub const RescanFlags = packed struct(u32) {
         names: bool = false,
         flags: bool = false,
@@ -42,7 +54,4 @@ pub const HostAudioPorts = extern struct {
         list: bool = false,
         _: u26 = 0,
     };
-
-    isRescanFlagSupported: *const fn (host: *const Host, flag: RescanFlags) callconv(.c) bool,
-    rescan: *const fn (host: *const Host, flags: RescanFlags) callconv(.c) void,
 };
