@@ -29,6 +29,5 @@ Not implemented yet:
 - ext/surround
 - ext/thread-pool
 - ext/timer-support
-- ext/track-info
 
 Draft headers are not supported.

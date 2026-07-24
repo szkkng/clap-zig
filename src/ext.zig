@@ -12,4 +12,5 @@ pub const state = @import("ext/state.zig");
 pub const state_context = @import("ext/state_context.zig");
 pub const tail = @import("ext/tail.zig");
 pub const thread_check = @import("ext/thread_check.zig");
+pub const track_info = @import("ext/track_info.zig");
 pub const voice_info = @import("ext/voice_info.zig");
