@@ -142,12 +142,12 @@ pub const Midi2 = extern struct {
 };
 
 pub const InputEvents = extern struct {
-    ctx: *anyopaque,
+    ctx: ?*anyopaque,
     size: *const fn (list: *const InputEvents) callconv(.c) u32,
     get: *const fn (list: *const InputEvents, index: u32) callconv(.c) *const Header,
 };
 
 pub const OutputEvents = extern struct {
-    ctx: *anyopaque,
+    ctx: ?*anyopaque,
     tryPush: *const fn (list: *const OutputEvents, event: *const Header) callconv(.c) bool,
 };

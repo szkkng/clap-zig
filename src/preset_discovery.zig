@@ -75,7 +75,7 @@ pub const Indexer = extern struct {
     vendor: ?[*:0]const u8,
     url: ?[*:0]const u8,
     version: ?[*:0]const u8,
-    indexer_data: *anyopaque,
+    indexer_data: ?*anyopaque,
     declareFiletype: *const fn (indexer: *const Indexer, filetype: *const FileType) callconv(.c) bool,
     declareLocation: *const fn (indexer: *const Indexer, location: *const Location) callconv(.c) bool,
     declareSoundpack: *const fn (indexer: *const Indexer, soundpack: *const Soundpack) callconv(.c) bool,

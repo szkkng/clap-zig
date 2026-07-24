@@ -22,7 +22,7 @@ pub const Version = extern struct {
 
 pub const Plugin = extern struct {
     desc: *const Descriptor,
-    plugin_data: *anyopaque,
+    plugin_data: ?*anyopaque,
     init: *const fn (plugin: *const Plugin) callconv(.c) bool,
     destroy: *const fn (plugin: *const Plugin) callconv(.c) void,
     activate: *const fn (plugin: *const Plugin, sample_rate: f64, min_frames_count: u32, max_frames_count: u32) callconv(.c) bool,
@@ -116,7 +116,7 @@ pub const Plugin = extern struct {
 
 pub const Host = extern struct {
     clap_version: Version,
-    host_data: *anyopaque,
+    host_data: ?*anyopaque,
     name: [*:0]const u8,
     vendor: [*:0]const u8,
     url: [*:0]const u8,
@@ -175,12 +175,12 @@ pub const name_size = 256;
 pub const path_size = 1024;
 
 pub const IStream = extern struct {
-    ctx: *anyopaque,
+    ctx: ?*anyopaque,
     read: *const fn (stream: *const IStream, buffer: ?*anyopaque, size: u64) callconv(.c) i64,
 };
 
 pub const OStream = extern struct {
-    ctx: *anyopaque,
+    ctx: ?*anyopaque,
     write: *const fn (stream: *const OStream, buffer: ?*const anyopaque, size: u64) callconv(.c) i64,
 };
 
