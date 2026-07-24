@@ -194,6 +194,13 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.thread_check.Host, "isMainThread"), @FieldType(raw.clap_host_thread_check_t, "is_main_thread"));
     assertFnPtr(@FieldType(clap.ext.thread_check.Host, "isAudioThread"), @FieldType(raw.clap_host_thread_check_t, "is_audio_thread"));
 
+    assertStruct(clap.ext.timer_support.Plugin, raw.clap_plugin_timer_support_t);
+    assertFnPtr(@FieldType(clap.ext.timer_support.Plugin, "onTimer"), @FieldType(raw.clap_plugin_timer_support_t, "on_timer"));
+
+    assertStruct(clap.ext.timer_support.Host, raw.clap_host_timer_support_t);
+    assertFnPtr(@FieldType(clap.ext.timer_support.Host, "registerTimer"), @FieldType(raw.clap_host_timer_support_t, "register_timer"));
+    assertFnPtr(@FieldType(clap.ext.timer_support.Host, "unregisterTimer"), @FieldType(raw.clap_host_timer_support_t, "unregister_timer"));
+
     assertStruct(clap.ext.track_info.Info, raw.clap_track_info_t);
     assertStruct(clap.ext.track_info.Plugin, raw.clap_plugin_track_info_t);
     assertFnPtr(@FieldType(clap.ext.track_info.Plugin, "changed"), @FieldType(raw.clap_plugin_track_info_t, "changed"));

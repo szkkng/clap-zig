@@ -28,6 +28,5 @@ Not implemented yet:
 - ext/remote-controls
 - ext/surround
 - ext/thread-pool
-- ext/timer-support
 
 Draft headers are not supported.
