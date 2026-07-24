@@ -27,7 +27,6 @@ Not implemented yet:
 - ext/preset-load
 - ext/remote-controls
 - ext/render
-- ext/state-context
 - ext/surround
 - ext/thread-check
 - ext/thread-pool

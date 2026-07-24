@@ -146,6 +146,10 @@ comptime {
     assertStruct(clap.ext.tail.Host, raw.clap_host_tail_t);
     assertFnPtr(@FieldType(clap.ext.tail.Host, "changed"), @FieldType(raw.clap_host_tail_t, "changed"));
 
+    assertStruct(clap.ext.state_context.Plugin, raw.clap_plugin_state_context_t);
+    assertFnPtr(@FieldType(clap.ext.state_context.Plugin, "save"), @FieldType(raw.clap_plugin_state_context_t, "save"));
+    assertFnPtr(@FieldType(clap.ext.state_context.Plugin, "load"), @FieldType(raw.clap_plugin_state_context_t, "load"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);
