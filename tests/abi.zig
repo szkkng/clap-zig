@@ -128,6 +128,9 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.configurable_audio_ports.Plugin, "canApplyConfiguration"), @FieldType(raw.clap_plugin_configurable_audio_ports_t, "can_apply_configuration"));
     assertFnPtr(@FieldType(clap.ext.configurable_audio_ports.Plugin, "applyConfiguration"), @FieldType(raw.clap_plugin_configurable_audio_ports_t, "apply_configuration"));
 
+    assertStruct(clap.ext.event_registry.Host, raw.clap_host_event_registry_t);
+    assertFnPtr(@FieldType(clap.ext.event_registry.Host, "query"), @FieldType(raw.clap_host_event_registry_t, "query"));
+
     assertStruct(clap.UniversalPluginId, raw.clap_universal_plugin_id_t);
 
     assertStruct(clap.IStream, raw.clap_istream_t);

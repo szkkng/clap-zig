@@ -19,7 +19,6 @@ your_module.addImport("clap", clap.module("clap_zig"));
 Not implemented yet:
 - ext/ambisonic
 - ext/context-menu
-- ext/event-registry
 - ext/gui
 - ext/latency
 - ext/log
