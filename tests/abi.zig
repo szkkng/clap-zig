@@ -82,6 +82,22 @@ comptime {
     assertFnPtr(@FieldType(HostAudioPorts, "isRescanFlagSupported"), @FieldType(raw.clap_host_audio_ports_t, "is_rescan_flag_supported"));
     assertFnPtr(@FieldType(HostAudioPorts, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
 
+    assertStruct(clap.ext.audio_ports_config.AudioPortsConfig, raw.clap_audio_ports_config_t);
+    const PluginAudioPortsConfig = clap.ext.audio_ports_config.PluginAudioPortsConfig;
+    assertStruct(PluginAudioPortsConfig, raw.clap_plugin_audio_ports_config_t);
+    assertFnPtr(@FieldType(PluginAudioPortsConfig, "count"), @FieldType(raw.clap_plugin_audio_ports_config_t, "count"));
+    assertFnPtr(@FieldType(PluginAudioPortsConfig, "get"), @FieldType(raw.clap_plugin_audio_ports_config_t, "get"));
+    assertFnPtr(@FieldType(PluginAudioPortsConfig, "select"), @FieldType(raw.clap_plugin_audio_ports_config_t, "select"));
+
+    const PluginAudioPortsConfigInfo = clap.ext.audio_ports_config.PluginAudioPortsConfigInfo;
+    assertStruct(PluginAudioPortsConfigInfo, raw.clap_plugin_audio_ports_config_info_t);
+    assertFnPtr(@FieldType(PluginAudioPortsConfigInfo, "currentConfig"), @FieldType(raw.clap_plugin_audio_ports_config_info_t, "current_config"));
+    assertFnPtr(@FieldType(PluginAudioPortsConfigInfo, "get"), @FieldType(raw.clap_plugin_audio_ports_config_info_t, "get"));
+
+    const HostAudioPortsConfig = clap.ext.audio_ports_config.HostAudioPortsConfig;
+    assertStruct(HostAudioPortsConfig, raw.clap_host_audio_ports_config_t);
+    assertFnPtr(@FieldType(HostAudioPortsConfig, "rescan"), @FieldType(raw.clap_host_audio_ports_config_t, "rescan"));
+
     assertStruct(clap.ext.params.ParamInfo, raw.clap_param_info_t);
     assertStruct(clap.ext.params.PluginParams, raw.clap_plugin_params_t);
     assertFnPtr(@FieldType(clap.ext.params.PluginParams, "count"), @FieldType(raw.clap_plugin_params_t, "count"));
