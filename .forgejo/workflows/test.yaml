@@ -16,5 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: https://codeberg.org/mlugg/setup-zig@v2
+        with:
+          version: "0.17.0-dev.1417+20befa4e6"
       - run: zig build test
         working-directory: tests
