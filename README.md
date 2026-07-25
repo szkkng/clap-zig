@@ -8,7 +8,7 @@ Draft headers are not supported.
 
 - Zig v0.16.0
 
-## Usage
+## Setup
 
 Add clap-zig as a dependency:
 
@@ -22,6 +22,10 @@ Import `clap_zig` module in your `build.zig`:
 const clap = b.dependency("clap_zig", .{});
 your_module.addImport("clap", clap.module("clap_zig"));
 ```
+
+## Usage
+
+See the minimal gain example: [hello-clap-zig](https://codeberg.org/kengo/hello-clap-zig)
 
 ## License
 
