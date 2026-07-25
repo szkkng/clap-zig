@@ -140,6 +140,13 @@ comptime {
     assertStruct(HostAudioPortsConfig, raw.clap_host_audio_ports_config_t);
     assertFnPtr(@FieldType(HostAudioPortsConfig, "rescan"), @FieldType(raw.clap_host_audio_ports_config_t, "rescan"));
 
+    assertStruct(clap.ext.note_name.NoteName, raw.clap_note_name_t);
+    assertStruct(clap.ext.note_name.Plugin, raw.clap_plugin_note_name_t);
+    assertFnPtr(@FieldType(clap.ext.note_name.Plugin, "count"), @FieldType(raw.clap_plugin_note_name_t, "count"));
+    assertFnPtr(@FieldType(clap.ext.note_name.Plugin, "get"), @FieldType(raw.clap_plugin_note_name_t, "get"));
+    assertStruct(clap.ext.note_name.Host, raw.clap_host_note_name_t);
+    assertFnPtr(@FieldType(clap.ext.note_name.Host, "changed"), @FieldType(raw.clap_host_note_name_t, "changed"));
+
     assertStruct(clap.ext.param_indication.Plugin, raw.clap_plugin_param_indication_t);
     assertFnPtr(@FieldType(clap.ext.param_indication.Plugin, "setMapping"), @FieldType(raw.clap_plugin_param_indication_t, "set_mapping"));
     assertFnPtr(@FieldType(clap.ext.param_indication.Plugin, "setAutomation"), @FieldType(raw.clap_plugin_param_indication_t, "set_automation"));

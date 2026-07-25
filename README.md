@@ -19,7 +19,6 @@ your_module.addImport("clap", clap.module("clap_zig"));
 Not implemented yet:
 - ext/context-menu
 - ext/gui
-- ext/note-name
 - ext/note-ports
 - ext/posix-fd-support
 - ext/remote-controls
