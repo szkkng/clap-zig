@@ -378,7 +378,7 @@ pub const preset_discovery = struct {
 
     pub const Provider = extern struct {
         desc: *const Descriptor,
-        provider_data: *anyopaque,
+        provider_data: ?*anyopaque,
         init: *const fn (provider: *const Provider) callconv(.c) bool,
         destroy: *const fn (provider: *const Provider) callconv(.c) void,
 
