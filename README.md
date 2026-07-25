@@ -21,7 +21,6 @@ Not implemented yet:
 - ext/gui
 - ext/note-name
 - ext/note-ports
-- ext/param-indication
 - ext/posix-fd-support
 - ext/remote-controls
 
