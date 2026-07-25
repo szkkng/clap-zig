@@ -147,6 +147,14 @@ comptime {
     assertStruct(clap.ext.note_name.Host, raw.clap_host_note_name_t);
     assertFnPtr(@FieldType(clap.ext.note_name.Host, "changed"), @FieldType(raw.clap_host_note_name_t, "changed"));
 
+    assertStruct(clap.ext.note_ports.Info, raw.clap_note_port_info_t);
+    assertStruct(clap.ext.note_ports.Plugin, raw.clap_plugin_note_ports_t);
+    assertFnPtr(@FieldType(clap.ext.note_ports.Plugin, "count"), @FieldType(raw.clap_plugin_note_ports_t, "count"));
+    assertFnPtr(@FieldType(clap.ext.note_ports.Plugin, "get"), @FieldType(raw.clap_plugin_note_ports_t, "get"));
+    assertStruct(clap.ext.note_ports.Host, raw.clap_host_note_ports_t);
+    assertFnPtr(@FieldType(clap.ext.note_ports.Host, "supportedDialects"), @FieldType(raw.clap_host_note_ports_t, "supported_dialects"));
+    assertFnPtr(@FieldType(clap.ext.note_ports.Host, "rescan"), @FieldType(raw.clap_host_note_ports_t, "rescan"));
+
     assertStruct(clap.ext.param_indication.Plugin, raw.clap_plugin_param_indication_t);
     assertFnPtr(@FieldType(clap.ext.param_indication.Plugin, "setMapping"), @FieldType(raw.clap_plugin_param_indication_t, "set_mapping"));
     assertFnPtr(@FieldType(clap.ext.param_indication.Plugin, "setAutomation"), @FieldType(raw.clap_plugin_param_indication_t, "set_automation"));

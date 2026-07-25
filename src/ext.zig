@@ -8,6 +8,7 @@ pub const event_registry = @import("ext/event_registry.zig");
 pub const latency = @import("ext/latency.zig");
 pub const log = @import("ext/log.zig");
 pub const note_name = @import("ext/note_name.zig");
+pub const note_ports = @import("ext/note_ports.zig");
 pub const param_indication = @import("ext/param_indication.zig");
 pub const params = @import("ext/params.zig");
 pub const preset_load = @import("ext/preset_load.zig");

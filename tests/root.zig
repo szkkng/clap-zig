@@ -11,6 +11,7 @@ test {
     _ = @import("ext/configurable_audio_ports.zig");
     _ = @import("ext/event_registry.zig");
     _ = @import("ext/note_name.zig");
+    _ = @import("ext/note_ports.zig");
     _ = @import("ext/param_indication.zig");
     _ = @import("ext/params.zig");
     _ = @import("ext/preset_load.zig");
