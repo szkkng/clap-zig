@@ -10,6 +10,7 @@ pub const params = @import("ext/params.zig");
 pub const render = @import("ext/render.zig");
 pub const state = @import("ext/state.zig");
 pub const state_context = @import("ext/state_context.zig");
+pub const surround = @import("ext/surround.zig");
 pub const tail = @import("ext/tail.zig");
 pub const thread_check = @import("ext/thread_check.zig");
 pub const thread_pool = @import("ext/thread_pool.zig");

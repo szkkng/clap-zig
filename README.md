@@ -26,6 +26,5 @@ Not implemented yet:
 - ext/posix-fd-support
 - ext/preset-load
 - ext/remote-controls
-- ext/surround
 
 Draft headers are not supported.

@@ -203,6 +203,13 @@ comptime {
     assertStruct(clap.ext.timer_support.Plugin, raw.clap_plugin_timer_support_t);
     assertFnPtr(@FieldType(clap.ext.timer_support.Plugin, "onTimer"), @FieldType(raw.clap_plugin_timer_support_t, "on_timer"));
 
+    assertStruct(clap.ext.surround.Plugin, raw.clap_plugin_surround_t);
+    assertFnPtr(@FieldType(clap.ext.surround.Plugin, "isChannelMaskSupported"), @FieldType(raw.clap_plugin_surround_t, "is_channel_mask_supported"));
+    assertFnPtr(@FieldType(clap.ext.surround.Plugin, "getChannelMap"), @FieldType(raw.clap_plugin_surround_t, "get_channel_map"));
+
+    assertStruct(clap.ext.surround.Host, raw.clap_host_surround_t);
+    assertFnPtr(@FieldType(clap.ext.surround.Host, "changed"), @FieldType(raw.clap_host_surround_t, "changed"));
+
     assertStruct(clap.ext.timer_support.Host, raw.clap_host_timer_support_t);
     assertFnPtr(@FieldType(clap.ext.timer_support.Host, "registerTimer"), @FieldType(raw.clap_host_timer_support_t, "register_timer"));
     assertFnPtr(@FieldType(clap.ext.timer_support.Host, "unregisterTimer"), @FieldType(raw.clap_host_timer_support_t, "unregister_timer"));
