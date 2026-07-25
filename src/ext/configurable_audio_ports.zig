@@ -12,6 +12,15 @@ pub const ConfigurationRequest = extern struct {
 };
 
 pub const Plugin = extern struct {
-    canApplyConfiguration: *const fn (plugin: *const root.Plugin, requests: [*]const ConfigurationRequest, request_count: u32) callconv(.c) bool,
-    applyConfiguration: *const fn (plugin: *const root.Plugin, requests: [*]const ConfigurationRequest, request_count: u32) callconv(.c) bool,
+    canApplyConfiguration: *const fn (
+        plugin: *const root.Plugin,
+        requests: [*]const ConfigurationRequest,
+        request_count: u32,
+    ) callconv(.c) bool,
+
+    applyConfiguration: *const fn (
+        plugin: *const root.Plugin,
+        requests: [*]const ConfigurationRequest,
+        request_count: u32,
+    ) callconv(.c) bool,
 };

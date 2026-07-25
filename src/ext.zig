@@ -1,8 +1,8 @@
 pub const ambisonic = @import("ext/ambisonic.zig");
 pub const audio_ports = @import("ext/audio_ports.zig");
+pub const audio_ports_activation = @import("ext/audio_ports_activation.zig");
 pub const audio_ports_config = @import("ext/audio_ports_config.zig");
 pub const audio_ports_config_info = @import("ext/audio_ports_config_info.zig");
-pub const audio_ports_activation = @import("ext/audio_ports_activation.zig");
 pub const configurable_audio_ports = @import("ext/configurable_audio_ports.zig");
 pub const event_registry = @import("ext/event_registry.zig");
 pub const gui = @import("ext/gui.zig");

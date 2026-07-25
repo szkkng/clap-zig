@@ -55,8 +55,18 @@ pub const Channel = enum(u8) {
 };
 
 pub const Plugin = extern struct {
-    isChannelMaskSupported: *const fn (plugin: *const root.Plugin, channel_mask: ChannelMask) callconv(.c) bool,
-    getChannelMap: *const fn (plugin: *const root.Plugin, is_input: bool, port_index: u32, channel_map: [*]Channel, channel_map_capacity: u32) callconv(.c) u32,
+    isChannelMaskSupported: *const fn (
+        plugin: *const root.Plugin,
+        channel_mask: ChannelMask,
+    ) callconv(.c) bool,
+
+    getChannelMap: *const fn (
+        plugin: *const root.Plugin,
+        is_input: bool,
+        port_index: u32,
+        channel_map: [*]Channel,
+        channel_map_capacity: u32,
+    ) callconv(.c) u32,
 };
 
 pub const Host = extern struct {
