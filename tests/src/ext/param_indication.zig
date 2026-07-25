@@ -12,5 +12,6 @@ test "automation state" {
     try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_NONE, @intFromEnum(AutomationState.none));
     try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_PRESENT, @intFromEnum(AutomationState.present));
     try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_PLAYING, @intFromEnum(AutomationState.playing));
+    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_RECORDING, @intFromEnum(AutomationState.recording));
     try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_OVERRIDING, @intFromEnum(AutomationState.overriding));
 }

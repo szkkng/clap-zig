@@ -16,6 +16,7 @@ comptime {
     assertFnPtr(@FieldType(clap.Plugin, "init"), @FieldType(raw.clap_plugin_t, "init"));
     assertFnPtr(@FieldType(clap.Plugin, "destroy"), @FieldType(raw.clap_plugin_t, "destroy"));
     assertFnPtr(@FieldType(clap.Plugin, "activate"), @FieldType(raw.clap_plugin_t, "activate"));
+    assertFnPtr(@FieldType(clap.Plugin, "deactivate"), @FieldType(raw.clap_plugin_t, "deactivate"));
     assertFnPtr(@FieldType(clap.Plugin, "startProcessing"), @FieldType(raw.clap_plugin_t, "start_processing"));
     assertFnPtr(@FieldType(clap.Plugin, "stopProcessing"), @FieldType(raw.clap_plugin_t, "stop_processing"));
     assertFnPtr(@FieldType(clap.Plugin, "reset"), @FieldType(raw.clap_plugin_t, "reset"));
@@ -190,6 +191,7 @@ comptime {
     assertStruct(clap.ext.params.Plugin, raw.clap_plugin_params_t);
     assertFnPtr(@FieldType(clap.ext.params.Plugin, "count"), @FieldType(raw.clap_plugin_params_t, "count"));
     assertFnPtr(@FieldType(clap.ext.params.Plugin, "getInfo"), @FieldType(raw.clap_plugin_params_t, "get_info"));
+    assertFnPtr(@FieldType(clap.ext.params.Plugin, "getValue"), @FieldType(raw.clap_plugin_params_t, "get_value"));
     assertFnPtr(@FieldType(clap.ext.params.Plugin, "valueToText"), @FieldType(raw.clap_plugin_params_t, "value_to_text"));
     assertFnPtr(@FieldType(clap.ext.params.Plugin, "textToValue"), @FieldType(raw.clap_plugin_params_t, "text_to_value"));
     assertFnPtr(@FieldType(clap.ext.params.Plugin, "flush"), @FieldType(raw.clap_plugin_params_t, "flush"));

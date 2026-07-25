@@ -55,6 +55,7 @@ test "event header type" {
     const Type = clap.event.Header.Type;
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_ON, @intFromEnum(Type.note_on));
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_OFF, @intFromEnum(Type.note_off));
+    try testing.expectEqual(raw.CLAP_EVENT_NOTE_CHOKE, @intFromEnum(Type.note_choke));
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_END, @intFromEnum(Type.note_end));
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_EXPRESSION, @intFromEnum(Type.note_expression));
     try testing.expectEqual(raw.CLAP_EVENT_PARAM_VALUE, @intFromEnum(Type.param_value));
