@@ -205,6 +205,15 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.preset_load.Host, "onError"), @FieldType(raw.clap_host_preset_load_t, "on_error"));
     assertFnPtr(@FieldType(clap.ext.preset_load.Host, "loaded"), @FieldType(raw.clap_host_preset_load_t, "loaded"));
 
+    assertStruct(clap.ext.remote_controls.Page, raw.clap_remote_controls_page_t);
+    assertStruct(clap.ext.remote_controls.Plugin, raw.clap_plugin_remote_controls_t);
+    assertFnPtr(@FieldType(clap.ext.remote_controls.Plugin, "count"), @FieldType(raw.clap_plugin_remote_controls_t, "count"));
+    assertFnPtr(@FieldType(clap.ext.remote_controls.Plugin, "get"), @FieldType(raw.clap_plugin_remote_controls_t, "get"));
+
+    assertStruct(clap.ext.remote_controls.Host, raw.clap_host_remote_controls_t);
+    assertFnPtr(@FieldType(clap.ext.remote_controls.Host, "changed"), @FieldType(raw.clap_host_remote_controls_t, "changed"));
+    assertFnPtr(@FieldType(clap.ext.remote_controls.Host, "suggestPage"), @FieldType(raw.clap_host_remote_controls_t, "suggest_page"));
+
     assertStruct(clap.ext.audio_ports_activation.Plugin, raw.clap_plugin_audio_ports_activation_t);
     assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Plugin, "canActivateWhileProcessing"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "can_activate_while_processing"));
     assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Plugin, "setActive"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "set_active"));

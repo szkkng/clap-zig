@@ -13,6 +13,7 @@ pub const note_ports = @import("ext/note_ports.zig");
 pub const param_indication = @import("ext/param_indication.zig");
 pub const params = @import("ext/params.zig");
 pub const preset_load = @import("ext/preset_load.zig");
+pub const remote_controls = @import("ext/remote_controls.zig");
 pub const render = @import("ext/render.zig");
 pub const state = @import("ext/state.zig");
 pub const state_context = @import("ext/state_context.zig");

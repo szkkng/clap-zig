@@ -16,6 +16,7 @@ test {
     _ = @import("ext/param_indication.zig");
     _ = @import("ext/params.zig");
     _ = @import("ext/preset_load.zig");
+    _ = @import("ext/remote_controls.zig");
     _ = @import("ext/render.zig");
     _ = @import("ext/state.zig");
     _ = @import("ext/state_context.zig");
