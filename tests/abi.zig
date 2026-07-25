@@ -106,6 +106,13 @@ comptime {
 comptime {
     @setEvalBranchQuota(5000);
 
+    assertStruct(clap.ext.ambisonic.Config, raw.clap_ambisonic_config_t);
+    assertStruct(clap.ext.ambisonic.Plugin, raw.clap_plugin_ambisonic_t);
+    assertFnPtr(@FieldType(clap.ext.ambisonic.Plugin, "isConfigSupported"), @FieldType(raw.clap_plugin_ambisonic_t, "is_config_supported"));
+    assertFnPtr(@FieldType(clap.ext.ambisonic.Plugin, "getConfig"), @FieldType(raw.clap_plugin_ambisonic_t, "get_config"));
+    assertStruct(clap.ext.ambisonic.Host, raw.clap_host_ambisonic_t);
+    assertFnPtr(@FieldType(clap.ext.ambisonic.Host, "changed"), @FieldType(raw.clap_host_ambisonic_t, "changed"));
+
     const PluginAudioPorts = clap.ext.audio_ports.Plugin;
     assertStruct(PluginAudioPorts, raw.clap_plugin_audio_ports_t);
     assertFnPtr(@FieldType(PluginAudioPorts, "count"), @FieldType(raw.clap_plugin_audio_ports_t, "count"));

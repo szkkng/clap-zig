@@ -17,7 +17,6 @@ your_module.addImport("clap", clap.module("clap_zig"));
 ## Status
 
 Not implemented yet:
-- ext/ambisonic
 - ext/context-menu
 - ext/gui
 - ext/note-name

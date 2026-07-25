@@ -4,6 +4,7 @@ const testing = @import("std").testing;
 
 test {
     _ = @import("abi.zig");
+    _ = @import("ext/ambisonic.zig");
     _ = @import("ext/audio_ports.zig");
     _ = @import("ext/audio_ports_config.zig");
     _ = @import("ext/audio_ports_activation.zig");

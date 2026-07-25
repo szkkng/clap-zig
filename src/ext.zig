@@ -1,3 +1,4 @@
+pub const ambisonic = @import("ext/ambisonic.zig");
 pub const audio_ports = @import("ext/audio_ports.zig");
 pub const audio_ports_config = @import("ext/audio_ports_config.zig");
 pub const audio_ports_config_info = @import("ext/audio_ports_config_info.zig");
