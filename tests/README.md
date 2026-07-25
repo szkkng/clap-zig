@@ -1,3 +1,4 @@
-This is a test-only project for testing the hand-written `clap_zig` API
+This project is for testing the hand-written `clap-zig` API
 against Zig bindings generated from the CLAP C headers by `translate-c`.
-This keeps dependencies needed only for these tests out of `clap_zig`'s `build.zig.zon`.
+
+This keeps dependencies needed only for these tests out of `clap-zig`'s `build.zig.zon`.
