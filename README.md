@@ -7,7 +7,7 @@ Draft headers are not supported.
 ## Usage
 
 ```bash
-zig fetch --save https://codeberg.org/kengo/clap-zig.git
+zig fetch --save git+https://codeberg.org/kengo/clap-zig
 ```
 
 ```zig
