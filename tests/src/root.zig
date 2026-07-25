@@ -15,6 +15,7 @@ test {
     _ = @import("ext/note_ports.zig");
     _ = @import("ext/param_indication.zig");
     _ = @import("ext/params.zig");
+    _ = @import("ext/posix_fd_support.zig");
     _ = @import("ext/preset_load.zig");
     _ = @import("ext/remote_controls.zig");
     _ = @import("ext/render.zig");

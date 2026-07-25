@@ -243,6 +243,14 @@ comptime {
     assertStruct(clap.ext.log.Host, raw.clap_host_log_t);
     assertFnPtr(@FieldType(clap.ext.log.Host, "log"), @FieldType(raw.clap_host_log_t, "log"));
 
+    assertStruct(clap.ext.posix_fd_support.Plugin, raw.clap_plugin_posix_fd_support);
+    assertFnPtr(@FieldType(clap.ext.posix_fd_support.Plugin, "onFd"), @FieldType(raw.clap_plugin_posix_fd_support, "on_fd"));
+
+    assertStruct(clap.ext.posix_fd_support.Host, raw.clap_host_posix_fd_support);
+    assertFnPtr(@FieldType(clap.ext.posix_fd_support.Host, "registerFd"), @FieldType(raw.clap_host_posix_fd_support, "register_fd"));
+    assertFnPtr(@FieldType(clap.ext.posix_fd_support.Host, "modifyFd"), @FieldType(raw.clap_host_posix_fd_support, "modify_fd"));
+    assertFnPtr(@FieldType(clap.ext.posix_fd_support.Host, "unregisterFd"), @FieldType(raw.clap_host_posix_fd_support, "unregister_fd"));
+
     assertStruct(clap.ext.tail.Plugin, raw.clap_plugin_tail_t);
     assertFnPtr(@FieldType(clap.ext.tail.Plugin, "get"), @FieldType(raw.clap_plugin_tail_t, "get"));
 
