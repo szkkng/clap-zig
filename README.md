@@ -1,17 +1,24 @@
 # clap-zig
 
-WIP: Zig bindings for [CLAP](https://github.com/free-audio/clap).
+Zig bindings for [CLAP](https://github.com/free-audio/clap) v1.2.10.
 
 Draft headers are not supported.
 
+## Requirements
+
+- Zig v0.16.0
+
 ## Usage
+
+Add clap-zig as a dependency:
 
 ```bash
 zig fetch --save git+https://codeberg.org/kengo/clap-zig
 ```
 
+Import `clap_zig` module in your `build.zig`:
+
 ```zig
-// Import the clap-zig module in your build function.
 const clap = b.dependency("clap_zig", .{});
 your_module.addImport("clap", clap.module("clap_zig"));
 ```
