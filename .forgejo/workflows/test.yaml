@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  docs:
+  test:
     runs-on: codeberg-small
     timeout-minutes: 10
     steps:
