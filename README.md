@@ -23,7 +23,6 @@ Not implemented yet:
 - ext/note-ports
 - ext/param-indication
 - ext/posix-fd-support
-- ext/preset-load
 - ext/remote-controls
 
 Draft headers are not supported.

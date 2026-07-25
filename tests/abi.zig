@@ -154,6 +154,12 @@ comptime {
     assertFnPtr(@FieldType(clap.ext.params.Host, "clear"), @FieldType(raw.clap_host_params_t, "clear"));
     assertFnPtr(@FieldType(clap.ext.params.Host, "requestFlush"), @FieldType(raw.clap_host_params_t, "request_flush"));
 
+    assertStruct(clap.ext.preset_load.Plugin, raw.clap_plugin_preset_load_t);
+    assertFnPtr(@FieldType(clap.ext.preset_load.Plugin, "fromLocation"), @FieldType(raw.clap_plugin_preset_load_t, "from_location"));
+    assertStruct(clap.ext.preset_load.Host, raw.clap_host_preset_load_t);
+    assertFnPtr(@FieldType(clap.ext.preset_load.Host, "onError"), @FieldType(raw.clap_host_preset_load_t, "on_error"));
+    assertFnPtr(@FieldType(clap.ext.preset_load.Host, "loaded"), @FieldType(raw.clap_host_preset_load_t, "loaded"));
+
     assertStruct(clap.ext.audio_ports_activation.Plugin, raw.clap_plugin_audio_ports_activation_t);
     assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Plugin, "canActivateWhileProcessing"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "can_activate_while_processing"));
     assertFnPtr(@FieldType(clap.ext.audio_ports_activation.Plugin, "setActive"), @FieldType(raw.clap_plugin_audio_ports_activation_t, "set_active"));
