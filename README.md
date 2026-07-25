@@ -6,7 +6,6 @@ WIP: Zig bindings for [CLAP](https://github.com/free-audio/clap).
 
 TODO:
 - ext/context-menu
-- ext/gui
 - ext/posix-fd-support
 - ext/remote-controls
 

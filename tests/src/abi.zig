@@ -140,6 +140,32 @@ comptime {
     assertStruct(HostAudioPortsConfig, raw.clap_host_audio_ports_config_t);
     assertFnPtr(@FieldType(HostAudioPortsConfig, "rescan"), @FieldType(raw.clap_host_audio_ports_config_t, "rescan"));
 
+    assertStruct(clap.ext.gui.Window, raw.clap_window_t);
+    assertStruct(clap.ext.gui.ResizeHints, raw.clap_gui_resize_hints_t);
+    assertStruct(clap.ext.gui.Plugin, raw.clap_plugin_gui_t);
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "isApiSupported"), @FieldType(raw.clap_plugin_gui_t, "is_api_supported"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "getPreferredApi"), @FieldType(raw.clap_plugin_gui_t, "get_preferred_api"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "create"), @FieldType(raw.clap_plugin_gui_t, "create"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "destroy"), @FieldType(raw.clap_plugin_gui_t, "destroy"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "setScale"), @FieldType(raw.clap_plugin_gui_t, "set_scale"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "getSize"), @FieldType(raw.clap_plugin_gui_t, "get_size"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "canResize"), @FieldType(raw.clap_plugin_gui_t, "can_resize"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "getResizeHints"), @FieldType(raw.clap_plugin_gui_t, "get_resize_hints"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "adjustSize"), @FieldType(raw.clap_plugin_gui_t, "adjust_size"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "setSize"), @FieldType(raw.clap_plugin_gui_t, "set_size"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "setParent"), @FieldType(raw.clap_plugin_gui_t, "set_parent"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "setTransient"), @FieldType(raw.clap_plugin_gui_t, "set_transient"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "suggestTitle"), @FieldType(raw.clap_plugin_gui_t, "suggest_title"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "show"), @FieldType(raw.clap_plugin_gui_t, "show"));
+    assertFnPtr(@FieldType(clap.ext.gui.Plugin, "hide"), @FieldType(raw.clap_plugin_gui_t, "hide"));
+
+    assertStruct(clap.ext.gui.Host, raw.clap_host_gui_t);
+    assertFnPtr(@FieldType(clap.ext.gui.Host, "resizeHintsChanged"), @FieldType(raw.clap_host_gui_t, "resize_hints_changed"));
+    assertFnPtr(@FieldType(clap.ext.gui.Host, "requestResize"), @FieldType(raw.clap_host_gui_t, "request_resize"));
+    assertFnPtr(@FieldType(clap.ext.gui.Host, "requestShow"), @FieldType(raw.clap_host_gui_t, "request_show"));
+    assertFnPtr(@FieldType(clap.ext.gui.Host, "requestHide"), @FieldType(raw.clap_host_gui_t, "request_hide"));
+    assertFnPtr(@FieldType(clap.ext.gui.Host, "closed"), @FieldType(raw.clap_host_gui_t, "closed"));
+
     assertStruct(clap.ext.note_name.NoteName, raw.clap_note_name_t);
     assertStruct(clap.ext.note_name.Plugin, raw.clap_plugin_note_name_t);
     assertFnPtr(@FieldType(clap.ext.note_name.Plugin, "count"), @FieldType(raw.clap_plugin_note_name_t, "count"));
