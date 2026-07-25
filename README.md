@@ -2,12 +2,6 @@
 
 WIP: Zig bindings for [CLAP](https://github.com/free-audio/clap).
 
-## Status
-
-TODO:
-- ext/context-menu
-- ext/posix-fd-support
-
 Draft headers are not supported.
 
 ## Usage

@@ -141,6 +141,23 @@ comptime {
     assertStruct(HostAudioPortsConfig, raw.clap_host_audio_ports_config_t);
     assertFnPtr(@FieldType(HostAudioPortsConfig, "rescan"), @FieldType(raw.clap_host_audio_ports_config_t, "rescan"));
 
+    assertStruct(clap.ext.context_menu.Target, raw.clap_context_menu_target_t);
+    assertStruct(clap.ext.context_menu.Entry, raw.clap_context_menu_entry_t);
+    assertStruct(clap.ext.context_menu.CheckEntry, raw.clap_context_menu_check_entry_t);
+    assertStruct(clap.ext.context_menu.Item.Title, raw.clap_context_menu_item_title_t);
+    assertStruct(clap.ext.context_menu.Submenu, raw.clap_context_menu_submenu_t);
+    assertStruct(clap.ext.context_menu.Builder, raw.clap_context_menu_builder_t);
+    assertFnPtr(@FieldType(clap.ext.context_menu.Builder, "addItem"), @FieldType(raw.clap_context_menu_builder_t, "add_item"));
+    assertFnPtr(@FieldType(clap.ext.context_menu.Builder, "supports"), @FieldType(raw.clap_context_menu_builder_t, "supports"));
+    assertStruct(clap.ext.context_menu.Plugin, raw.clap_plugin_context_menu_t);
+    assertFnPtr(@FieldType(clap.ext.context_menu.Plugin, "populate"), @FieldType(raw.clap_plugin_context_menu_t, "populate"));
+    assertFnPtr(@FieldType(clap.ext.context_menu.Plugin, "perform"), @FieldType(raw.clap_plugin_context_menu_t, "perform"));
+    assertStruct(clap.ext.context_menu.Host, raw.clap_host_context_menu_t);
+    assertFnPtr(@FieldType(clap.ext.context_menu.Host, "populate"), @FieldType(raw.clap_host_context_menu_t, "populate"));
+    assertFnPtr(@FieldType(clap.ext.context_menu.Host, "perform"), @FieldType(raw.clap_host_context_menu_t, "perform"));
+    assertFnPtr(@FieldType(clap.ext.context_menu.Host, "canPopup"), @FieldType(raw.clap_host_context_menu_t, "can_popup"));
+    assertFnPtr(@FieldType(clap.ext.context_menu.Host, "popup"), @FieldType(raw.clap_host_context_menu_t, "popup"));
+
     assertStruct(clap.ext.gui.Window, raw.clap_window_t);
     assertStruct(clap.ext.gui.ResizeHints, raw.clap_gui_resize_hints_t);
     assertStruct(clap.ext.gui.Plugin, raw.clap_plugin_gui_t);

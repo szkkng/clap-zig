@@ -4,32 +4,7 @@ const testing = @import("std").testing;
 
 test {
     _ = @import("abi.zig");
-    _ = @import("ext/ambisonic.zig");
-    _ = @import("ext/audio_ports.zig");
-    _ = @import("ext/audio_ports_config.zig");
-    _ = @import("ext/audio_ports_activation.zig");
-    _ = @import("ext/configurable_audio_ports.zig");
-    _ = @import("ext/event_registry.zig");
-    _ = @import("ext/gui.zig");
-    _ = @import("ext/note_name.zig");
-    _ = @import("ext/note_ports.zig");
-    _ = @import("ext/param_indication.zig");
-    _ = @import("ext/params.zig");
-    _ = @import("ext/posix_fd_support.zig");
-    _ = @import("ext/preset_load.zig");
-    _ = @import("ext/remote_controls.zig");
-    _ = @import("ext/render.zig");
-    _ = @import("ext/state.zig");
-    _ = @import("ext/state_context.zig");
-    _ = @import("ext/surround.zig");
-    _ = @import("ext/latency.zig");
-    _ = @import("ext/log.zig");
-    _ = @import("ext/tail.zig");
-    _ = @import("ext/thread_check.zig");
-    _ = @import("ext/thread_pool.zig");
-    _ = @import("ext/timer_support.zig");
-    _ = @import("ext/track_info.zig");
-    _ = @import("ext/voice_info.zig");
+    _ = @import("ext.zig");
 }
 
 test "factory ids" {

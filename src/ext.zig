@@ -4,6 +4,7 @@ pub const audio_ports_activation = @import("ext/audio_ports_activation.zig");
 pub const audio_ports_config = @import("ext/audio_ports_config.zig");
 pub const audio_ports_config_info = @import("ext/audio_ports_config_info.zig");
 pub const configurable_audio_ports = @import("ext/configurable_audio_ports.zig");
+pub const context_menu = @import("ext/context_menu.zig");
 pub const event_registry = @import("ext/event_registry.zig");
 pub const gui = @import("ext/gui.zig");
 pub const latency = @import("ext/latency.zig");
