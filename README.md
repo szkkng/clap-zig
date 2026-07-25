@@ -1,6 +1,17 @@
 # clap-zig
 
-WIP: Zig bindings for CLAP.
+WIP: Zig bindings for [CLAP](https://github.com/free-audio/clap).
+
+## Status
+
+TODO:
+- ext/context-menu
+- ext/gui
+- ext/note-ports
+- ext/posix-fd-support
+- ext/remote-controls
+
+Draft headers are not supported.
 
 ## Usage
 
@@ -14,13 +25,6 @@ const clap = b.dependency("clap_zig", .{});
 your_module.addImport("clap", clap.module("clap_zig"));
 ```
 
-## Status
+## License
 
-Not implemented yet:
-- ext/context-menu
-- ext/gui
-- ext/note-ports
-- ext/posix-fd-support
-- ext/remote-controls
-
-Draft headers are not supported.
+MIT.
