@@ -1,7 +1,6 @@
 const root = @import("../root.zig");
 const Id = root.Id;
 const name_size = root.name_size;
-const AudioPortInfo = @import("audio_ports.zig").AudioPortInfo;
 
 pub const id = "clap.audio-ports-config";
 
