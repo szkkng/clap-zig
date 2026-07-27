@@ -27,13 +27,7 @@ pub const Config = extern struct {
 
 pub const Plugin = extern struct {
     isConfigSupported: *const fn (plugin: *const root.Plugin, config: *const Config) callconv(.c) bool,
-
-    getConfig: *const fn (
-        plugin: *const root.Plugin,
-        is_input: bool,
-        port_index: u32,
-        config: *Config,
-    ) callconv(.c) bool,
+    getConfig: *const fn (plugin: *const root.Plugin, is_input: bool, port_index: u32, config: *Config) callconv(.c) bool,
 };
 
 pub const Host = extern struct {

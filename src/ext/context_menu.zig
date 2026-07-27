@@ -55,39 +55,13 @@ pub const Builder = extern struct {
 };
 
 pub const Plugin = extern struct {
-    populate: *const fn (
-        plugin: *const root.Plugin,
-        target: ?*const Target,
-        builder: *const Builder,
-    ) callconv(.c) bool,
-
-    perform: *const fn (
-        plugin: *const root.Plugin,
-        target: ?*const Target,
-        action_id: Id,
-    ) callconv(.c) bool,
+    populate: *const fn (plugin: *const root.Plugin, target: ?*const Target, builder: *const Builder) callconv(.c) bool,
+    perform: *const fn (plugin: *const root.Plugin, target: ?*const Target, action_id: Id) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    populate: *const fn (
-        host: *const root.Host,
-        target: ?*const Target,
-        builder: *const Builder,
-    ) callconv(.c) bool,
-
-    perform: *const fn (
-        host: *const root.Host,
-        target: ?*const Target,
-        action_id: Id,
-    ) callconv(.c) bool,
-
+    populate: *const fn (host: *const root.Host, target: ?*const Target, builder: *const Builder) callconv(.c) bool,
+    perform: *const fn (host: *const root.Host, target: ?*const Target, action_id: Id) callconv(.c) bool,
     canPopup: *const fn (host: *const root.Host) callconv(.c) bool,
-
-    popup: *const fn (
-        host: *const root.Host,
-        target: ?*const Target,
-        screen_index: i32,
-        x: i32,
-        y: i32,
-    ) callconv(.c) bool,
+    popup: *const fn (host: *const root.Host, target: ?*const Target, screen_index: i32, x: i32, y: i32) callconv(.c) bool,
 };

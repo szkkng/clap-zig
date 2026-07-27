@@ -3,6 +3,7 @@ const root = @import("../root.zig");
 const name_size = root.name_size;
 
 pub const id = "clap.audio-ports";
+
 pub const port_type = struct {
     pub const mono = "mono";
     pub const stereo = "stereo";

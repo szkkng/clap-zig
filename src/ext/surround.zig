@@ -7,6 +7,15 @@ pub const port_type = struct {
     pub const surround = "surround";
 };
 
+pub const Plugin = extern struct {
+    isChannelMaskSupported: *const fn (plugin: *const root.Plugin, channel_mask: ChannelMask) callconv(.c) bool,
+    getChannelMap: *const fn (plugin: *const root.Plugin, is_input: bool, port_index: u32, channel_map: [*]Channel, channel_map_capacity: u32) callconv(.c) u32,
+};
+
+pub const Host = extern struct {
+    changed: *const fn (host: *const root.Host) callconv(.c) void,
+};
+
 pub const ChannelMask = packed struct(u64) {
     fl: bool = false,
     fr: bool = false,
@@ -52,23 +61,4 @@ pub const Channel = enum(u8) {
     tbr = 17,
     tsl = 18,
     tsr = 19,
-};
-
-pub const Plugin = extern struct {
-    isChannelMaskSupported: *const fn (
-        plugin: *const root.Plugin,
-        channel_mask: ChannelMask,
-    ) callconv(.c) bool,
-
-    getChannelMap: *const fn (
-        plugin: *const root.Plugin,
-        is_input: bool,
-        port_index: u32,
-        channel_map: [*]Channel,
-        channel_map_capacity: u32,
-    ) callconv(.c) u32,
-};
-
-pub const Host = extern struct {
-    changed: *const fn (host: *const root.Host) callconv(.c) void,
 };

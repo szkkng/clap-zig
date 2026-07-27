@@ -11,15 +11,6 @@ pub const Type = enum(u32) {
 };
 
 pub const Plugin = extern struct {
-    save: *const fn (
-        plugin: *const root.Plugin,
-        stream: *const OStream,
-        context_type: Type,
-    ) callconv(.c) bool,
-
-    load: *const fn (
-        plugin: *const root.Plugin,
-        stream: *const IStream,
-        context_type: Type,
-    ) callconv(.c) bool,
+    save: *const fn (plugin: *const root.Plugin, stream: *const OStream, context_type: Type) callconv(.c) bool,
+    load: *const fn (plugin: *const root.Plugin, stream: *const IStream, context_type: Type) callconv(.c) bool,
 };

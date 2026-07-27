@@ -41,39 +41,11 @@ pub const Info = extern struct {
 
 pub const Plugin = extern struct {
     count: *const fn (plugin: *const root.Plugin) callconv(.c) u32,
-
-    getInfo: *const fn (
-        plugin: *const root.Plugin,
-        param_index: u32,
-        param_info: *Info,
-    ) callconv(.c) bool,
-
-    getValue: *const fn (
-        plugin: *const root.Plugin,
-        param_id: Id,
-        out_value: *f64,
-    ) callconv(.c) bool,
-
-    valueToText: *const fn (
-        plugin: *const root.Plugin,
-        param_id: Id,
-        value: f64,
-        out_buffer: [*:0]u8,
-        out_buffer_capacity: u32,
-    ) callconv(.c) bool,
-
-    textToValue: *const fn (
-        plugin: *const root.Plugin,
-        param_id: Id,
-        param_value_text: [*:0]const u8,
-        out_value: *f64,
-    ) callconv(.c) bool,
-
-    flush: *const fn (
-        plugin: *const root.Plugin,
-        in: *const InputEvents,
-        out: *const OutputEvents,
-    ) callconv(.c) void,
+    getInfo: *const fn (plugin: *const root.Plugin, param_index: u32, param_info: *Info) callconv(.c) bool,
+    getValue: *const fn (plugin: *const root.Plugin, param_id: Id, out_value: *f64) callconv(.c) bool,
+    valueToText: *const fn (plugin: *const root.Plugin, param_id: Id, value: f64, out_buffer: [*:0]u8, out_buffer_capacity: u32) callconv(.c) bool,
+    textToValue: *const fn (plugin: *const root.Plugin, param_id: Id, param_value_text: [*:0]const u8, out_value: *f64) callconv(.c) bool,
+    flush: *const fn (plugin: *const root.Plugin, in: *const InputEvents, out: *const OutputEvents) callconv(.c) void,
 };
 
 pub const Host = extern struct {
