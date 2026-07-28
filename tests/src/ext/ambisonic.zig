@@ -1,6 +1,17 @@
+const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
 const testing = @import("std").testing;
+
+comptime {
+    const ambisonic = clap.ext.ambisonic;
+    abi.assertStruct(ambisonic.Config, raw.clap_ambisonic_config_t);
+    abi.assertStruct(ambisonic.Plugin, raw.clap_plugin_ambisonic_t);
+    abi.assertFnPtr(@FieldType(ambisonic.Plugin, "isConfigSupported"), @FieldType(raw.clap_plugin_ambisonic_t, "is_config_supported"));
+    abi.assertFnPtr(@FieldType(ambisonic.Plugin, "getConfig"), @FieldType(raw.clap_plugin_ambisonic_t, "get_config"));
+    abi.assertStruct(ambisonic.Host, raw.clap_host_ambisonic_t);
+    abi.assertFnPtr(@FieldType(ambisonic.Host, "changed"), @FieldType(raw.clap_host_ambisonic_t, "changed"));
+}
 
 test "ambisonic identifiers" {
     try testing.expectEqualStrings(raw.CLAP_EXT_AMBISONIC[0..], clap.ext.ambisonic.id);

@@ -1,6 +1,14 @@
+const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
 const testing = @import("std").testing;
+
+comptime {
+    const Plugin = clap.ext.param_indication.Plugin;
+    abi.assertStruct(Plugin, raw.clap_plugin_param_indication_t);
+    abi.assertFnPtr(@FieldType(Plugin, "setMapping"), @FieldType(raw.clap_plugin_param_indication_t, "set_mapping"));
+    abi.assertFnPtr(@FieldType(Plugin, "setAutomation"), @FieldType(raw.clap_plugin_param_indication_t, "set_automation"));
+}
 
 test "param indication identifier" {
     try testing.expectEqualStrings(raw.CLAP_EXT_PARAM_INDICATION[0..], clap.ext.param_indication.id);

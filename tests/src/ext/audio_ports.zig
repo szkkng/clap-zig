@@ -1,6 +1,18 @@
+const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
 const testing = @import("std").testing;
+
+comptime {
+    const audio_ports = clap.ext.audio_ports;
+    abi.assertStruct(audio_ports.Info, raw.clap_audio_port_info_t);
+    abi.assertStruct(audio_ports.Plugin, raw.clap_plugin_audio_ports_t);
+    abi.assertFnPtr(@FieldType(audio_ports.Plugin, "count"), @FieldType(raw.clap_plugin_audio_ports_t, "count"));
+    abi.assertFnPtr(@FieldType(audio_ports.Plugin, "get"), @FieldType(raw.clap_plugin_audio_ports_t, "get"));
+    abi.assertStruct(audio_ports.Host, raw.clap_host_audio_ports_t);
+    abi.assertFnPtr(@FieldType(audio_ports.Host, "isRescanFlagSupported"), @FieldType(raw.clap_host_audio_ports_t, "is_rescan_flag_supported"));
+    abi.assertFnPtr(@FieldType(audio_ports.Host, "rescan"), @FieldType(raw.clap_host_audio_ports_t, "rescan"));
+}
 
 test "audio port identifiers" {
     try testing.expectEqualStrings(raw.CLAP_EXT_AUDIO_PORTS[0..], clap.ext.audio_ports.id);

@@ -1,6 +1,13 @@
+const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
 const testing = @import("std").testing;
+
+comptime {
+    const Host = clap.ext.log.Host;
+    abi.assertStruct(Host, raw.clap_host_log_t);
+    abi.assertFnPtr(@FieldType(Host, "log"), @FieldType(raw.clap_host_log_t, "log"));
+}
 
 test "log identifier" {
     try testing.expectEqualStrings(raw.CLAP_EXT_LOG[0..], clap.ext.log.id);
