@@ -16,6 +16,6 @@ test "render identifier" {
 
 test "render mode" {
     const Mode = clap.ext.render.Mode;
-    try testing.expectEqual(raw.CLAP_RENDER_REALTIME, @intFromEnum(Mode.realtime));
-    try testing.expectEqual(raw.CLAP_RENDER_OFFLINE, @intFromEnum(Mode.offline));
+    try testing.expectEqual(raw.CLAP_RENDER_REALTIME, @backingInt(Mode.realtime));
+    try testing.expectEqual(raw.CLAP_RENDER_OFFLINE, @backingInt(Mode.offline));
 }

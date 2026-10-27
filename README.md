@@ -6,7 +6,7 @@ Draft headers are not supported.
 
 ## Requirements
 
-- Zig v0.16.0
+- Zig 0.17.0
 
 ## Setup
 

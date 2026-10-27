@@ -28,10 +28,10 @@ test "note dialects" {
 
 test "note dialect" {
     const Dialect = clap.ext.note_ports.Dialect;
-    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_CLAP, @intFromEnum(Dialect.clap));
-    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI, @intFromEnum(Dialect.midi));
-    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI_MPE, @intFromEnum(Dialect.midi_mpe));
-    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI2, @intFromEnum(Dialect.midi2));
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_CLAP, @backingInt(Dialect.clap));
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI, @backingInt(Dialect.midi));
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI_MPE, @backingInt(Dialect.midi_mpe));
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI2, @backingInt(Dialect.midi2));
 }
 
 test "hsot rescan flags" {

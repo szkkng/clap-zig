@@ -17,9 +17,9 @@ test "param indication identifier" {
 
 test "automation state" {
     const AutomationState = clap.ext.param_indication.AutomationState;
-    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_NONE, @intFromEnum(AutomationState.none));
-    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_PRESENT, @intFromEnum(AutomationState.present));
-    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_PLAYING, @intFromEnum(AutomationState.playing));
-    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_RECORDING, @intFromEnum(AutomationState.recording));
-    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_OVERRIDING, @intFromEnum(AutomationState.overriding));
+    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_NONE, @backingInt(AutomationState.none));
+    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_PRESENT, @backingInt(AutomationState.present));
+    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_PLAYING, @backingInt(AutomationState.playing));
+    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_RECORDING, @backingInt(AutomationState.recording));
+    try testing.expectEqual(raw.CLAP_PARAM_INDICATION_AUTOMATION_OVERRIDING, @backingInt(AutomationState.overriding));
 }

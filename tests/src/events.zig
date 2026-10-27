@@ -25,30 +25,30 @@ comptime {
 
 test "event header type" {
     const Type = clap.event.Header.Type;
-    try testing.expectEqual(raw.CLAP_EVENT_NOTE_ON, @intFromEnum(Type.note_on));
-    try testing.expectEqual(raw.CLAP_EVENT_NOTE_OFF, @intFromEnum(Type.note_off));
-    try testing.expectEqual(raw.CLAP_EVENT_NOTE_CHOKE, @intFromEnum(Type.note_choke));
-    try testing.expectEqual(raw.CLAP_EVENT_NOTE_END, @intFromEnum(Type.note_end));
-    try testing.expectEqual(raw.CLAP_EVENT_NOTE_EXPRESSION, @intFromEnum(Type.note_expression));
-    try testing.expectEqual(raw.CLAP_EVENT_PARAM_VALUE, @intFromEnum(Type.param_value));
-    try testing.expectEqual(raw.CLAP_EVENT_PARAM_MOD, @intFromEnum(Type.param_mod));
-    try testing.expectEqual(raw.CLAP_EVENT_PARAM_GESTURE_BEGIN, @intFromEnum(Type.param_gesture_begin));
-    try testing.expectEqual(raw.CLAP_EVENT_PARAM_GESTURE_END, @intFromEnum(Type.param_gesture_end));
-    try testing.expectEqual(raw.CLAP_EVENT_TRANSPORT, @intFromEnum(Type.transport));
-    try testing.expectEqual(raw.CLAP_EVENT_MIDI, @intFromEnum(Type.midi));
-    try testing.expectEqual(raw.CLAP_EVENT_MIDI_SYSEX, @intFromEnum(Type.midi_sysex));
-    try testing.expectEqual(raw.CLAP_EVENT_MIDI2, @intFromEnum(Type.midi2));
+    try testing.expectEqual(raw.CLAP_EVENT_NOTE_ON, @backingInt(Type.note_on));
+    try testing.expectEqual(raw.CLAP_EVENT_NOTE_OFF, @backingInt(Type.note_off));
+    try testing.expectEqual(raw.CLAP_EVENT_NOTE_CHOKE, @backingInt(Type.note_choke));
+    try testing.expectEqual(raw.CLAP_EVENT_NOTE_END, @backingInt(Type.note_end));
+    try testing.expectEqual(raw.CLAP_EVENT_NOTE_EXPRESSION, @backingInt(Type.note_expression));
+    try testing.expectEqual(raw.CLAP_EVENT_PARAM_VALUE, @backingInt(Type.param_value));
+    try testing.expectEqual(raw.CLAP_EVENT_PARAM_MOD, @backingInt(Type.param_mod));
+    try testing.expectEqual(raw.CLAP_EVENT_PARAM_GESTURE_BEGIN, @backingInt(Type.param_gesture_begin));
+    try testing.expectEqual(raw.CLAP_EVENT_PARAM_GESTURE_END, @backingInt(Type.param_gesture_end));
+    try testing.expectEqual(raw.CLAP_EVENT_TRANSPORT, @backingInt(Type.transport));
+    try testing.expectEqual(raw.CLAP_EVENT_MIDI, @backingInt(Type.midi));
+    try testing.expectEqual(raw.CLAP_EVENT_MIDI_SYSEX, @backingInt(Type.midi_sysex));
+    try testing.expectEqual(raw.CLAP_EVENT_MIDI2, @backingInt(Type.midi2));
 }
 
 test "note expression id" {
     const Id = clap.event.NoteExpression.Id;
-    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_VOLUME, @intFromEnum(Id.volume));
-    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_PAN, @intFromEnum(Id.pan));
-    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_TUNING, @intFromEnum(Id.tuning));
-    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_VIBRATO, @intFromEnum(Id.vibrato));
-    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_EXPRESSION, @intFromEnum(Id.expression));
-    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_BRIGHTNESS, @intFromEnum(Id.brightness));
-    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_PRESSURE, @intFromEnum(Id.pressure));
+    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_VOLUME, @backingInt(Id.volume));
+    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_PAN, @backingInt(Id.pan));
+    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_TUNING, @backingInt(Id.tuning));
+    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_VIBRATO, @backingInt(Id.vibrato));
+    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_EXPRESSION, @backingInt(Id.expression));
+    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_BRIGHTNESS, @backingInt(Id.brightness));
+    try testing.expectEqual(raw.CLAP_NOTE_EXPRESSION_PRESSURE, @backingInt(Id.pressure));
 }
 
 test "transport flags" {

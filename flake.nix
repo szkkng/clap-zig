@@ -1,16 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    zig = {
-      url = "github:silversquirl/zig-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     {
       nixpkgs,
-      zig,
       ...
     }:
     let
@@ -21,8 +16,8 @@
         system: pkgs: {
           default = pkgs.mkShellNoCC {
             packages = [
-              zig.packages.${system}.nightly
-              zig.packages.${system}.nightly.zls
+              pkgs.zig_0_17
+              pkgs.zls_0_17
             ];
           };
         }

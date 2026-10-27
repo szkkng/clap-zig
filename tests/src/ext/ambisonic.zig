@@ -21,15 +21,15 @@ test "ambisonic identifiers" {
 
 test "ambisonic ordering" {
     const Ordering = clap.ext.ambisonic.Ordering;
-    try testing.expectEqual(raw.CLAP_AMBISONIC_ORDERING_FUMA, @intFromEnum(Ordering.fuma));
-    try testing.expectEqual(raw.CLAP_AMBISONIC_ORDERING_ACN, @intFromEnum(Ordering.acn));
+    try testing.expectEqual(raw.CLAP_AMBISONIC_ORDERING_FUMA, @backingInt(Ordering.fuma));
+    try testing.expectEqual(raw.CLAP_AMBISONIC_ORDERING_ACN, @backingInt(Ordering.acn));
 }
 
 test "ambisonic normalization" {
     const Normalization = clap.ext.ambisonic.Normalization;
-    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_MAXN, @intFromEnum(Normalization.maxn));
-    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_SN3D, @intFromEnum(Normalization.sn3d));
-    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_N3D, @intFromEnum(Normalization.n3d));
-    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_SN2D, @intFromEnum(Normalization.sn2d));
-    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_N2D, @intFromEnum(Normalization.n2d));
+    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_MAXN, @backingInt(Normalization.maxn));
+    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_SN3D, @backingInt(Normalization.sn3d));
+    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_N3D, @backingInt(Normalization.n3d));
+    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_SN2D, @backingInt(Normalization.sn2d));
+    try testing.expectEqual(raw.CLAP_AMBISONIC_NORMALIZATION_N2D, @backingInt(Normalization.n2d));
 }

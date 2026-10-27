@@ -47,8 +47,8 @@ test "factory ids" {
 
 test "location kind" {
     const Kind = clap.factory.preset_discovery.Location.Kind;
-    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_LOCATION_FILE, @intFromEnum(Kind.file));
-    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_LOCATION_PLUGIN, @intFromEnum(Kind.plugin));
+    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_LOCATION_FILE, @backingInt(Kind.file));
+    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_LOCATION_PLUGIN, @backingInt(Kind.plugin));
 }
 
 test "preset discovery flags" {

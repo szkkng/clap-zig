@@ -30,16 +30,16 @@ test "context menu identifiers" {
 
 test "context menu target kind" {
     const TargetKind = clap.ext.context_menu.Target.Kind;
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_TARGET_KIND_GLOBAL, @intFromEnum(TargetKind.global));
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_TARGET_KIND_PARAM, @intFromEnum(TargetKind.param));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_TARGET_KIND_GLOBAL, @backingInt(TargetKind.global));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_TARGET_KIND_PARAM, @backingInt(TargetKind.param));
 }
 
 test "context menu item kind" {
     const ItemKind = clap.ext.context_menu.Item.Kind;
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_ENTRY, @intFromEnum(ItemKind.entry));
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_CHECK_ENTRY, @intFromEnum(ItemKind.check_entry));
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_SEPARATOR, @intFromEnum(ItemKind.separator));
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_BEGIN_SUBMENU, @intFromEnum(ItemKind.begin_submenu));
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_END_SUBMENU, @intFromEnum(ItemKind.end_submenu));
-    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_TITLE, @intFromEnum(ItemKind.title));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_ENTRY, @backingInt(ItemKind.entry));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_CHECK_ENTRY, @backingInt(ItemKind.check_entry));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_SEPARATOR, @backingInt(ItemKind.separator));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_BEGIN_SUBMENU, @backingInt(ItemKind.begin_submenu));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_END_SUBMENU, @backingInt(ItemKind.end_submenu));
+    try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_TITLE, @backingInt(ItemKind.title));
 }

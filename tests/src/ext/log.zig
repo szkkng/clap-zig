@@ -15,11 +15,11 @@ test "log identifier" {
 
 test "log severity" {
     const Severity = clap.ext.log.Severity;
-    try testing.expectEqual(raw.CLAP_LOG_DEBUG, @intFromEnum(Severity.debug));
-    try testing.expectEqual(raw.CLAP_LOG_INFO, @intFromEnum(Severity.info));
-    try testing.expectEqual(raw.CLAP_LOG_WARNING, @intFromEnum(Severity.warning));
-    try testing.expectEqual(raw.CLAP_LOG_ERROR, @intFromEnum(Severity.@"error"));
-    try testing.expectEqual(raw.CLAP_LOG_FATAL, @intFromEnum(Severity.fatal));
-    try testing.expectEqual(raw.CLAP_LOG_HOST_MISBEHAVING, @intFromEnum(Severity.host_misbehaving));
-    try testing.expectEqual(raw.CLAP_LOG_PLUGIN_MISBEHAVING, @intFromEnum(Severity.plugin_misbehaving));
+    try testing.expectEqual(raw.CLAP_LOG_DEBUG, @backingInt(Severity.debug));
+    try testing.expectEqual(raw.CLAP_LOG_INFO, @backingInt(Severity.info));
+    try testing.expectEqual(raw.CLAP_LOG_WARNING, @backingInt(Severity.warning));
+    try testing.expectEqual(raw.CLAP_LOG_ERROR, @backingInt(Severity.@"error"));
+    try testing.expectEqual(raw.CLAP_LOG_FATAL, @backingInt(Severity.fatal));
+    try testing.expectEqual(raw.CLAP_LOG_HOST_MISBEHAVING, @backingInt(Severity.host_misbehaving));
+    try testing.expectEqual(raw.CLAP_LOG_PLUGIN_MISBEHAVING, @backingInt(Severity.plugin_misbehaving));
 }

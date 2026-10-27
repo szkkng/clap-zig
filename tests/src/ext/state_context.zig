@@ -16,7 +16,7 @@ test "state context identifier" {
 
 test "state context type" {
     const Type = clap.ext.state_context.Type;
-    try testing.expectEqual(raw.CLAP_STATE_CONTEXT_FOR_PRESET, @intFromEnum(Type.preset));
-    try testing.expectEqual(raw.CLAP_STATE_CONTEXT_FOR_DUPLICATE, @intFromEnum(Type.duplicate));
-    try testing.expectEqual(raw.CLAP_STATE_CONTEXT_FOR_PROJECT, @intFromEnum(Type.project));
+    try testing.expectEqual(raw.CLAP_STATE_CONTEXT_FOR_PRESET, @backingInt(Type.preset));
+    try testing.expectEqual(raw.CLAP_STATE_CONTEXT_FOR_DUPLICATE, @backingInt(Type.duplicate));
+    try testing.expectEqual(raw.CLAP_STATE_CONTEXT_FOR_PROJECT, @backingInt(Type.project));
 }
