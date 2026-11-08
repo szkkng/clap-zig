@@ -23,6 +23,10 @@ comptime {
     abi.assertFnPtr(@FieldType(clap.event.OutputEvents, "tryPush"), @FieldType(raw.clap_output_events_t, "try_push"));
 }
 
+test "core event space id" {
+    try testing.expectEqual(raw.CLAP_CORE_EVENT_SPACE_ID, clap.event.core_event_space_id);
+}
+
 test "event header type" {
     const Type = clap.event.Header.Type;
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_ON, @backingInt(Type.note_on));
@@ -38,6 +42,12 @@ test "event header type" {
     try testing.expectEqual(raw.CLAP_EVENT_MIDI, @backingInt(Type.midi));
     try testing.expectEqual(raw.CLAP_EVENT_MIDI_SYSEX, @backingInt(Type.midi_sysex));
     try testing.expectEqual(raw.CLAP_EVENT_MIDI2, @backingInt(Type.midi2));
+}
+
+test "event header flags" {
+    const Flags = clap.event.Header.Flags;
+    try expectFlag(Flags, raw.CLAP_EVENT_IS_LIVE, .{ .is_live = true });
+    try expectFlag(Flags, raw.CLAP_EVENT_DONT_RECORD, .{ .dont_record = true });
 }
 
 test "note expression id" {
