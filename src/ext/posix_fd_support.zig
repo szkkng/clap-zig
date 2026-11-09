@@ -1,4 +1,5 @@
-const root = @import("../root.zig");
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
 
 pub const id = "clap.posix-fd-support";
 
@@ -10,11 +11,11 @@ pub const Flags = packed struct(u32) {
 };
 
 pub const Plugin = extern struct {
-    onFd: *const fn (plugin: *const root.Plugin, fd: c_int, flags: Flags) callconv(.c) void,
+    onFd: *const fn (plugin: *const ClapPlugin, fd: c_int, flags: Flags) callconv(.c) void,
 };
 
 pub const Host = extern struct {
-    registerFd: *const fn (host: *const root.Host, fd: c_int, flags: Flags) callconv(.c) bool,
-    modifyFd: *const fn (host: *const root.Host, fd: c_int, flags: Flags) callconv(.c) bool,
-    unregisterFd: *const fn (host: *const root.Host, fd: c_int) callconv(.c) bool,
+    registerFd: *const fn (host: *const ClapHost, fd: c_int, flags: Flags) callconv(.c) bool,
+    modifyFd: *const fn (host: *const ClapHost, fd: c_int, flags: Flags) callconv(.c) bool,
+    unregisterFd: *const fn (host: *const ClapHost, fd: c_int) callconv(.c) bool,
 };

@@ -1,6 +1,7 @@
-const root = @import("../root.zig");
-const Id = root.Id;
-const name_size = root.name_size;
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
+const Id = @import("../id.zig").Id;
+const name_size = @import("../string_sizes.zig").name_size;
 
 pub const id = "clap.note-ports";
 
@@ -28,13 +29,13 @@ pub const Info = extern struct {
 };
 
 pub const Plugin = extern struct {
-    count: *const fn (plugin: *const root.Plugin, is_input: bool) callconv(.c) u32,
-    get: *const fn (plugin: *const root.Plugin, index: u32, is_input: bool, info: *Info) callconv(.c) bool,
+    count: *const fn (plugin: *const ClapPlugin, is_input: bool) callconv(.c) u32,
+    get: *const fn (plugin: *const ClapPlugin, index: u32, is_input: bool, info: *Info) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    supportedDialects: *const fn (host: *const root.Host) callconv(.c) Dialects,
-    rescan: *const fn (host: *const root.Host, flags: RescanFlags) callconv(.c) void,
+    supportedDialects: *const fn (host: *const ClapHost) callconv(.c) Dialects,
+    rescan: *const fn (host: *const ClapHost, flags: RescanFlags) callconv(.c) void,
 
     pub const RescanFlags = packed struct(u32) {
         all: bool = false,

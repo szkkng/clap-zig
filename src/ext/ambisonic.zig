@@ -1,4 +1,5 @@
-const root = @import("../root.zig");
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
 
 pub const id = "clap.ambisonic/3";
 pub const id_compat = "clap.ambisonic.draft/3";
@@ -28,10 +29,10 @@ pub const Config = extern struct {
 };
 
 pub const Plugin = extern struct {
-    isConfigSupported: *const fn (plugin: *const root.Plugin, config: *const Config) callconv(.c) bool,
-    getConfig: *const fn (plugin: *const root.Plugin, is_input: bool, port_index: u32, config: *Config) callconv(.c) bool,
+    isConfigSupported: *const fn (plugin: *const ClapPlugin, config: *const Config) callconv(.c) bool,
+    getConfig: *const fn (plugin: *const ClapPlugin, is_input: bool, port_index: u32, config: *Config) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    changed: *const fn (host: *const root.Host) callconv(.c) void,
+    changed: *const fn (host: *const ClapHost) callconv(.c) void,
 };

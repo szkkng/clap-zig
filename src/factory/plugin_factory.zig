@@ -1,5 +1,5 @@
-const Plugin = @import("../root.zig").Plugin;
-const Host = @import("../root.zig").Host;
+const Plugin = @import("../plugin.zig").Plugin;
+const Host = @import("../host.zig").Host;
 const Descriptor = Plugin.Descriptor;
 
 pub const id = "clap.plugin-factory";

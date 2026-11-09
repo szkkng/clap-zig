@@ -1,6 +1,7 @@
-const Id = @import("../root.zig").Id;
-const root = @import("../root.zig");
-const name_size = root.name_size;
+const Id = @import("../id.zig").Id;
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
+const name_size = @import("../string_sizes.zig").name_size;
 
 pub const id = "clap.audio-ports";
 
@@ -27,13 +28,13 @@ pub const Info = extern struct {
 };
 
 pub const Plugin = extern struct {
-    count: *const fn (plugin: *const root.Plugin, is_input: bool) callconv(.c) u32,
-    get: *const fn (plugin: *const root.Plugin, index: u32, is_input: bool, info: *Info) callconv(.c) bool,
+    count: *const fn (plugin: *const ClapPlugin, is_input: bool) callconv(.c) u32,
+    get: *const fn (plugin: *const ClapPlugin, index: u32, is_input: bool, info: *Info) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    isRescanFlagSupported: *const fn (host: *const root.Host, flag: RescanFlag) callconv(.c) bool,
-    rescan: *const fn (host: *const root.Host, flags: RescanFlags) callconv(.c) void,
+    isRescanFlagSupported: *const fn (host: *const ClapHost, flag: RescanFlag) callconv(.c) bool,
+    rescan: *const fn (host: *const ClapHost, flags: RescanFlags) callconv(.c) void,
 
     pub const RescanFlag = enum(u32) {
         names = @bitCast(RescanFlags{ .names = true }),

@@ -1,6 +1,7 @@
-const root = @import("../root.zig");
-const Id = root.Id;
-const name_size = root.name_size;
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
+const Id = @import("../id.zig").Id;
+const name_size = @import("../string_sizes.zig").name_size;
 
 pub const id = "clap.remote-controls/2";
 pub const id_compat = "clap.remote-controls.draft/2";
@@ -15,11 +16,11 @@ pub const Page = extern struct {
 };
 
 pub const Plugin = extern struct {
-    count: *const fn (plugin: *const root.Plugin) callconv(.c) u32,
-    get: *const fn (plugin: *const root.Plugin, page_index: u32, page: *Page) callconv(.c) bool,
+    count: *const fn (plugin: *const ClapPlugin) callconv(.c) u32,
+    get: *const fn (plugin: *const ClapPlugin, page_index: u32, page: *Page) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    changed: *const fn (host: *const root.Host) callconv(.c) void,
-    suggestPage: *const fn (host: *const root.Host, page_id: Id) callconv(.c) void,
+    changed: *const fn (host: *const ClapHost) callconv(.c) void,
+    suggestPage: *const fn (host: *const ClapHost, page_id: Id) callconv(.c) void,
 };

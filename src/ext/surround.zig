@@ -1,4 +1,5 @@
-const root = @import("../root.zig");
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
 
 pub const id = "clap.surround/4";
 pub const id_compat = "clap.surround.draft/4";
@@ -8,12 +9,12 @@ pub const port_type = struct {
 };
 
 pub const Plugin = extern struct {
-    isChannelMaskSupported: *const fn (plugin: *const root.Plugin, channel_mask: ChannelMask) callconv(.c) bool,
-    getChannelMap: *const fn (plugin: *const root.Plugin, is_input: bool, port_index: u32, channel_map: [*]Channel, channel_map_capacity: u32) callconv(.c) u32,
+    isChannelMaskSupported: *const fn (plugin: *const ClapPlugin, channel_mask: ChannelMask) callconv(.c) bool,
+    getChannelMap: *const fn (plugin: *const ClapPlugin, is_input: bool, port_index: u32, channel_map: [*]Channel, channel_map_capacity: u32) callconv(.c) u32,
 };
 
 pub const Host = extern struct {
-    changed: *const fn (host: *const root.Host) callconv(.c) void,
+    changed: *const fn (host: *const ClapHost) callconv(.c) void,
 };
 
 pub const ChannelMask = packed struct(u64) {

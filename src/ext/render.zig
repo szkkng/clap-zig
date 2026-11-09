@@ -1,4 +1,4 @@
-const root = @import("../root.zig");
+const ClapPlugin = @import("../plugin.zig").Plugin;
 
 pub const id = "clap.render";
 
@@ -9,6 +9,6 @@ pub const Mode = enum(i32) {
 };
 
 pub const Plugin = extern struct {
-    hasHardRealtimeRequirement: *const fn (plugin: *const root.Plugin) callconv(.c) bool,
-    set: *const fn (plugin: *const root.Plugin, mode: Mode) callconv(.c) bool,
+    hasHardRealtimeRequirement: *const fn (plugin: *const ClapPlugin) callconv(.c) bool,
+    set: *const fn (plugin: *const ClapPlugin, mode: Mode) callconv(.c) bool,
 };

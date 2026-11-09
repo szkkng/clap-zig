@@ -1,6 +1,7 @@
-const root = @import("../root.zig");
-const Id = root.Id;
-const name_size = root.name_size;
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
+const Id = @import("../id.zig").Id;
+const name_size = @import("../string_sizes.zig").name_size;
 
 pub const id = "clap.audio-ports-config";
 
@@ -18,11 +19,11 @@ pub const Config = extern struct {
 };
 
 pub const Plugin = extern struct {
-    count: *const fn (plugin: *const root.Plugin) callconv(.c) u32,
-    get: *const fn (plugin: *const root.Plugin, index: u32, config: *Config) callconv(.c) bool,
-    select: *const fn (plugin: *const root.Plugin, config_id: Id) callconv(.c) bool,
+    count: *const fn (plugin: *const ClapPlugin) callconv(.c) u32,
+    get: *const fn (plugin: *const ClapPlugin, index: u32, config: *Config) callconv(.c) bool,
+    select: *const fn (plugin: *const ClapPlugin, config_id: Id) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    rescan: *const fn (host: *const root.Host) callconv(.c) void,
+    rescan: *const fn (host: *const ClapHost) callconv(.c) void,
 };

@@ -1,6 +1,7 @@
-const root = @import("../root.zig");
-const name_size = root.name_size;
-const Color = root.Color;
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
+const name_size = @import("../string_sizes.zig").name_size;
+const Color = @import("../color.zig").Color;
 
 pub const id = "clap.track-info/1";
 pub const id_compat = "clap.track-info.draft/1";
@@ -24,9 +25,9 @@ pub const Info = extern struct {
 };
 
 pub const Plugin = extern struct {
-    changed: *const fn (plugin: *const root.Plugin) callconv(.c) void,
+    changed: *const fn (plugin: *const ClapPlugin) callconv(.c) void,
 };
 
 pub const Host = extern struct {
-    get: *const fn (host: *const root.Host, info: *Info) callconv(.c) bool,
+    get: *const fn (host: *const ClapHost, info: *Info) callconv(.c) bool,
 };

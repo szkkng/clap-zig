@@ -1,6 +1,6 @@
-const UniversalPluginId = @import("../root.zig").UniversalPluginId;
-const Timestamp = @import("../root.zig").Timestamp;
-const Version = @import("../root.zig").Version;
+const UniversalPluginId = @import("../universal_plugin_id.zig").UniversalPluginId;
+const Timestamp = @import("../timestamp.zig").Timestamp;
+const Version = @import("../version.zig").Version;
 
 pub const id = "clap.preset-discovery-factory/2";
 pub const id_compat = "clap.preset-discovery-factory/draft-2";

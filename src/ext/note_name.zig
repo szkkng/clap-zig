@@ -1,5 +1,6 @@
-const root = @import("../root.zig");
-const name_size = root.name_size;
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
+const name_size = @import("../string_sizes.zig").name_size;
 
 pub const id = "clap.note-name";
 
@@ -11,10 +12,10 @@ pub const NoteName = extern struct {
 };
 
 pub const Plugin = extern struct {
-    count: *const fn (plugin: *const root.Plugin) callconv(.c) u32,
-    get: *const fn (plugin: *const root.Plugin, index: u32, note_name: *NoteName) callconv(.c) bool,
+    count: *const fn (plugin: *const ClapPlugin) callconv(.c) u32,
+    get: *const fn (plugin: *const ClapPlugin, index: u32, note_name: *NoteName) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    changed: *const fn (host: *const root.Host) callconv(.c) void,
+    changed: *const fn (host: *const ClapHost) callconv(.c) void,
 };

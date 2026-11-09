@@ -1,4 +1,5 @@
-const root = @import("../root.zig");
+const ClapPlugin = @import("../plugin.zig").Plugin;
+const ClapHost = @import("../host.zig").Host;
 
 pub const id = "clap.voice-info";
 
@@ -14,9 +15,9 @@ pub const Info = extern struct {
 };
 
 pub const Plugin = extern struct {
-    get: *const fn (plugin: *const root.Plugin, info: *Info) callconv(.c) bool,
+    get: *const fn (plugin: *const ClapPlugin, info: *Info) callconv(.c) bool,
 };
 
 pub const Host = extern struct {
-    changed: *const fn (host: *const root.Host) callconv(.c) void,
+    changed: *const fn (host: *const ClapHost) callconv(.c) void,
 };
