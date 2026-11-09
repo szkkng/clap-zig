@@ -11,6 +11,7 @@ pub const AutomationState = enum(u32) {
     playing = 2,
     recording = 3,
     overriding = 4,
+    _,
 };
 
 pub const Plugin = extern struct {

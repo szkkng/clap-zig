@@ -61,6 +61,7 @@ pub const NoteExpression = extern struct {
         expression = 4,
         brightness = 5,
         pressure = 6,
+        _,
     };
 };
 

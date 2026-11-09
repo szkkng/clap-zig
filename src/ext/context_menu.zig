@@ -11,6 +11,7 @@ pub const Target = extern struct {
     pub const Kind = enum(u32) {
         global = 0,
         param = 1,
+        _,
     };
 };
 
@@ -22,6 +23,7 @@ pub const Item = struct {
         begin_submenu,
         end_submenu,
         title,
+        _,
     };
 
     pub const Title = extern struct {

@@ -10,6 +10,7 @@ pub const Severity = enum(i32) {
     fatal = 4,
     host_misbehaving = 5,
     plugin_misbehaving = 6,
+    _,
 };
 
 pub const Host = extern struct {

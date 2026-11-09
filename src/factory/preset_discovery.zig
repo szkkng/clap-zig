@@ -39,6 +39,7 @@ pub const Location = extern struct {
     pub const Kind = enum(u32) {
         file = 0,
         plugin = 1,
+        _,
     };
 };
 

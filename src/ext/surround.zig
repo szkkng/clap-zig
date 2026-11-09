@@ -61,4 +61,5 @@ pub const Channel = enum(u8) {
     tbr = 17,
     tsl = 18,
     tsr = 19,
+    _,
 };

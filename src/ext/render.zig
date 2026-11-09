@@ -5,6 +5,7 @@ pub const id = "clap.render";
 pub const Mode = enum(i32) {
     realtime = 0,
     offline = 1,
+    _,
 };
 
 pub const Plugin = extern struct {

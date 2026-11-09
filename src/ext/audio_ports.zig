@@ -42,6 +42,7 @@ pub const Host = extern struct {
         port_type = @bitCast(RescanFlags{ .port_type = true }),
         in_place_pair = @bitCast(RescanFlags{ .in_place_pair = true }),
         list = @bitCast(RescanFlags{ .list = true }),
+        _,
     };
 
     pub const RescanFlags = packed struct(u32) {

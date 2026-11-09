@@ -17,6 +17,7 @@ pub const Dialect = enum(u32) {
     midi = @bitCast(Dialects{ .midi = true }),
     midi_mpe = @bitCast(Dialects{ .midi_mpe = true }),
     midi2 = @bitCast(Dialects{ .midi2 = true }),
+    _,
 };
 
 pub const Info = extern struct {

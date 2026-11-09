@@ -10,6 +10,7 @@ pub const port_type = struct {
 pub const Ordering = enum(u32) {
     fuma = 0,
     acn = 1,
+    _,
 };
 
 pub const Normalization = enum(u32) {
@@ -18,6 +19,7 @@ pub const Normalization = enum(u32) {
     n3d = 2,
     sn2d = 3,
     n2d = 4,
+    _,
 };
 
 pub const Config = extern struct {

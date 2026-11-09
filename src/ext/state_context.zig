@@ -8,6 +8,7 @@ pub const Type = enum(u32) {
     preset = 1,
     duplicate = 2,
     project = 3,
+    _,
 };
 
 pub const Plugin = extern struct {

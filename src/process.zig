@@ -10,6 +10,7 @@ pub const Process = extern struct {
         continue_if_not_quiet = 2,
         tail = 3,
         sleep = 4,
+        _,
     };
 
     steady_time: i64,
