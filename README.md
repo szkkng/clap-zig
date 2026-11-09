@@ -13,7 +13,7 @@ Draft headers are not supported.
 Add clap-zig as a dependency:
 
 ```bash
-zig fetch --save git+https://codeberg.org/kengo/clap-zig
+zig fetch --save git+https://github.com/szkkng/clap-zig
 ```
 
 Import `clap_zig` module in your `build.zig`:
@@ -25,7 +25,7 @@ your_module.addImport("clap", clap.module("clap_zig"));
 
 ## Usage
 
-See the minimal gain example: [hello-clap-zig](https://codeberg.org/kengo/hello-clap-zig)
+See the minimal gain example: [hello-clap-zig](https://github.com/szkkng/hello-clap-zig)
 
 ## License
 
