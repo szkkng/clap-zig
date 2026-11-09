@@ -15,21 +15,14 @@ pub const Target = extern struct {
     };
 };
 
-pub const Item = struct {
-    pub const Kind = enum(u32) {
-        entry,
-        check_entry,
-        separator,
-        begin_submenu,
-        end_submenu,
-        title,
-        _,
-    };
-
-    pub const Title = extern struct {
-        title: [*:0]const u8,
-        is_enabled: bool,
-    };
+pub const ItemKind = enum(u32) {
+    entry,
+    check_entry,
+    separator,
+    begin_submenu,
+    end_submenu,
+    title,
+    _,
 };
 
 pub const Entry = extern struct {
@@ -45,6 +38,11 @@ pub const CheckEntry = extern struct {
     action_id: Id,
 };
 
+pub const ItemTitle = extern struct {
+    title: [*:0]const u8,
+    is_enabled: bool,
+};
+
 pub const Submenu = extern struct {
     label: [*:0]const u8,
     is_enabled: bool,
@@ -52,8 +50,8 @@ pub const Submenu = extern struct {
 
 pub const Builder = extern struct {
     ctx: ?*anyopaque,
-    addItem: *const fn (builder: *const Builder, item_kind: Item.Kind, item_data: ?*const anyopaque) callconv(.c) bool,
-    supports: *const fn (builder: *const Builder, item_kind: Item.Kind) callconv(.c) bool,
+    addItem: *const fn (builder: *const Builder, item_kind: ItemKind, item_data: ?*const anyopaque) callconv(.c) bool,
+    supports: *const fn (builder: *const Builder, item_kind: ItemKind) callconv(.c) bool,
 };
 
 pub const Plugin = extern struct {

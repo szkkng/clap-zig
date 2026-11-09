@@ -8,7 +8,7 @@ comptime {
     abi.assertStruct(context_menu.Target, raw.clap_context_menu_target_t);
     abi.assertStruct(context_menu.Entry, raw.clap_context_menu_entry_t);
     abi.assertStruct(context_menu.CheckEntry, raw.clap_context_menu_check_entry_t);
-    abi.assertStruct(context_menu.Item.Title, raw.clap_context_menu_item_title_t);
+    abi.assertStruct(context_menu.ItemTitle, raw.clap_context_menu_item_title_t);
     abi.assertStruct(context_menu.Submenu, raw.clap_context_menu_submenu_t);
     abi.assertStruct(context_menu.Builder, raw.clap_context_menu_builder_t);
     abi.assertFnPtr(@FieldType(context_menu.Builder, "addItem"), @FieldType(raw.clap_context_menu_builder_t, "add_item"));
@@ -35,7 +35,7 @@ test "context menu target kind" {
 }
 
 test "context menu item kind" {
-    const ItemKind = clap.ext.context_menu.Item.Kind;
+    const ItemKind = clap.ext.context_menu.ItemKind;
     try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_ENTRY, @backingInt(ItemKind.entry));
     try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_CHECK_ENTRY, @backingInt(ItemKind.check_entry));
     try testing.expectEqual(raw.CLAP_CONTEXT_MENU_ITEM_SEPARATOR, @backingInt(ItemKind.separator));
