@@ -20,6 +20,6 @@ test "voice info flags" {
     const Flags = clap.ext.voice_info.Info.Flags;
     try testing.expectEqual(
         @as(u64, @intCast(raw.CLAP_VOICE_INFO_SUPPORTS_OVERLAPPING_NOTES)),
-        @as(u64, @bitCast(Flags{ .supports_overlapping_notes = true })),
+        @backingInt(Flags{ .supports_overlapping_notes = true }),
     );
 }

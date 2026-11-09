@@ -37,12 +37,12 @@ pub const Host = extern struct {
     rescan: *const fn (host: *const ClapHost, flags: RescanFlags) callconv(.c) void,
 
     pub const RescanFlag = enum(u32) {
-        names = @bitCast(RescanFlags{ .names = true }),
-        flags = @bitCast(RescanFlags{ .flags = true }),
-        channel_count = @bitCast(RescanFlags{ .channel_count = true }),
-        port_type = @bitCast(RescanFlags{ .port_type = true }),
-        in_place_pair = @bitCast(RescanFlags{ .in_place_pair = true }),
-        list = @bitCast(RescanFlags{ .list = true }),
+        names = @backingInt(RescanFlags{ .names = true }),
+        flags = @backingInt(RescanFlags{ .flags = true }),
+        channel_count = @backingInt(RescanFlags{ .channel_count = true }),
+        port_type = @backingInt(RescanFlags{ .port_type = true }),
+        in_place_pair = @backingInt(RescanFlags{ .in_place_pair = true }),
+        list = @backingInt(RescanFlags{ .list = true }),
         _,
     };
 

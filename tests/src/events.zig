@@ -46,8 +46,8 @@ test "event header type" {
 
 test "event header flags" {
     const Flags = clap.event.Header.Flags;
-    try expectFlag(Flags, raw.CLAP_EVENT_IS_LIVE, .{ .is_live = true });
-    try expectFlag(Flags, raw.CLAP_EVENT_DONT_RECORD, .{ .dont_record = true });
+    try testing.expectEqual(raw.CLAP_EVENT_IS_LIVE, @backingInt(Flags{ .is_live = true }));
+    try testing.expectEqual(raw.CLAP_EVENT_DONT_RECORD, @backingInt(Flags{ .dont_record = true }));
 }
 
 test "note expression id" {
@@ -63,19 +63,12 @@ test "note expression id" {
 
 test "transport flags" {
     const Flags = clap.event.Transport.Flags;
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_HAS_TEMPO, .{ .has_tempo = true });
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_HAS_BEATS_TIMELINE, .{ .has_beats_timeline = true });
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_HAS_SECONDS_TIMELINE, .{ .has_seconds_timeline = true });
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_HAS_TIME_SIGNATURE, .{ .has_time_signature = true });
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_IS_PLAYING, .{ .is_playing = true });
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_IS_RECORDING, .{ .is_recording = true });
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_IS_LOOP_ACTIVE, .{ .is_loop_active = true });
-    try expectFlag(Flags, raw.CLAP_TRANSPORT_IS_WITHIN_PRE_ROLL, .{ .is_within_pre_roll = true });
-}
-
-fn expectFlag(comptime Flags: type, expected: anytype, actual: Flags) !void {
-    try testing.expectEqual(
-        @as(u32, @intCast(expected)),
-        @as(u32, @bitCast(actual)),
-    );
+    try testing.expectEqual(raw.CLAP_TRANSPORT_HAS_TEMPO, @backingInt(Flags{ .has_tempo = true }));
+    try testing.expectEqual(raw.CLAP_TRANSPORT_HAS_BEATS_TIMELINE, @backingInt(Flags{ .has_beats_timeline = true }));
+    try testing.expectEqual(raw.CLAP_TRANSPORT_HAS_SECONDS_TIMELINE, @backingInt(Flags{ .has_seconds_timeline = true }));
+    try testing.expectEqual(raw.CLAP_TRANSPORT_HAS_TIME_SIGNATURE, @backingInt(Flags{ .has_time_signature = true }));
+    try testing.expectEqual(raw.CLAP_TRANSPORT_IS_PLAYING, @backingInt(Flags{ .is_playing = true }));
+    try testing.expectEqual(raw.CLAP_TRANSPORT_IS_RECORDING, @backingInt(Flags{ .is_recording = true }));
+    try testing.expectEqual(raw.CLAP_TRANSPORT_IS_LOOP_ACTIVE, @backingInt(Flags{ .is_loop_active = true }));
+    try testing.expectEqual(raw.CLAP_TRANSPORT_IS_WITHIN_PRE_ROLL, @backingInt(Flags{ .is_within_pre_roll = true }));
 }

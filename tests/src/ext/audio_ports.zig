@@ -22,35 +22,28 @@ test "audio port identifiers" {
 
 test "audio port info flags" {
     const Flags = clap.ext.audio_ports.Info.Flags;
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORT_IS_MAIN, Flags{ .is_main = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORT_SUPPORTS_64BITS, Flags{ .supports_64bits = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORT_PREFERS_64BITS, Flags{ .prefers_64bits = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORT_REQUIRES_COMMON_SAMPLE_SIZE, Flags{ .requires_common_sample_size = true });
+    try testing.expectEqual(raw.CLAP_AUDIO_PORT_IS_MAIN, @backingInt(Flags{ .is_main = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORT_SUPPORTS_64BITS, @backingInt(Flags{ .supports_64bits = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORT_PREFERS_64BITS, @backingInt(Flags{ .prefers_64bits = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORT_REQUIRES_COMMON_SAMPLE_SIZE, @backingInt(Flags{ .requires_common_sample_size = true }));
 }
 
 test "host audio ports rescan flag" {
     const Flag = clap.ext.audio_ports.Host.RescanFlag;
-    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, .names);
-    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, .flags);
-    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, .channel_count);
-    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, .port_type);
-    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, .in_place_pair);
-    try expectFlag(Flag, raw.CLAP_AUDIO_PORTS_RESCAN_LIST, .list);
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, @backingInt(Flag.names));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, @backingInt(Flag.flags));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, @backingInt(Flag.channel_count));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, @backingInt(Flag.port_type));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, @backingInt(Flag.in_place_pair));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_LIST, @backingInt(Flag.list));
 }
 
 test "host audio ports rescan flags" {
     const Flags = clap.ext.audio_ports.Host.RescanFlags;
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, .{ .names = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, .{ .flags = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, .{ .channel_count = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, .{ .port_type = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, .{ .in_place_pair = true });
-    try expectFlag(Flags, raw.CLAP_AUDIO_PORTS_RESCAN_LIST, .{ .list = true });
-}
-
-fn expectFlag(comptime Flags: type, expected: anytype, actual: Flags) !void {
-    try testing.expectEqual(
-        @as(u32, @intCast(expected)),
-        @as(u32, @bitCast(actual)),
-    );
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_NAMES, @backingInt(Flags{ .names = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_FLAGS, @backingInt(Flags{ .flags = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_CHANNEL_COUNT, @backingInt(Flags{ .channel_count = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_PORT_TYPE, @backingInt(Flags{ .port_type = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_IN_PLACE_PAIR, @backingInt(Flags{ .in_place_pair = true }));
+    try testing.expectEqual(raw.CLAP_AUDIO_PORTS_RESCAN_LIST, @backingInt(Flags{ .list = true }));
 }

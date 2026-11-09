@@ -53,15 +53,8 @@ test "location kind" {
 
 test "preset discovery flags" {
     const Flags = clap.factory.preset_discovery.Flags;
-    try expectFlag(Flags, raw.CLAP_PRESET_DISCOVERY_IS_FACTORY_CONTENT, Flags{ .is_factory_content = true });
-    try expectFlag(Flags, raw.CLAP_PRESET_DISCOVERY_IS_USER_CONTENT, Flags{ .is_user_content = true });
-    try expectFlag(Flags, raw.CLAP_PRESET_DISCOVERY_IS_DEMO_CONTENT, Flags{ .is_demo_content = true });
-    try expectFlag(Flags, raw.CLAP_PRESET_DISCOVERY_IS_FAVORITE, Flags{ .is_favorite = true });
-}
-
-fn expectFlag(comptime Flags: type, expected: anytype, actual: Flags) !void {
-    try testing.expectEqual(
-        @as(u32, @intCast(expected)),
-        @as(u32, @bitCast(actual)),
-    );
+    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_IS_FACTORY_CONTENT, @backingInt(Flags{ .is_factory_content = true }));
+    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_IS_USER_CONTENT, @backingInt(Flags{ .is_user_content = true }));
+    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_IS_DEMO_CONTENT, @backingInt(Flags{ .is_demo_content = true }));
+    try testing.expectEqual(raw.CLAP_PRESET_DISCOVERY_IS_FAVORITE, @backingInt(Flags{ .is_favorite = true }));
 }

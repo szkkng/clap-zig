@@ -25,43 +25,36 @@ test "params identifier" {
 
 test "param info flags" {
     const Flags = clap.ext.params.Info.Flags;
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_STEPPED, Flags{ .is_stepped = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_PERIODIC, Flags{ .is_periodic = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_HIDDEN, Flags{ .is_hidden = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_READONLY, Flags{ .is_readonly = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_BYPASS, Flags{ .is_bypass = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_AUTOMATABLE, Flags{ .is_automatable = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_AUTOMATABLE_PER_NOTE_ID, Flags{ .is_automatable_per_note_id = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_AUTOMATABLE_PER_KEY, Flags{ .is_automatable_per_key = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_AUTOMATABLE_PER_CHANNEL, Flags{ .is_automatable_per_channel = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_AUTOMATABLE_PER_PORT, Flags{ .is_automatable_per_port = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_MODULATABLE, Flags{ .is_modulatable = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_MODULATABLE_PER_NOTE_ID, Flags{ .is_modulatable_per_note_id = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_MODULATABLE_PER_KEY, Flags{ .is_modulatable_per_key = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_MODULATABLE_PER_CHANNEL, Flags{ .is_modulatable_per_channel = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_MODULATABLE_PER_PORT, Flags{ .is_modulatable_per_port = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_REQUIRES_PROCESS, Flags{ .requires_process = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_IS_ENUM, Flags{ .is_enum = true });
+    try testing.expectEqual(raw.CLAP_PARAM_IS_STEPPED, @backingInt(Flags{ .is_stepped = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_PERIODIC, @backingInt(Flags{ .is_periodic = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_HIDDEN, @backingInt(Flags{ .is_hidden = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_READONLY, @backingInt(Flags{ .is_readonly = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_BYPASS, @backingInt(Flags{ .is_bypass = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_AUTOMATABLE, @backingInt(Flags{ .is_automatable = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_AUTOMATABLE_PER_NOTE_ID, @backingInt(Flags{ .is_automatable_per_note_id = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_AUTOMATABLE_PER_KEY, @backingInt(Flags{ .is_automatable_per_key = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_AUTOMATABLE_PER_CHANNEL, @backingInt(Flags{ .is_automatable_per_channel = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_AUTOMATABLE_PER_PORT, @backingInt(Flags{ .is_automatable_per_port = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_MODULATABLE, @backingInt(Flags{ .is_modulatable = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_MODULATABLE_PER_NOTE_ID, @backingInt(Flags{ .is_modulatable_per_note_id = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_MODULATABLE_PER_KEY, @backingInt(Flags{ .is_modulatable_per_key = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_MODULATABLE_PER_CHANNEL, @backingInt(Flags{ .is_modulatable_per_channel = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_MODULATABLE_PER_PORT, @backingInt(Flags{ .is_modulatable_per_port = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_REQUIRES_PROCESS, @backingInt(Flags{ .requires_process = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_IS_ENUM, @backingInt(Flags{ .is_enum = true }));
 }
 
 test "host params rescan flags" {
     const Flags = clap.ext.params.Host.RescanFlags;
-    try expectFlag(Flags, raw.CLAP_PARAM_RESCAN_VALUES, Flags{ .values = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_RESCAN_TEXT, Flags{ .text = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_RESCAN_INFO, Flags{ .info = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_RESCAN_ALL, Flags{ .all = true });
+    try testing.expectEqual(raw.CLAP_PARAM_RESCAN_VALUES, @backingInt(Flags{ .values = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_RESCAN_TEXT, @backingInt(Flags{ .text = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_RESCAN_INFO, @backingInt(Flags{ .info = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_RESCAN_ALL, @backingInt(Flags{ .all = true }));
 }
 
 test "host params clear flags" {
     const Flags = clap.ext.params.Host.ClearFlags;
-    try expectFlag(Flags, raw.CLAP_PARAM_CLEAR_ALL, Flags{ .all = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_CLEAR_AUTOMATIONS, Flags{ .automations = true });
-    try expectFlag(Flags, raw.CLAP_PARAM_CLEAR_MODULATIONS, Flags{ .modulations = true });
-}
-
-fn expectFlag(comptime Flags: type, expected: anytype, actual: Flags) !void {
-    try testing.expectEqual(
-        @as(u32, @intCast(expected)),
-        @as(u32, @bitCast(actual)),
-    );
+    try testing.expectEqual(raw.CLAP_PARAM_CLEAR_ALL, @backingInt(Flags{ .all = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_CLEAR_AUTOMATIONS, @backingInt(Flags{ .automations = true }));
+    try testing.expectEqual(raw.CLAP_PARAM_CLEAR_MODULATIONS, @backingInt(Flags{ .modulations = true }));
 }

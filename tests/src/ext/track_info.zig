@@ -19,17 +19,10 @@ test "track info identifier" {
 
 test "track info flags" {
     const Flags = clap.ext.track_info.Info.Flags;
-    try expectFlag(Flags, raw.CLAP_TRACK_INFO_HAS_TRACK_NAME, .{ .has_track_name = true });
-    try expectFlag(Flags, raw.CLAP_TRACK_INFO_HAS_TRACK_COLOR, .{ .has_track_color = true });
-    try expectFlag(Flags, raw.CLAP_TRACK_INFO_HAS_AUDIO_CHANNEL, .{ .has_audio_channel = true });
-    try expectFlag(Flags, raw.CLAP_TRACK_INFO_IS_FOR_RETURN_TRACK, .{ .is_for_return_track = true });
-    try expectFlag(Flags, raw.CLAP_TRACK_INFO_IS_FOR_BUS, .{ .is_for_bus = true });
-    try expectFlag(Flags, raw.CLAP_TRACK_INFO_IS_FOR_MASTER, .{ .is_for_master = true });
-}
-
-fn expectFlag(comptime Flags: type, expected: anytype, actual: Flags) !void {
-    try testing.expectEqual(
-        @as(u64, @intCast(expected)),
-        @as(u64, @bitCast(actual)),
-    );
+    try testing.expectEqual(raw.CLAP_TRACK_INFO_HAS_TRACK_NAME, @backingInt(Flags{ .has_track_name = true }));
+    try testing.expectEqual(raw.CLAP_TRACK_INFO_HAS_TRACK_COLOR, @backingInt(Flags{ .has_track_color = true }));
+    try testing.expectEqual(raw.CLAP_TRACK_INFO_HAS_AUDIO_CHANNEL, @backingInt(Flags{ .has_audio_channel = true }));
+    try testing.expectEqual(raw.CLAP_TRACK_INFO_IS_FOR_RETURN_TRACK, @backingInt(Flags{ .is_for_return_track = true }));
+    try testing.expectEqual(raw.CLAP_TRACK_INFO_IS_FOR_BUS, @backingInt(Flags{ .is_for_bus = true }));
+    try testing.expectEqual(raw.CLAP_TRACK_INFO_IS_FOR_MASTER, @backingInt(Flags{ .is_for_master = true }));
 }

@@ -20,10 +20,10 @@ test "note ports identifier" {
 
 test "note dialects" {
     const Dialects = clap.ext.note_ports.Dialects;
-    try expectFlag(Dialects, raw.CLAP_NOTE_DIALECT_CLAP, .{ .clap = true });
-    try expectFlag(Dialects, raw.CLAP_NOTE_DIALECT_MIDI, .{ .midi = true });
-    try expectFlag(Dialects, raw.CLAP_NOTE_DIALECT_MIDI_MPE, .{ .midi_mpe = true });
-    try expectFlag(Dialects, raw.CLAP_NOTE_DIALECT_MIDI2, .{ .midi2 = true });
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_CLAP, @backingInt(Dialects{ .clap = true }));
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI, @backingInt(Dialects{ .midi = true }));
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI_MPE, @backingInt(Dialects{ .midi_mpe = true }));
+    try testing.expectEqual(raw.CLAP_NOTE_DIALECT_MIDI2, @backingInt(Dialects{ .midi2 = true }));
 }
 
 test "note dialect" {
@@ -36,13 +36,6 @@ test "note dialect" {
 
 test "hsot rescan flags" {
     const Flags = clap.ext.note_ports.Host.RescanFlags;
-    try expectFlag(Flags, raw.CLAP_NOTE_PORTS_RESCAN_ALL, .{ .all = true });
-    try expectFlag(Flags, raw.CLAP_NOTE_PORTS_RESCAN_NAMES, .{ .names = true });
-}
-
-fn expectFlag(comptime Flags: type, expected: anytype, actual: Flags) !void {
-    try testing.expectEqual(
-        @as(u32, @intCast(expected)),
-        @as(u32, @bitCast(actual)),
-    );
+    try testing.expectEqual(raw.CLAP_NOTE_PORTS_RESCAN_ALL, @backingInt(Flags{ .all = true }));
+    try testing.expectEqual(raw.CLAP_NOTE_PORTS_RESCAN_NAMES, @backingInt(Flags{ .names = true }));
 }

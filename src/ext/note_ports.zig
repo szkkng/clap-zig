@@ -14,10 +14,10 @@ pub const Dialects = packed struct(u32) {
 };
 
 pub const Dialect = enum(u32) {
-    clap = @bitCast(Dialects{ .clap = true }),
-    midi = @bitCast(Dialects{ .midi = true }),
-    midi_mpe = @bitCast(Dialects{ .midi_mpe = true }),
-    midi2 = @bitCast(Dialects{ .midi2 = true }),
+    clap = @backingInt(Dialects{ .clap = true }),
+    midi = @backingInt(Dialects{ .midi = true }),
+    midi_mpe = @backingInt(Dialects{ .midi_mpe = true }),
+    midi2 = @backingInt(Dialects{ .midi2 = true }),
     _,
 };
 
