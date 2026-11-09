@@ -2,6 +2,9 @@ const UniversalPluginId = @import("../root.zig").UniversalPluginId;
 const Timestamp = @import("../root.zig").Timestamp;
 const Version = @import("../root.zig").Version;
 
+pub const id = "clap.preset-discovery-factory/2";
+pub const id_compat = "clap.preset-discovery-factory/draft-2";
+
 pub const Flags = packed struct(u32) {
     is_factory_content: bool = false,
     is_user_content: bool = false,
@@ -87,7 +90,4 @@ pub const Factory = extern struct {
     count: *const fn (factory: *const Factory) callconv(.c) u32,
     getDescriptor: *const fn (factory: *const Factory, index: u32) callconv(.c) ?*const Provider.Descriptor,
     create: *const fn (factory: *const Factory, indexer: *const Indexer, provider_id: [*:0]const u8) callconv(.c) ?*const Provider,
-
-    pub const id = "clap.preset-discovery-factory/2";
-    pub const id_compat = "clap.preset-discovery-factory/draft-2";
 };

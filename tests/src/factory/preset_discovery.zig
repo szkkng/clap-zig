@@ -41,8 +41,8 @@ comptime {
 }
 
 test "factory ids" {
-    try testing.expectEqualStrings(raw.CLAP_PRESET_DISCOVERY_FACTORY_ID[0..], clap.factory.preset_discovery.Factory.id);
-    try testing.expectEqualStrings(raw.CLAP_PRESET_DISCOVERY_FACTORY_ID_COMPAT[0..], clap.factory.preset_discovery.Factory.id_compat);
+    try testing.expectEqualStrings(raw.CLAP_PRESET_DISCOVERY_FACTORY_ID[0..], clap.factory.preset_discovery.id);
+    try testing.expectEqualStrings(raw.CLAP_PRESET_DISCOVERY_FACTORY_ID_COMPAT[0..], clap.factory.preset_discovery.id_compat);
 }
 
 test "location kind" {

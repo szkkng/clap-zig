@@ -12,5 +12,5 @@ comptime {
 }
 
 test "plugin factory id" {
-    try testing.expectEqualStrings(raw.CLAP_PLUGIN_FACTORY_ID[0..], clap.factory.plugin.Factory.id);
+    try testing.expectEqualStrings(raw.CLAP_PLUGIN_FACTORY_ID[0..], clap.factory.plugin.id);
 }
