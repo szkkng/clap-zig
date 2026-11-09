@@ -30,7 +30,7 @@ pub const ResizeHints = extern struct {
 };
 
 pub const Plugin = extern struct {
-    isApiSupported: *const fn (plugin: *const root.Plugin, api: [*:0]const u8, is_floating: bool) callconv(.c) bool,
+    isApiSupported: *const fn (plugin: *const root.Plugin, api: ?[*:0]const u8, is_floating: bool) callconv(.c) bool,
     getPreferredApi: *const fn (plugin: *const root.Plugin, api: *[*:0]const u8, is_floating: *bool) callconv(.c) bool,
     create: *const fn (plugin: *const root.Plugin, api: ?[*:0]const u8, is_floating: bool) callconv(.c) bool,
     destroy: *const fn (plugin: *const root.Plugin) callconv(.c) void,
