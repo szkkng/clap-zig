@@ -2,14 +2,8 @@ const Id = @import("id.zig").Id;
 const BeatTime = @import("fixedpoint.zig").BeatTime;
 const SecTime = @import("fixedpoint.zig").SecTime;
 
-pub const core_event_space_id = 0;
-
-pub const Header = extern struct {
-    size: u32,
-    time: u32,
-    space_id: u16,
-    type: Type,
-    flags: Flags,
+pub const core = struct {
+    pub const space_id: u16 = 0;
 
     pub const Type = enum(u16) {
         note_on = 0,
@@ -27,6 +21,14 @@ pub const Header = extern struct {
         midi2 = 12,
         _,
     };
+};
+
+pub const Header = extern struct {
+    size: u32,
+    time: u32,
+    space_id: u16,
+    type: u16,
+    flags: Flags,
 
     pub const Flags = packed struct(u32) {
         is_live: bool = false,

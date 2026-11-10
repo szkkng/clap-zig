@@ -24,11 +24,11 @@ comptime {
 }
 
 test "core event space id" {
-    try testing.expectEqual(raw.CLAP_CORE_EVENT_SPACE_ID, clap.event.core_event_space_id);
+    try testing.expectEqual(raw.CLAP_CORE_EVENT_SPACE_ID, clap.event.core.space_id);
 }
 
 test "event header type" {
-    const Type = clap.event.Header.Type;
+    const Type = clap.event.core.Type;
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_ON, @backingInt(Type.note_on));
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_OFF, @backingInt(Type.note_off));
     try testing.expectEqual(raw.CLAP_EVENT_NOTE_CHOKE, @backingInt(Type.note_choke));
