@@ -5,10 +5,8 @@ const testing = @import("std").testing;
 
 comptime {
     const configurable_audio_ports = clap.ext.configurable_audio_ports;
-    abi.assertStruct(configurable_audio_ports.ConfigurationRequest, raw.clap_audio_port_configuration_request);
-    abi.assertStruct(configurable_audio_ports.Plugin, raw.clap_plugin_configurable_audio_ports_t);
-    abi.assertFnPtr(@FieldType(configurable_audio_ports.Plugin, "canApplyConfiguration"), @FieldType(raw.clap_plugin_configurable_audio_ports_t, "can_apply_configuration"));
-    abi.assertFnPtr(@FieldType(configurable_audio_ports.Plugin, "applyConfiguration"), @FieldType(raw.clap_plugin_configurable_audio_ports_t, "apply_configuration"));
+    abi.assertCompatible(raw.clap_audio_port_configuration_request, configurable_audio_ports.ConfigurationRequest);
+    abi.assertCompatible(raw.clap_plugin_configurable_audio_ports_t, configurable_audio_ports.Plugin);
 }
 
 test "audio port config info identifiers" {

@@ -5,11 +5,8 @@ const testing = @import("std").testing;
 
 comptime {
     const state = clap.ext.state;
-    abi.assertStruct(state.Plugin, raw.clap_plugin_state_t);
-    abi.assertFnPtr(@FieldType(state.Plugin, "save"), @FieldType(raw.clap_plugin_state_t, "save"));
-    abi.assertFnPtr(@FieldType(state.Plugin, "load"), @FieldType(raw.clap_plugin_state_t, "load"));
-    abi.assertStruct(state.Host, raw.clap_host_state_t);
-    abi.assertFnPtr(@FieldType(state.Host, "markDirty"), @FieldType(raw.clap_host_state_t, "mark_dirty"));
+    abi.assertCompatible(raw.clap_plugin_state_t, state.Plugin);
+    abi.assertCompatible(raw.clap_host_state_t, state.Host);
 }
 
 test "state identifier" {

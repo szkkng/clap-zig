@@ -5,11 +5,9 @@ const testing = @import("std").testing;
 
 comptime {
     const track_info = clap.ext.track_info;
-    abi.assertStruct(track_info.Info, raw.clap_track_info_t);
-    abi.assertStruct(track_info.Plugin, raw.clap_plugin_track_info_t);
-    abi.assertFnPtr(@FieldType(track_info.Plugin, "changed"), @FieldType(raw.clap_plugin_track_info_t, "changed"));
-    abi.assertStruct(track_info.Host, raw.clap_host_track_info_t);
-    abi.assertFnPtr(@FieldType(track_info.Host, "get"), @FieldType(raw.clap_host_track_info_t, "get"));
+    abi.assertCompatible(raw.clap_track_info_t, track_info.Info);
+    abi.assertCompatible(raw.clap_plugin_track_info_t, track_info.Plugin);
+    abi.assertCompatible(raw.clap_host_track_info_t, track_info.Host);
 }
 
 test "track info identifier" {

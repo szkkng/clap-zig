@@ -5,10 +5,8 @@ const testing = @import("std").testing;
 
 comptime {
     const thread_pool = clap.ext.thread_pool;
-    abi.assertStruct(thread_pool.Plugin, raw.clap_plugin_thread_pool_t);
-    abi.assertFnPtr(@FieldType(thread_pool.Plugin, "exec"), @FieldType(raw.clap_plugin_thread_pool_t, "exec"));
-    abi.assertStruct(thread_pool.Host, raw.clap_host_thread_pool_t);
-    abi.assertFnPtr(@FieldType(thread_pool.Host, "requestExec"), @FieldType(raw.clap_host_thread_pool_t, "request_exec"));
+    abi.assertCompatible(raw.clap_plugin_thread_pool_t, thread_pool.Plugin);
+    abi.assertCompatible(raw.clap_host_thread_pool_t, thread_pool.Host);
 }
 
 test "thread pool identifier" {

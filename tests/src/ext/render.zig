@@ -4,10 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    const Plugin = clap.ext.render.Plugin;
-    abi.assertStruct(Plugin, raw.clap_plugin_render_t);
-    abi.assertFnPtr(@FieldType(Plugin, "hasHardRealtimeRequirement"), @FieldType(raw.clap_plugin_render_t, "has_hard_realtime_requirement"));
-    abi.assertFnPtr(@FieldType(Plugin, "set"), @FieldType(raw.clap_plugin_render_t, "set"));
+    abi.assertCompatible(raw.clap_plugin_render_t, clap.ext.render.Plugin);
 }
 
 test "render identifier" {

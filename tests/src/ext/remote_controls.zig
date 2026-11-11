@@ -5,13 +5,9 @@ const testing = @import("std").testing;
 
 comptime {
     const remote_controls = clap.ext.remote_controls;
-    abi.assertStruct(remote_controls.Page, raw.clap_remote_controls_page_t);
-    abi.assertStruct(remote_controls.Plugin, raw.clap_plugin_remote_controls_t);
-    abi.assertFnPtr(@FieldType(remote_controls.Plugin, "count"), @FieldType(raw.clap_plugin_remote_controls_t, "count"));
-    abi.assertFnPtr(@FieldType(remote_controls.Plugin, "get"), @FieldType(raw.clap_plugin_remote_controls_t, "get"));
-    abi.assertStruct(remote_controls.Host, raw.clap_host_remote_controls_t);
-    abi.assertFnPtr(@FieldType(remote_controls.Host, "changed"), @FieldType(raw.clap_host_remote_controls_t, "changed"));
-    abi.assertFnPtr(@FieldType(remote_controls.Host, "suggestPage"), @FieldType(raw.clap_host_remote_controls_t, "suggest_page"));
+    abi.assertCompatible(raw.clap_remote_controls_page_t, remote_controls.Page);
+    abi.assertCompatible(raw.clap_plugin_remote_controls_t, remote_controls.Plugin);
+    abi.assertCompatible(raw.clap_host_remote_controls_t, remote_controls.Host);
 }
 
 test "remote controls identifier" {

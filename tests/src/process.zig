@@ -4,7 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    abi.assertStruct(clap.Process, raw.clap_process_t);
+    abi.assertCompatible(raw.clap_process_t, clap.Process);
 }
 
 test "process status" {

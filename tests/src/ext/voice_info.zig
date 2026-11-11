@@ -5,11 +5,9 @@ const testing = @import("std").testing;
 
 comptime {
     const voice_info = clap.ext.voice_info;
-    abi.assertStruct(voice_info.Info, raw.clap_voice_info_t);
-    abi.assertStruct(voice_info.Plugin, raw.clap_plugin_voice_info_t);
-    abi.assertFnPtr(@FieldType(voice_info.Plugin, "get"), @FieldType(raw.clap_plugin_voice_info_t, "get"));
-    abi.assertStruct(voice_info.Host, raw.clap_host_voice_info_t);
-    abi.assertFnPtr(@FieldType(voice_info.Host, "changed"), @FieldType(raw.clap_host_voice_info_t, "changed"));
+    abi.assertCompatible(raw.clap_voice_info_t, voice_info.Info);
+    abi.assertCompatible(raw.clap_plugin_voice_info_t, voice_info.Plugin);
+    abi.assertCompatible(raw.clap_host_voice_info_t, voice_info.Host);
 }
 
 test "voice info identifier" {

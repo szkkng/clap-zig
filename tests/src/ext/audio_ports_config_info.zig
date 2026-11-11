@@ -4,10 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    const Plugin = clap.ext.audio_ports_config_info.Plugin;
-    abi.assertStruct(Plugin, raw.clap_plugin_audio_ports_config_info_t);
-    abi.assertFnPtr(@FieldType(Plugin, "currentConfig"), @FieldType(raw.clap_plugin_audio_ports_config_info_t, "current_config"));
-    abi.assertFnPtr(@FieldType(Plugin, "get"), @FieldType(raw.clap_plugin_audio_ports_config_info_t, "get"));
+    abi.assertCompatible(raw.clap_plugin_audio_ports_config_info_t, clap.ext.audio_ports_config_info.Plugin);
 }
 
 test "audio port config info identifiers" {

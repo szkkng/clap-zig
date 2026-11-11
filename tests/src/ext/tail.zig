@@ -5,10 +5,8 @@ const testing = @import("std").testing;
 
 comptime {
     const tail = clap.ext.tail;
-    abi.assertStruct(tail.Plugin, raw.clap_plugin_tail_t);
-    abi.assertFnPtr(@FieldType(tail.Plugin, "get"), @FieldType(raw.clap_plugin_tail_t, "get"));
-    abi.assertStruct(tail.Host, raw.clap_host_tail_t);
-    abi.assertFnPtr(@FieldType(tail.Host, "changed"), @FieldType(raw.clap_host_tail_t, "changed"));
+    abi.assertCompatible(raw.clap_plugin_tail_t, tail.Plugin);
+    abi.assertCompatible(raw.clap_host_tail_t, tail.Host);
 }
 
 test "tail identifier" {

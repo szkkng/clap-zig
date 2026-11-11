@@ -5,12 +5,8 @@ const testing = @import("std").testing;
 
 comptime {
     const posix_fd_support = clap.ext.posix_fd_support;
-    abi.assertStruct(posix_fd_support.Plugin, raw.clap_plugin_posix_fd_support);
-    abi.assertFnPtr(@FieldType(posix_fd_support.Plugin, "onFd"), @FieldType(raw.clap_plugin_posix_fd_support, "on_fd"));
-    abi.assertStruct(posix_fd_support.Host, raw.clap_host_posix_fd_support);
-    abi.assertFnPtr(@FieldType(posix_fd_support.Host, "registerFd"), @FieldType(raw.clap_host_posix_fd_support, "register_fd"));
-    abi.assertFnPtr(@FieldType(posix_fd_support.Host, "modifyFd"), @FieldType(raw.clap_host_posix_fd_support, "modify_fd"));
-    abi.assertFnPtr(@FieldType(posix_fd_support.Host, "unregisterFd"), @FieldType(raw.clap_host_posix_fd_support, "unregister_fd"));
+    abi.assertCompatible(raw.clap_plugin_posix_fd_support, posix_fd_support.Plugin);
+    abi.assertCompatible(raw.clap_host_posix_fd_support, posix_fd_support.Host);
 }
 
 test "posix fd support identifiers" {

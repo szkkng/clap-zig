@@ -4,10 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    const Host = clap.ext.thread_check.Host;
-    abi.assertStruct(Host, raw.clap_host_thread_check_t);
-    abi.assertFnPtr(@FieldType(Host, "isMainThread"), @FieldType(raw.clap_host_thread_check_t, "is_main_thread"));
-    abi.assertFnPtr(@FieldType(Host, "isAudioThread"), @FieldType(raw.clap_host_thread_check_t, "is_audio_thread"));
+    abi.assertCompatible(raw.clap_host_thread_check_t, clap.ext.thread_check.Host);
 }
 
 test "thread check identifier" {

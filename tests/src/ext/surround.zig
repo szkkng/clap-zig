@@ -5,11 +5,8 @@ const testing = @import("std").testing;
 
 comptime {
     const surround = clap.ext.surround;
-    abi.assertStruct(surround.Plugin, raw.clap_plugin_surround_t);
-    abi.assertFnPtr(@FieldType(surround.Plugin, "isChannelMaskSupported"), @FieldType(raw.clap_plugin_surround_t, "is_channel_mask_supported"));
-    abi.assertFnPtr(@FieldType(surround.Plugin, "getChannelMap"), @FieldType(raw.clap_plugin_surround_t, "get_channel_map"));
-    abi.assertStruct(surround.Host, raw.clap_host_surround_t);
-    abi.assertFnPtr(@FieldType(surround.Host, "changed"), @FieldType(raw.clap_host_surround_t, "changed"));
+    abi.assertCompatible(raw.clap_plugin_surround_t, surround.Plugin);
+    abi.assertCompatible(raw.clap_host_surround_t, surround.Host);
 }
 
 test "surround identifier" {

@@ -4,10 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    const Plugin = clap.ext.state_context.Plugin;
-    abi.assertStruct(Plugin, raw.clap_plugin_state_context_t);
-    abi.assertFnPtr(@FieldType(Plugin, "save"), @FieldType(raw.clap_plugin_state_context_t, "save"));
-    abi.assertFnPtr(@FieldType(Plugin, "load"), @FieldType(raw.clap_plugin_state_context_t, "load"));
+    abi.assertCompatible(raw.clap_plugin_state_context_t, clap.ext.state_context.Plugin);
 }
 
 test "state context identifier" {

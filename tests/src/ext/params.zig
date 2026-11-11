@@ -5,18 +5,9 @@ const testing = @import("std").testing;
 
 comptime {
     const params = clap.ext.params;
-    abi.assertStruct(params.Info, raw.clap_param_info_t);
-    abi.assertStruct(params.Plugin, raw.clap_plugin_params_t);
-    abi.assertFnPtr(@FieldType(params.Plugin, "count"), @FieldType(raw.clap_plugin_params_t, "count"));
-    abi.assertFnPtr(@FieldType(params.Plugin, "getInfo"), @FieldType(raw.clap_plugin_params_t, "get_info"));
-    abi.assertFnPtr(@FieldType(params.Plugin, "getValue"), @FieldType(raw.clap_plugin_params_t, "get_value"));
-    abi.assertFnPtr(@FieldType(params.Plugin, "valueToText"), @FieldType(raw.clap_plugin_params_t, "value_to_text"));
-    abi.assertFnPtr(@FieldType(params.Plugin, "textToValue"), @FieldType(raw.clap_plugin_params_t, "text_to_value"));
-    abi.assertFnPtr(@FieldType(params.Plugin, "flush"), @FieldType(raw.clap_plugin_params_t, "flush"));
-    abi.assertStruct(params.Host, raw.clap_host_params_t);
-    abi.assertFnPtr(@FieldType(params.Host, "rescan"), @FieldType(raw.clap_host_params_t, "rescan"));
-    abi.assertFnPtr(@FieldType(params.Host, "clear"), @FieldType(raw.clap_host_params_t, "clear"));
-    abi.assertFnPtr(@FieldType(params.Host, "requestFlush"), @FieldType(raw.clap_host_params_t, "request_flush"));
+    abi.assertCompatible(raw.clap_param_info_t, params.Info);
+    abi.assertCompatible(raw.clap_plugin_params_t, params.Plugin);
+    abi.assertCompatible(raw.clap_host_params_t, params.Host);
 }
 
 test "params identifier" {

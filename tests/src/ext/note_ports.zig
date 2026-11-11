@@ -5,13 +5,9 @@ const testing = @import("std").testing;
 
 comptime {
     const note_ports = clap.ext.note_ports;
-    abi.assertStruct(note_ports.Info, raw.clap_note_port_info_t);
-    abi.assertStruct(note_ports.Plugin, raw.clap_plugin_note_ports_t);
-    abi.assertFnPtr(@FieldType(note_ports.Plugin, "count"), @FieldType(raw.clap_plugin_note_ports_t, "count"));
-    abi.assertFnPtr(@FieldType(note_ports.Plugin, "get"), @FieldType(raw.clap_plugin_note_ports_t, "get"));
-    abi.assertStruct(note_ports.Host, raw.clap_host_note_ports_t);
-    abi.assertFnPtr(@FieldType(note_ports.Host, "supportedDialects"), @FieldType(raw.clap_host_note_ports_t, "supported_dialects"));
-    abi.assertFnPtr(@FieldType(note_ports.Host, "rescan"), @FieldType(raw.clap_host_note_ports_t, "rescan"));
+    abi.assertCompatible(raw.clap_note_port_info_t, note_ports.Info);
+    abi.assertCompatible(raw.clap_plugin_note_ports_t, note_ports.Plugin);
+    abi.assertCompatible(raw.clap_host_note_ports_t, note_ports.Host);
 }
 
 test "note ports identifier" {

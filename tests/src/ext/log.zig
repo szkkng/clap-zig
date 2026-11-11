@@ -4,9 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    const Host = clap.ext.log.Host;
-    abi.assertStruct(Host, raw.clap_host_log_t);
-    abi.assertFnPtr(@FieldType(Host, "log"), @FieldType(raw.clap_host_log_t, "log"));
+    abi.assertCompatible(raw.clap_host_log_t, clap.ext.log.Host);
 }
 
 test "log identifier" {

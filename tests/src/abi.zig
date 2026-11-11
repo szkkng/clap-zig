@@ -1,99 +1,165 @@
 const std = @import("std");
-const assert = std.debug.assert;
-const meta = std.meta;
 
-// Check extern struct layout by comparing size, alignment,
-// field count, field sizes, and offsets.
-pub fn assertStruct(comptime ZigType: type, comptime CType: type) void {
-    const zig_struct = switch (@typeInfo(ZigType)) {
-        .@"struct" => |s| s,
-        else => @compileError("Expected a struct"),
-    };
-    const c_struct = switch (@typeInfo(CType)) {
-        .@"struct" => |s| s,
-        else => @compileError("Expected a struct"),
-    };
-
-    assert(zig_struct.layout == .@"extern");
-    assert(c_struct.layout == .@"extern");
-
-    assert(@sizeOf(ZigType) == @sizeOf(CType));
-    assert(@alignOf(ZigType) == @alignOf(CType));
-
-    assert(zig_struct.field_types.len == c_struct.field_types.len);
-
-    inline for (
-        zig_struct.field_types,
-        zig_struct.field_names,
-        c_struct.field_types,
-        c_struct.field_names,
-    ) |zig_field_type, zig_field_name, c_field_type, c_field_name| {
-        assertPtr(zig_field_type, c_field_type);
-        assert(@sizeOf(zig_field_type) == @sizeOf(c_field_type));
-        assert(@offsetOf(ZigType, zig_field_name) == @offsetOf(CType, c_field_name));
+pub fn assertCompatible(comptime CType: type, comptime ZigType: type) void {
+    comptime {
+        @setEvalBranchQuota(100_000);
+        assertCompatibleInner(CType, ZigType, &.{});
     }
 }
 
-// Check callback ABI shape by comparing the C calling convention,
-// parameter count, and size/alignment of parameters and the return value.
-pub fn assertFnPtr(comptime ZigType: type, comptime CType: type) void {
-    const zig_fn_ptr = switch (@typeInfo(unwrapOptional(ZigType))) {
-        .pointer => |p| p,
-        else => @compileError("Expected a function pointer"),
-    };
-    const zig_fn = switch (@typeInfo(zig_fn_ptr.child)) {
-        .@"fn" => |f| f,
-        else => @compileError("Expected a function pointer"),
-    };
-    const c_fn_ptr = switch (@typeInfo(unwrapOptional(CType))) {
-        .pointer => |p| p,
-        else => @compileError("Expected a function pointer"),
-    };
-    const c_fn = switch (@typeInfo(c_fn_ptr.child)) {
-        .@"fn" => |f| f,
-        else => @compileError("Expected a function pointer"),
-    };
+const TypePair = struct {
+    c_type: type,
+    zig_type: type,
+};
 
-    assert(zig_fn.attrs.@"callconv".eql(.c));
-    assert(c_fn.attrs.@"callconv".eql(.c));
-
-    assert(@sizeOf(zig_fn.return_type.?) == @sizeOf(c_fn.return_type.?));
-    assert(@alignOf(zig_fn.return_type.?) == @alignOf(c_fn.return_type.?));
-    assert(zig_fn.param_types.len == c_fn.param_types.len);
-
-    inline for (zig_fn.param_types, c_fn.param_types) |zig_param_type, c_param_type| {
-        assertPtr(zig_param_type.?, c_param_type.?);
-        assert(@sizeOf(zig_param_type.?) == @sizeOf(c_param_type.?));
-        assert(@alignOf(zig_param_type.?) == @alignOf(c_param_type.?));
+fn assertCompatibleInner(
+    comptime CType: type,
+    comptime ZigType: type,
+    comptime active_pairs: []const TypePair,
+) void {
+    inline for (active_pairs) |pair| {
+        if (pair.c_type == CType and pair.zig_type == ZigType) return;
     }
-}
 
-fn assertPtr(comptime ZigType: type, comptime CType: type) void {
-    const zig_type_info = @typeInfo(ZigType);
+    const pair: TypePair = .{ .c_type = CType, .zig_type = ZigType };
+    const next_pairs = active_pairs ++ [_]TypePair{pair};
     const c_type_info = @typeInfo(CType);
+    const zig_type_info = @typeInfo(ZigType);
+
+    if (c_type_info != .@"fn" and
+        c_type_info != .@"opaque" and
+        zig_type_info != .@"fn" and
+        zig_type_info != .@"opaque")
+    {
+        if (@sizeOf(CType) != @sizeOf(ZigType) or
+            @alignOf(CType) != @alignOf(ZigType))
+        {
+            fail(pair, "type mismatch");
+        }
+    }
 
     switch (zig_type_info) {
-        .pointer => |zig_ptr| switch (c_type_info) {
+        .@"struct" => |z| switch (z.layout) {
+            .@"packed" => switch (c_type_info) {
+                .int => |c| {
+                    const z_int = @typeInfo(z.backing_integer.?).int;
+                    if (c.signedness != z_int.signedness or c.bits != z_int.bits) {
+                        fail(pair, "type mismatch");
+                    }
+                },
+                else => fail(pair, "type mismatch"),
+            },
+            .@"extern" => switch (c_type_info) {
+                .@"struct" => |c| {
+                    if (c.layout != z.layout or c.field_types.len != z.field_types.len) {
+                        fail(pair, "type mismatch");
+                    }
+
+                    inline for (
+                        c.field_types,
+                        c.field_names,
+                        z.field_types,
+                        z.field_names,
+                    ) |c_type, c_name, z_type, z_name| {
+                        if (@offsetOf(CType, c_name) != @offsetOf(ZigType, z_name)) {
+                            fail(pair, "type mismatch");
+                        }
+                        assertCompatibleInner(c_type, z_type, next_pairs);
+                    }
+                },
+                else => fail(pair, "type mismatch"),
+            },
+            .auto => fail(pair, "Zig structs must use extern or packed layout"),
+        },
+        .optional => |z_opt| switch (@typeInfo(z_opt.child)) {
+            .pointer => assertCompatibleInner(CType, z_opt.child, next_pairs),
+            else => fail(pair, "only pointer optionals are supported"),
+        },
+        .pointer => |z_ptr| switch (c_type_info) {
+            .optional => |c_opt| switch (@typeInfo(c_opt.child)) {
+                .pointer => assertCompatibleInner(c_opt.child, ZigType, next_pairs),
+                else => fail(pair, "type mismatch"),
+            },
             .pointer => |c_ptr| {
-                assert(@sizeOf(zig_ptr.child) == @sizeOf(c_ptr.child));
-                assert(@alignOf(zig_ptr.child) == @alignOf(c_ptr.child));
+                if (@typeInfo(z_ptr.child) != .@"fn" and
+                    c_ptr.attrs.@"const" != z_ptr.attrs.@"const")
+                {
+                    fail(pair, "type mismatch");
+                }
+                assertCompatibleInner(c_ptr.child, z_ptr.child, next_pairs);
             },
-            else => {},
+            else => fail(pair, "type mismatch"),
         },
-        .optional => |zig_opt| switch (@typeInfo(zig_opt.child)) {
-            .pointer => switch (c_type_info) {
-                .pointer => |c_ptr| assert(c_ptr.size == .c),
-                else => {},
+        .@"fn" => |z_fn| switch (c_type_info) {
+            .@"fn" => |c_fn| {
+                if (!(c_fn.attrs.@"callconv".eql(.c) and z_fn.attrs.@"callconv".eql(.c))) {
+                    fail(pair, "functions must use the C calling convention");
+                }
+                if (c_fn.attrs.varargs != z_fn.attrs.varargs or
+                    c_fn.param_types.len != z_fn.param_types.len)
+                {
+                    fail(pair, "type mismatch");
+                }
+
+                inline for (c_fn.param_types, z_fn.param_types) |c_type, z_type| {
+                    assertCompatibleInner(c_type.?, z_type.?, next_pairs);
+                }
+                assertCompatibleInner(c_fn.return_type.?, z_fn.return_type.?, next_pairs);
             },
-            else => {},
+            else => fail(pair, "type mismatch"),
         },
-        else => {},
+        .@"enum" => |z| switch (c_type_info) {
+            .int => |c| {
+                const z_int = @typeInfo(z.tag_type).int;
+                if (c.signedness != z_int.signedness or c.bits != z_int.bits) {
+                    fail(pair, "type mismatch");
+                }
+            },
+            else => fail(pair, "type mismatch"),
+        },
+        .int => |z| switch (c_type_info) {
+            .int => |c| {
+                if (c.signedness != z.signedness or c.bits != z.bits) {
+                    fail(pair, "type mismatch");
+                }
+            },
+            else => fail(pair, "type mismatch"),
+        },
+        .float => |z| switch (c_type_info) {
+            .float => |c| {
+                if (c.bits != z.bits) fail(pair, "type mismatch");
+            },
+            else => fail(pair, "type mismatch"),
+        },
+        .array => |z| switch (c_type_info) {
+            .array => |c| {
+                if (c.len != z.len) fail(pair, "type mismatch");
+                assertCompatibleInner(c.child, z.child, next_pairs);
+            },
+            else => fail(pair, "type mismatch"),
+        },
+        .@"union" => |z| switch (c_type_info) {
+            .@"union" => |c| {
+                if (c.layout != .@"extern" or z.layout != .@"extern") {
+                    fail(pair, "unions must use extern layout");
+                }
+                if (c.field_types.len != z.field_types.len) fail(pair, "type mismatch");
+                inline for (c.field_types, z.field_types) |c_type, z_type| {
+                    assertCompatibleInner(c_type, z_type, next_pairs);
+                }
+            },
+            else => fail(pair, "type mismatch"),
+        },
+        .bool, .void, .@"opaque" => {
+            if (CType != ZigType) fail(pair, "type mismatch");
+        },
+        else => fail(pair, "unsupported Zig type"),
     }
 }
 
-fn unwrapOptional(comptime T: type) type {
-    return switch (@typeInfo(T)) {
-        .optional => |optional| optional.child,
-        else => T,
-    };
+fn fail(comptime pair: TypePair, comptime reason: []const u8) noreturn {
+    @compileError(std.fmt.comptimePrint(
+        "ABI check failed: {s}\n  C: {s}\n  Zig: {s}",
+        .{ reason, @typeName(pair.c_type), @typeName(pair.zig_type) },
+    ));
 }

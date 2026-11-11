@@ -4,23 +4,18 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    abi.assertStruct(clap.event.Header, raw.clap_event_header_t);
-    abi.assertStruct(clap.event.Note, raw.clap_event_note_t);
-    abi.assertStruct(clap.event.NoteExpression, raw.clap_event_note_expression_t);
-    abi.assertStruct(clap.event.ParamValue, raw.clap_event_param_value_t);
-    abi.assertStruct(clap.event.ParamMod, raw.clap_event_param_mod_t);
-    abi.assertStruct(clap.event.ParamGesture, raw.clap_event_param_gesture_t);
-    abi.assertStruct(clap.event.Transport, raw.clap_event_transport_t);
-    abi.assertStruct(clap.event.Midi, raw.clap_event_midi_t);
-    abi.assertStruct(clap.event.MidiSysex, raw.clap_event_midi_sysex_t);
-    abi.assertStruct(clap.event.Midi2, raw.clap_event_midi2_t);
-
-    abi.assertStruct(clap.event.InputEvents, raw.clap_input_events_t);
-    abi.assertFnPtr(@FieldType(clap.event.InputEvents, "size"), @FieldType(raw.clap_input_events_t, "size"));
-    abi.assertFnPtr(@FieldType(clap.event.InputEvents, "get"), @FieldType(raw.clap_input_events_t, "get"));
-
-    abi.assertStruct(clap.event.OutputEvents, raw.clap_output_events_t);
-    abi.assertFnPtr(@FieldType(clap.event.OutputEvents, "tryPush"), @FieldType(raw.clap_output_events_t, "try_push"));
+    abi.assertCompatible(raw.clap_event_header_t, clap.event.Header);
+    abi.assertCompatible(raw.clap_event_note_t, clap.event.Note);
+    abi.assertCompatible(raw.clap_event_note_expression_t, clap.event.NoteExpression);
+    abi.assertCompatible(raw.clap_event_param_value_t, clap.event.ParamValue);
+    abi.assertCompatible(raw.clap_event_param_mod_t, clap.event.ParamMod);
+    abi.assertCompatible(raw.clap_event_param_gesture_t, clap.event.ParamGesture);
+    abi.assertCompatible(raw.clap_event_transport_t, clap.event.Transport);
+    abi.assertCompatible(raw.clap_event_midi_t, clap.event.Midi);
+    abi.assertCompatible(raw.clap_event_midi_sysex_t, clap.event.MidiSysex);
+    abi.assertCompatible(raw.clap_event_midi2_t, clap.event.Midi2);
+    abi.assertCompatible(raw.clap_input_events_t, clap.event.InputEvents);
+    abi.assertCompatible(raw.clap_output_events_t, clap.event.OutputEvents);
 }
 
 test "core event space id" {

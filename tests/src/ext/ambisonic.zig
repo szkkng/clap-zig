@@ -5,12 +5,9 @@ const testing = @import("std").testing;
 
 comptime {
     const ambisonic = clap.ext.ambisonic;
-    abi.assertStruct(ambisonic.Config, raw.clap_ambisonic_config_t);
-    abi.assertStruct(ambisonic.Plugin, raw.clap_plugin_ambisonic_t);
-    abi.assertFnPtr(@FieldType(ambisonic.Plugin, "isConfigSupported"), @FieldType(raw.clap_plugin_ambisonic_t, "is_config_supported"));
-    abi.assertFnPtr(@FieldType(ambisonic.Plugin, "getConfig"), @FieldType(raw.clap_plugin_ambisonic_t, "get_config"));
-    abi.assertStruct(ambisonic.Host, raw.clap_host_ambisonic_t);
-    abi.assertFnPtr(@FieldType(ambisonic.Host, "changed"), @FieldType(raw.clap_host_ambisonic_t, "changed"));
+    abi.assertCompatible(raw.clap_ambisonic_config_t, ambisonic.Config);
+    abi.assertCompatible(raw.clap_plugin_ambisonic_t, ambisonic.Plugin);
+    abi.assertCompatible(raw.clap_host_ambisonic_t, ambisonic.Host);
 }
 
 test "ambisonic identifiers" {

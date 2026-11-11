@@ -5,22 +5,14 @@ const testing = @import("std").testing;
 
 comptime {
     const context_menu = clap.ext.context_menu;
-    abi.assertStruct(context_menu.Target, raw.clap_context_menu_target_t);
-    abi.assertStruct(context_menu.Entry, raw.clap_context_menu_entry_t);
-    abi.assertStruct(context_menu.CheckEntry, raw.clap_context_menu_check_entry_t);
-    abi.assertStruct(context_menu.ItemTitle, raw.clap_context_menu_item_title_t);
-    abi.assertStruct(context_menu.Submenu, raw.clap_context_menu_submenu_t);
-    abi.assertStruct(context_menu.Builder, raw.clap_context_menu_builder_t);
-    abi.assertFnPtr(@FieldType(context_menu.Builder, "addItem"), @FieldType(raw.clap_context_menu_builder_t, "add_item"));
-    abi.assertFnPtr(@FieldType(context_menu.Builder, "supports"), @FieldType(raw.clap_context_menu_builder_t, "supports"));
-    abi.assertStruct(context_menu.Plugin, raw.clap_plugin_context_menu_t);
-    abi.assertFnPtr(@FieldType(context_menu.Plugin, "populate"), @FieldType(raw.clap_plugin_context_menu_t, "populate"));
-    abi.assertFnPtr(@FieldType(context_menu.Plugin, "perform"), @FieldType(raw.clap_plugin_context_menu_t, "perform"));
-    abi.assertStruct(context_menu.Host, raw.clap_host_context_menu_t);
-    abi.assertFnPtr(@FieldType(context_menu.Host, "populate"), @FieldType(raw.clap_host_context_menu_t, "populate"));
-    abi.assertFnPtr(@FieldType(context_menu.Host, "perform"), @FieldType(raw.clap_host_context_menu_t, "perform"));
-    abi.assertFnPtr(@FieldType(context_menu.Host, "canPopup"), @FieldType(raw.clap_host_context_menu_t, "can_popup"));
-    abi.assertFnPtr(@FieldType(context_menu.Host, "popup"), @FieldType(raw.clap_host_context_menu_t, "popup"));
+    abi.assertCompatible(raw.clap_context_menu_target_t, context_menu.Target);
+    abi.assertCompatible(raw.clap_context_menu_entry_t, context_menu.Entry);
+    abi.assertCompatible(raw.clap_context_menu_check_entry_t, context_menu.CheckEntry);
+    abi.assertCompatible(raw.clap_context_menu_item_title_t, context_menu.ItemTitle);
+    abi.assertCompatible(raw.clap_context_menu_submenu_t, context_menu.Submenu);
+    abi.assertCompatible(raw.clap_context_menu_builder_t, context_menu.Builder);
+    abi.assertCompatible(raw.clap_plugin_context_menu_t, context_menu.Plugin);
+    abi.assertCompatible(raw.clap_host_context_menu_t, context_menu.Host);
 }
 
 test "context menu identifiers" {

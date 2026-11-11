@@ -4,9 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    const Host = clap.ext.event_registry.Host;
-    abi.assertStruct(Host, raw.clap_host_event_registry_t);
-    abi.assertFnPtr(@FieldType(Host, "query"), @FieldType(raw.clap_host_event_registry_t, "query"));
+    abi.assertCompatible(raw.clap_host_event_registry_t, clap.ext.event_registry.Host);
 }
 
 test "event registry identifier" {

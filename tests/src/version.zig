@@ -4,7 +4,7 @@ const raw = @import("raw");
 const testing = @import("std").testing;
 
 comptime {
-    abi.assertStruct(clap.Version, raw.clap_version_t);
+    abi.assertCompatible(raw.clap_version_t, clap.Version);
 }
 
 test "current version" {
