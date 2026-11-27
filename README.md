@@ -1,8 +1,12 @@
 # clap-zig
 
-Zig bindings for [CLAP](https://github.com/free-audio/clap) v1.2.10.
+Zig bindings for the [CLAP](https://github.com/free-audio/clap) audio plugin API.
 
 Draft headers are not supported.
+
+## Requirements
+
+- Zig 0.17.x
 
 ## Setup
 
