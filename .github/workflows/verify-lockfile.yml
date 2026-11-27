@@ -3,7 +3,7 @@ name: Verify lockfile
 on:
   pull_request:
   push:
-    branches: ["main"]
+    branches: ["zig-0.17.x"]
   workflow_dispatch:
 
 permissions:

@@ -4,16 +4,12 @@ Zig bindings for [CLAP](https://github.com/free-audio/clap) v1.2.10.
 
 Draft headers are not supported.
 
-## Requirements
-
-- Zig 0.17.1
-
 ## Setup
 
 Add clap-zig as a dependency:
 
 ```bash
-zig fetch --save git+https://github.com/szkkng/clap-zig
+zig fetch --save git+https://github.com/szkkng/clap-zig#zig-0.17.x
 ```
 
 Import `clap_zig` module in your `build.zig`:
