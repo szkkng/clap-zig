@@ -11,9 +11,9 @@ comptime {
 }
 
 test "audio port identifiers" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_AUDIO_PORTS[0..], clap.ext.audio_ports.id);
-    try testing.expectEqualStrings(raw.CLAP_PORT_MONO[0..], clap.ext.audio_ports.port_type.mono);
-    try testing.expectEqualStrings(raw.CLAP_PORT_STEREO[0..], clap.ext.audio_ports.port_type.stereo);
+    try abi.expectEqualCString(&raw.CLAP_EXT_AUDIO_PORTS, clap.ext.audio_ports.id);
+    try abi.expectEqualCString(&raw.CLAP_PORT_MONO, clap.ext.audio_ports.port_type.mono);
+    try abi.expectEqualCString(&raw.CLAP_PORT_STEREO, clap.ext.audio_ports.port_type.stereo);
 }
 
 test "audio port info flags" {

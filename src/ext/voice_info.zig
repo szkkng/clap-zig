@@ -8,7 +8,7 @@ pub const Info = extern struct {
     voice_capacity: u32,
     flags: Flags,
 
-    pub const Flags = packed struct(u64) {
+    pub const Flags = bitpack struct(u64) {
         supports_overlapping_notes: bool = false,
         _: u63 = 0,
     };

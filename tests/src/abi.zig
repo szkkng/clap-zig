@@ -40,7 +40,7 @@ fn assertCompatibleInner(
 
     switch (zig_type_info) {
         .@"struct" => |z| switch (z.layout) {
-            .@"packed" => switch (c_type_info) {
+            .@"bitpack" => switch (c_type_info) {
                 .int => |c| {
                     const z_int = @typeInfo(z.backing_integer.?).int;
                     if (c.signedness != z_int.signedness or c.bits != z_int.bits) {
@@ -69,7 +69,7 @@ fn assertCompatibleInner(
                 },
                 else => fail(pair, "type mismatch"),
             },
-            .auto => fail(pair, "Zig structs must use extern or packed layout"),
+            .auto => fail(pair, "Zig structs must use extern or bitpack layout"),
         },
         .optional => |z_opt| switch (@typeInfo(z_opt.child)) {
             .pointer => assertCompatibleInner(CType, z_opt.child, next_pairs),
@@ -86,7 +86,7 @@ fn assertCompatibleInner(
                 {
                     fail(pair, "type mismatch");
                 }
-                assertCompatibleInner(c_ptr.child, z_ptr.child, next_pairs);
+                assertElementCompatible(c_ptr.child, z_ptr.child, next_pairs);
             },
             else => fail(pair, "type mismatch"),
         },
@@ -134,7 +134,7 @@ fn assertCompatibleInner(
         .array => |z| switch (c_type_info) {
             .array => |c| {
                 if (c.len != z.len) fail(pair, "type mismatch");
-                assertCompatibleInner(c.child, z.child, next_pairs);
+                assertElementCompatible(c.child, z.child, next_pairs);
             },
             else => fail(pair, "type mismatch"),
         },
@@ -157,9 +157,26 @@ fn assertCompatibleInner(
     }
 }
 
+fn assertElementCompatible(
+    comptime CType: type,
+    comptime ZigType: type,
+    comptime active_pairs: []const TypePair,
+) void {
+    // The bindings use u8 for C char in arrays and pointers.
+    if (CType == c_char and ZigType == u8) return;
+    assertCompatibleInner(CType, ZigType, active_pairs);
+}
+
 fn fail(comptime pair: TypePair, comptime reason: []const u8) noreturn {
     @compileError(std.fmt.comptimePrint(
         "ABI check failed: {s}\n  C: {s}\n  Zig: {s}",
         .{ reason, @typeName(pair.c_type), @typeName(pair.zig_type) },
     ));
+}
+
+pub fn expectEqualCString(expected: []const c_char, actual: [:0]const u8) !void {
+    return std.testing.expectEqualStrings(
+        std.mem.sliceAsBytes(expected),
+        std.mem.absorbSentinel(actual),
+    );
 }

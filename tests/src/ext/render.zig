@@ -8,7 +8,7 @@ comptime {
 }
 
 test "render identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_RENDER[0..], clap.ext.render.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_RENDER, clap.ext.render.id);
 }
 
 test "render mode" {

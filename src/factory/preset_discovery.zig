@@ -5,7 +5,7 @@ const Version = @import("../version.zig").Version;
 pub const id = "clap.preset-discovery-factory/2";
 pub const id_compat = "clap.preset-discovery-factory/draft-2";
 
-pub const Flags = packed struct(u32) {
+pub const Flags = bitpack struct(u32) {
     is_factory_content: bool = false,
     is_user_content: bool = false,
     is_demo_content: bool = false,

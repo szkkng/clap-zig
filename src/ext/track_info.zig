@@ -13,7 +13,7 @@ pub const Info = extern struct {
     audio_channel_count: i32,
     audio_port_type: ?[*:0]const u8,
 
-    pub const Flags = packed struct(u64) {
+    pub const Flags = bitpack struct(u64) {
         has_track_name: bool = false,
         has_track_color: bool = false,
         has_audio_channel: bool = false,

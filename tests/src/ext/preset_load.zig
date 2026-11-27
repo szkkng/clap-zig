@@ -1,7 +1,6 @@
 const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
-const testing = @import("std").testing;
 
 comptime {
     const preset_load = clap.ext.preset_load;
@@ -10,6 +9,6 @@ comptime {
 }
 
 test "preset load identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_PRESET_LOAD[0..], clap.ext.preset_load.id);
-    try testing.expectEqualStrings(raw.CLAP_EXT_PRESET_LOAD_COMPAT[0..], clap.ext.preset_load.id_compat);
+    try abi.expectEqualCString(&raw.CLAP_EXT_PRESET_LOAD, clap.ext.preset_load.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_PRESET_LOAD_COMPAT, clap.ext.preset_load.id_compat);
 }

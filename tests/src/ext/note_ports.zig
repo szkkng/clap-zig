@@ -11,7 +11,7 @@ comptime {
 }
 
 test "note ports identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_NOTE_PORTS[0..], clap.ext.note_ports.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_NOTE_PORTS, clap.ext.note_ports.id);
 }
 
 test "note dialects" {

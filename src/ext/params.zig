@@ -18,7 +18,7 @@ pub const Info = extern struct {
     max_value: f64,
     default_value: f64,
 
-    pub const Flags = packed struct(u32) {
+    pub const Flags = bitpack struct(u32) {
         is_stepped: bool = false,
         is_periodic: bool = false,
         is_hidden: bool = false,
@@ -54,7 +54,7 @@ pub const Host = extern struct {
     clear: *const fn (host: *const ClapHost, param_id: Id, flags: ClearFlags) callconv(.c) void,
     requestFlush: *const fn (host: *const ClapHost) callconv(.c) void,
 
-    pub const RescanFlags = packed struct(u32) {
+    pub const RescanFlags = bitpack struct(u32) {
         values: bool = false,
         text: bool = false,
         info: bool = false,
@@ -62,7 +62,7 @@ pub const Host = extern struct {
         _: u28 = 0,
     };
 
-    pub const ClearFlags = packed struct(u32) {
+    pub const ClearFlags = bitpack struct(u32) {
         all: bool = false,
         automations: bool = false,
         modulations: bool = false,

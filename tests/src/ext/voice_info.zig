@@ -11,7 +11,7 @@ comptime {
 }
 
 test "voice info identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_VOICE_INFO[0..], clap.ext.voice_info.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_VOICE_INFO, clap.ext.voice_info.id);
 }
 
 test "voice info flags" {

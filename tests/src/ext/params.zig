@@ -11,7 +11,7 @@ comptime {
 }
 
 test "params identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_PARAMS[0..], clap.ext.params.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_PARAMS, clap.ext.params.id);
 }
 
 test "param info flags" {

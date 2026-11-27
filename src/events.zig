@@ -30,7 +30,7 @@ pub const Header = extern struct {
     type: u16,
     flags: Flags,
 
-    pub const Flags = packed struct(u32) {
+    pub const Flags = bitpack struct(u32) {
         is_live: bool = false,
         dont_record: bool = false,
         _: u30 = 0,
@@ -110,7 +110,7 @@ pub const Transport = extern struct {
     tsig_num: u16,
     tsig_denom: u16,
 
-    pub const Flags = packed struct(u32) {
+    pub const Flags = bitpack struct(u32) {
         has_tempo: bool = false,
         has_beats_timeline: bool = false,
         has_seconds_timeline: bool = false,

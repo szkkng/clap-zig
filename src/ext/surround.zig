@@ -17,7 +17,7 @@ pub const Host = extern struct {
     changed: *const fn (host: *const ClapHost) callconv(.c) void,
 };
 
-pub const ChannelMask = packed struct(u64) {
+pub const ChannelMask = bitpack struct(u64) {
     fl: bool = false,
     fr: bool = false,
     fc: bool = false,

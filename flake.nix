@@ -1,26 +1,26 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    zig = {
+      url = "github:silversquirl/zig-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      ...
-    }:
-    let
-      forAllSystems = f: builtins.mapAttrs f nixpkgs.legacyPackages;
-    in
-    {
-      devShells = forAllSystems (
-        system: pkgs: {
-          default = pkgs.mkShellNoCC {
-            packages = [
-              pkgs.zig_0_17
-              pkgs.zls_0_17
-            ];
-          };
-        }
-      );
-    };
+  outputs = {
+    nixpkgs,
+    zig,
+    ...
+  }: let
+    forAllSystems = f:
+      builtins.mapAttrs
+      (system: pkgs: f pkgs zig.packages.${system}.zig_0_18_0_dev_1005)
+      nixpkgs.legacyPackages;
+  in {
+    devShells = forAllSystems (pkgs: zig: {
+      default = pkgs.mkShellNoCC {
+        packages = [zig zig.zls];
+      };
+    });
+  };
 }

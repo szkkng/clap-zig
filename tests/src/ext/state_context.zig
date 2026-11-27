@@ -8,7 +8,7 @@ comptime {
 }
 
 test "state context identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_STATE_CONTEXT[0..], clap.ext.state_context.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_STATE_CONTEXT, clap.ext.state_context.id);
 }
 
 test "state context type" {

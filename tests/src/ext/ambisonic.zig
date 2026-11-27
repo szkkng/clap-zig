@@ -11,9 +11,9 @@ comptime {
 }
 
 test "ambisonic identifiers" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_AMBISONIC[0..], clap.ext.ambisonic.id);
-    try testing.expectEqualStrings(raw.CLAP_EXT_AMBISONIC_COMPAT[0..], clap.ext.ambisonic.id_compat);
-    try testing.expectEqualStrings(raw.CLAP_PORT_AMBISONIC[0..], clap.ext.ambisonic.port_type.ambisonic);
+    try abi.expectEqualCString(&raw.CLAP_EXT_AMBISONIC, clap.ext.ambisonic.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_AMBISONIC_COMPAT, clap.ext.ambisonic.id_compat);
+    try abi.expectEqualCString(&raw.CLAP_PORT_AMBISONIC, clap.ext.ambisonic.port_type.ambisonic);
 }
 
 test "ambisonic ordering" {

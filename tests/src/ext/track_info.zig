@@ -11,8 +11,8 @@ comptime {
 }
 
 test "track info identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_TRACK_INFO[0..], clap.ext.track_info.id);
-    try testing.expectEqualStrings(raw.CLAP_EXT_TRACK_INFO_COMPAT[0..], clap.ext.track_info.id_compat);
+    try abi.expectEqualCString(&raw.CLAP_EXT_TRACK_INFO, clap.ext.track_info.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_TRACK_INFO_COMPAT, clap.ext.track_info.id_compat);
 }
 
 test "track info flags" {

@@ -5,7 +5,7 @@ const name_size = @import("../string_sizes.zig").name_size;
 
 pub const id = "clap.note-ports";
 
-pub const Dialects = packed struct(u32) {
+pub const Dialects = bitpack struct(u32) {
     clap: bool = false,
     midi: bool = false,
     midi_mpe: bool = false,
@@ -37,7 +37,7 @@ pub const Host = extern struct {
     supportedDialects: *const fn (host: *const ClapHost) callconv(.c) Dialects,
     rescan: *const fn (host: *const ClapHost, flags: RescanFlags) callconv(.c) void,
 
-    pub const RescanFlags = packed struct(u32) {
+    pub const RescanFlags = bitpack struct(u32) {
         all: bool = false,
         names: bool = false,
         _: u30 = 0,

@@ -1,7 +1,6 @@
 const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
-const testing = @import("std").testing;
 
 comptime {
     const tail = clap.ext.tail;
@@ -10,5 +9,5 @@ comptime {
 }
 
 test "tail identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_TAIL[0..], clap.ext.tail.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_TAIL, clap.ext.tail.id);
 }

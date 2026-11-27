@@ -1,22 +1,26 @@
 # clap-zig
 
-Zig bindings for [CLAP](https://github.com/free-audio/clap) v1.2.10.
+Zig bindings for the [CLAP](https://github.com/free-audio/clap) audio plugin API.
 
 Draft headers are not supported.
-
-## Requirements
-
-- Zig 0.17.1
 
 ## Setup
 
 Add clap-zig as a dependency:
 
+For Zig 0.18.0-dev:
+
 ```bash
 zig fetch --save git+https://github.com/szkkng/clap-zig
 ```
 
-Import `clap_zig` module in your `build.zig`:
+For Zig 0.17.x:
+
+```bash
+zig fetch --save git+https://github.com/szkkng/clap-zig#zig-0.17.x
+```
+
+Import the `clap_zig` module in your `build.zig`:
 
 ```zig
 const clap = b.dependency("clap_zig", .{});

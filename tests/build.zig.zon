@@ -2,7 +2,7 @@
     .name = .tests,
     .version = "0.0.0",
     .fingerprint = 0x1260fc5e491b814a, // Changing this has security and trust implications.
-    .minimum_zig_version = "0.17.1",
+    .minimum_zig_version = "0.18.0-dev.1005+75d48dfff",
     .dependencies = .{
         .clap_zig = .{
             .path = "..",
@@ -12,8 +12,8 @@
             .hash = "N-V-__8AAB-JOwBFtOGup87WSc2jjAlPh8eIMTZnpkjysvO1",
         },
         .translate_c = .{
-            .url = "git+https://codeberg.org/ziglang/translate-c?ref=2.0.2#c11030012dc325d446474d17b78c242fd1d622ec",
-            .hash = "translate_c-2.0.2-Q_BUWvBNBwBgPKQJPblip6M7AHNK_IPNPmyv4rSIQMQc",
+            .url = "git+https://codeberg.org/ziglang/translate-c#f200bb1d0ea9228061d79cde53f46c045cd5c772",
+            .hash = "translate_c-0.1.0-dev-Q_BUWrZkBwDAivD2kWX9knhl453C0LZBZi8gP2X-gCHB",
         },
     },
     .paths = .{

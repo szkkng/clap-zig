@@ -1,7 +1,6 @@
 const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
-const testing = @import("std").testing;
 
 comptime {
     const remote_controls = clap.ext.remote_controls;
@@ -11,6 +10,6 @@ comptime {
 }
 
 test "remote controls identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_REMOTE_CONTROLS[0..], clap.ext.remote_controls.id);
-    try testing.expectEqualStrings(raw.CLAP_EXT_REMOTE_CONTROLS_COMPAT[0..], clap.ext.remote_controls.id_compat);
+    try abi.expectEqualCString(&raw.CLAP_EXT_REMOTE_CONTROLS, clap.ext.remote_controls.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_REMOTE_CONTROLS_COMPAT, clap.ext.remote_controls.id_compat);
 }

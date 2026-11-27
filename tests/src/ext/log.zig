@@ -8,7 +8,7 @@ comptime {
 }
 
 test "log identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_LOG[0..], clap.ext.log.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_LOG, clap.ext.log.id);
 }
 
 test "log severity" {

@@ -1,7 +1,6 @@
 const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
-const testing = @import("std").testing;
 
 comptime {
     const thread_pool = clap.ext.thread_pool;
@@ -10,5 +9,5 @@ comptime {
 }
 
 test "thread pool identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_THREAD_POOL[0..], clap.ext.thread_pool.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_THREAD_POOL, clap.ext.thread_pool.id);
 }

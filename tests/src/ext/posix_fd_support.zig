@@ -10,7 +10,7 @@ comptime {
 }
 
 test "posix fd support identifiers" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_POSIX_FD_SUPPORT[0..], clap.ext.posix_fd_support.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_POSIX_FD_SUPPORT, clap.ext.posix_fd_support.id);
 }
 
 test "posix fd support flags" {

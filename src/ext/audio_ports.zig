@@ -18,7 +18,7 @@ pub const Info = extern struct {
     port_type: ?[*:0]const u8,
     in_place_pair: Id,
 
-    pub const Flags = packed struct(u32) {
+    pub const Flags = bitpack struct(u32) {
         is_main: bool = false,
         supports_64bits: bool = false,
         prefers_64bits: bool = false,
@@ -46,7 +46,7 @@ pub const Host = extern struct {
         _,
     };
 
-    pub const RescanFlags = packed struct(u32) {
+    pub const RescanFlags = bitpack struct(u32) {
         names: bool = false,
         flags: bool = false,
         channel_count: bool = false,

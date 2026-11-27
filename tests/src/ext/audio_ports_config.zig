@@ -1,7 +1,6 @@
 const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
-const testing = @import("std").testing;
 
 comptime {
     const audio_ports_config = clap.ext.audio_ports_config;
@@ -11,5 +10,5 @@ comptime {
 }
 
 test "audio port config identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_AUDIO_PORTS_CONFIG[0..], clap.ext.audio_ports_config.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_AUDIO_PORTS_CONFIG, clap.ext.audio_ports_config.id);
 }

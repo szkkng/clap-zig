@@ -1,7 +1,6 @@
 const abi = @import("../abi.zig");
 const clap = @import("clap_zig");
 const raw = @import("raw");
-const testing = @import("std").testing;
 
 comptime {
     const latency = clap.ext.latency;
@@ -10,5 +9,5 @@ comptime {
 }
 
 test "latency identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_LATENCY[0..], clap.ext.latency.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_LATENCY, clap.ext.latency.id);
 }

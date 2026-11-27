@@ -10,9 +10,9 @@ comptime {
 }
 
 test "surround identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_SURROUND[0..], clap.ext.surround.id);
-    try testing.expectEqualStrings(raw.CLAP_EXT_SURROUND_COMPAT[0..], clap.ext.surround.id_compat);
-    try testing.expectEqualStrings(raw.CLAP_PORT_SURROUND[0..], clap.ext.surround.port_type.surround);
+    try abi.expectEqualCString(&raw.CLAP_EXT_SURROUND, clap.ext.surround.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_SURROUND_COMPAT, clap.ext.surround.id_compat);
+    try abi.expectEqualCString(&raw.CLAP_PORT_SURROUND, clap.ext.surround.port_type.surround);
 }
 
 test "surround channel" {

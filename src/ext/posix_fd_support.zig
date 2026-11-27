@@ -3,7 +3,7 @@ const ClapHost = @import("../host.zig").Host;
 
 pub const id = "clap.posix-fd-support";
 
-pub const Flags = packed struct(u32) {
+pub const Flags = bitpack struct(u32) {
     read: bool = false,
     write: bool = false,
     @"error": bool = false,

@@ -16,8 +16,8 @@ comptime {
 }
 
 test "context menu identifiers" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_CONTEXT_MENU[0..], clap.ext.context_menu.id);
-    try testing.expectEqualStrings(raw.CLAP_EXT_CONTEXT_MENU_COMPAT[0..], clap.ext.context_menu.id_compat);
+    try abi.expectEqualCString(&raw.CLAP_EXT_CONTEXT_MENU, clap.ext.context_menu.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_CONTEXT_MENU_COMPAT, clap.ext.context_menu.id_compat);
 }
 
 test "context menu target kind" {

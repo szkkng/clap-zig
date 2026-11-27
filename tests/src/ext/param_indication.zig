@@ -8,8 +8,8 @@ comptime {
 }
 
 test "param indication identifier" {
-    try testing.expectEqualStrings(raw.CLAP_EXT_PARAM_INDICATION[0..], clap.ext.param_indication.id);
-    try testing.expectEqualStrings(raw.CLAP_EXT_PARAM_INDICATION_COMPAT[0..], clap.ext.param_indication.id_compat);
+    try abi.expectEqualCString(&raw.CLAP_EXT_PARAM_INDICATION, clap.ext.param_indication.id);
+    try abi.expectEqualCString(&raw.CLAP_EXT_PARAM_INDICATION_COMPAT, clap.ext.param_indication.id_compat);
 }
 
 test "automation state" {
